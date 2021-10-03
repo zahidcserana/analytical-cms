@@ -25,6 +25,15 @@
                         <li><a href="{{ route('customers.create') }}" class="{{ $route == 'customers.create'? 'active' : ''}}">New</a></li>
                     </ul>
                 </li>
+                <li class="dropdown {{ in_array($route, $invoices) ? 'show' : ''}}">
+                    <a href="javascript:;" class="dropdown-toggle">
+                        <span class="micon dw dw-invoice"></span><span class="mtext">Invoices</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="{{ route('invoices.index') }}" class="{{ $route == 'invoices.index'? 'active' : ''}}">List</a></li>
+                        <li><a href="{{ route('invoices.create') }}" class="{{ $route == 'invoices.create'? 'active' : ''}}">New</a></li>
+                    </ul>
+                </li>
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
                         <span class="micon dw dw-edit2"></span><span class="mtext">Forms</span>

@@ -2,6 +2,7 @@
 $route = \Request::route()->getName();
 $uri = Request::getRequestUri();
 $customers = ['customers.index', 'customers.create'];
+$invoices = ['invoices.index', 'invoices.create'];
 
 ?>
 <!DOCTYPE html>
@@ -187,6 +188,8 @@ $customers = ['customers.index', 'customers.create'];
     <script src="{{ asset('assets/src/plugins/datatables/js/vfs_fonts.js') }}"></script>
     <!-- Datatable Setting js -->
     <script src="{{ asset('assets/vendors/scripts/datatable-setting.js') }}"></script>
+
+    @stack('scripts')
 </body>
 
 </html>

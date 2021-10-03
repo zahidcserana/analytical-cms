@@ -27,7 +27,7 @@
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-1 col-form-label">Name</label>
                         <div class="col-sm-12 col-md-5">
-                            <input class="form-control" type="text" placeholder="Name" name="name"value="{{ $customer->name }}">
+                            <input class="form-control" type="text" placeholder="Name" name="name" value="{{ $customer->name }}">
                         </div>
                         <label class="col-sm-12 col-md-1 col-form-label">Email</label>
                         <div class="col-sm-12 col-md-5">

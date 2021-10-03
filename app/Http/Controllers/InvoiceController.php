@@ -3,83 +3,95 @@
 namespace App\Http\Controllers;
 
 use App\Models\Invoice;
+use App\Models\Customer;
 use Illuminate\Http\Request;
+use App\Http\Requests\Invoice\StoreRequest;
+use App\Http\Requests\Invoice\UpdateRequest;
+use App\Http\Requests\InvoiceItem\ItemStoreRequest;
+use App\Models\InvoiceItem;
 
 class InvoiceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $data['invoices'] = Invoice::get();
+
+        return view('invoices.index', $data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $data['customers'] = Customer::select('id', 'name')->get();
+
+        return view('invoices.create', $data);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        //
+        $input = $request->validated();
+
+
+        $invoice = Invoice::create($input);
+        $invoice->invoice_no = sprintf("%06d", $invoice->id);
+        $invoice->update();
+
+        return redirect()->route('invoices.edit', ['invoice' => $invoice]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Invoice  $invoice
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Invoice $invoice)
+    public function addItem(ItemStoreRequest $request, Invoice $invoice)
     {
-        //
+        $input = $request->validated();
+
+        $invoiceItem = InvoiceItem::create($input);
+        $invoice->calculate();
+        $invoice->refresh();
+
+        $arr = array('status' => false);
+
+        if ($invoiceItem) {
+            $arr = array('status' => true, 'data' => $invoiceItem, 'invoice' => $invoice);
+        }
+
+        return response()->json($arr);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Invoice  $invoice
-     * @return \Illuminate\Http\Response
-     */
+    public function deleteItem(Request $request, Invoice $invoice)
+    {
+        $itemIds = $request->itemId;
+
+        $result = InvoiceItem::whereIn('id', $itemIds)->delete();
+        $invoice->calculate();
+        $invoice->refresh();
+
+        $arr = array('status' => false);
+
+        if ($result) {
+            $arr = array('status' => true, 'invoice' => $invoice);
+        }
+
+        return response()->json($arr);
+    }
+
     public function edit(Invoice $invoice)
     {
-        //
+        return view('invoices.edit', ['invoice' => $invoice]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Invoice  $invoice
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Invoice $invoice)
+    public function update(UpdateRequest $request, Invoice $invoice)
     {
-        //
+        $input = $request->validated();
+
+        $invoice->update($input);
+        $invoice->calculate();
+        $invoice->refresh();
+
+        return redirect()->back()->withStatus(__('Invoice successfully updated.'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Invoice  $invoice
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Invoice $invoice)
     {
-        //
+        $invoice->delete();
+
+        return redirect()->back()->withStatus(__('Invoice successfully deleted.'));
     }
 }
