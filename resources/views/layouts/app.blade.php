@@ -3,6 +3,7 @@ $route = \Request::route()->getName();
 $uri = Request::getRequestUri();
 $customers = ['customers.index', 'customers.create'];
 $invoices = ['invoices.index', 'invoices.create'];
+$reports = ['reports.invoices', 'reports.customers'];
 
 ?>
 <!DOCTYPE html>
@@ -24,6 +25,13 @@ $invoices = ['invoices.index', 'invoices.create'];
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+      <!-- Styles -->
+      <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+      <!-- Scripts -->
+      <script src="{{ asset('js/app.js') }}" defer></script>
+
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/styles/core.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/styles/icon-font.min.css') }}">

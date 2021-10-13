@@ -14,6 +14,7 @@
                             <th>Customer</th>
                             <th>Total</th>
                             <th>Discount</th>
+                            <th>Payble</th>
                             <th>Paid</th>
                             <th>Due</th>
                             <th>Status</th>
@@ -23,20 +24,24 @@
                     <tbody>
                         @foreach ($invoices as $row)
                         <tr>
-                            <td class="table-plus">{{ $row->invoice_no }}</td>
-                            <td>{{ $row->customer_id }}</td>
+                            <td class="table-plus">
+                                <a href="{{route('invoices.edit', ['invoice' => $row->id])}}">{{ $row->invoice_no }}</a>
+                            </td>
+                            <td>{{ $row->customer->name }}</td>
                             <td>{{ $row->total }}</td>
                             <td>{{ $row->discount }}</td>
+                            <td>{{ $row->total - $row->discount }}</td>
                             <td>{{ $row->paid }}</td>
                             <td>{{ ($row->total - $row->discount) - $row->paid }}</td>
-                            <td>{{ $row->status }}</td>
+                            <td><span class="badge {{ status_class($row->status) }}">{{ $row->status }}</span></td>
                             <td>
                                 <div class="dropdown">
                                     <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                                         <i class="dw dw-more"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                        <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
+                                        <a class="dropdown-item" href="javascript:void(0);" onclick="preview({{ $row->id }})"><i class="dw dw-eye"></i> Preview</a>
+                                        <a class="dropdown-item" href="{{route('invoices.pdf', ['invoice' => $row->id])}}" target="_blank"><i class="dw dw-print"></i> Print</a>
                                         <a class="dropdown-item" href="{{route('invoices.edit', ['invoice' => $row->id])}}"><i class="dw dw-edit2"></i> Edit</a>
                                         @include('layouts.utils.delete',array( 'url' => route('invoices.destroy', ['invoice' => $row->id]), 'class'=>'dropdown-item','text' => "<i class='dw dw-delete-3'></i>Delete"))
                                     </div>
@@ -46,7 +51,34 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="modal fade bs-example-modal-lg" id="bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-body"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    @push('scripts')
+       <script>
+            function preview(invoiceId) {
+                $.ajax({
+                    url: '/invoices/' + invoiceId + '/preview',
+                    type: "GET",
+                    success: function(response) {
+                        $(".modal-body").html(response);
+                        $("#bd-example-modal-lg").modal("show");
+                    }
+                });
+            }
+       </script>
+       <style>
+           .modal-lg, .modal-xl {
+                max-width: 845px;
+            }
+       </style>
+    @endpush
+
 </x-app-layout>

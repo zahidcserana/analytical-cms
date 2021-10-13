@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
+use NumberFormatter;
 use App\Models\Invoice;
 use App\Models\Customer;
+use App\Models\InvoiceItem;
 use Illuminate\Http\Request;
 use App\Http\Requests\Invoice\StoreRequest;
 use App\Http\Requests\Invoice\UpdateRequest;
 use App\Http\Requests\InvoiceItem\ItemStoreRequest;
-use App\Models\InvoiceItem;
 
 class InvoiceController extends Controller
 {
@@ -86,6 +88,34 @@ class InvoiceController extends Controller
         $invoice->refresh();
 
         return redirect()->back()->withStatus(__('Invoice successfully updated.'));
+    }
+
+    public function show(Invoice $invoice)
+    {
+        $digit = new NumberFormatter("en", NumberFormatter::SPELLOUT);
+        $invoice->gross = $digit->format((int)$invoice->total - $invoice->paid);
+
+        return view('invoices.show', ['invoice' => $invoice]);
+    }
+
+    public function createPDF(Invoice $invoice)
+    {
+        $digit = new NumberFormatter("en", NumberFormatter::SPELLOUT);
+        $invoice->gross = $digit->format((int)$invoice->total - $invoice->paid);
+
+        return view('invoices.pdf', ['invoice' => $invoice]);
+
+        // $pdf = PDF::loadView('invoices.pdf', compact('invoice'));
+
+        // return $pdf->download('invoice.pdf');
+    }
+
+    public function preview(Invoice $invoice)
+    {
+        $digit = new NumberFormatter("en", NumberFormatter::SPELLOUT);
+        $invoice->gross = $digit->format((int)$invoice->total - $invoice->paid);
+
+        return view('invoices.preview', ['invoice' => $invoice]);
     }
 
     public function destroy(Invoice $invoice)

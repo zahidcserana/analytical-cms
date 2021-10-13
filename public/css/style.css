@@ -1,0 +1,9 @@
+
+.summary {
+    width: 100%;
+}
+.summary tr td {
+    padding: 2px 0px!important;
+    font-size: 14px;
+    line-height: 1.71em;
+}

@@ -32136,6 +32136,25 @@ select {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.summary {
+  width: 100%;
+}
+
+.summary tr td {
+  padding: 2px 0px!important;
+  font-size: 14px;
+  line-height: 1.71em;
+}
+
+.text-gray-700 {
+  --tw-text-opacity: none!important;
+  color: rgba(55, 65, 81, var(--tw-text-opacity));
+}
+
+.my-table-header {
+  background: lightskyblue;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
@@ -188570,4 +188589,3 @@ select {
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
-

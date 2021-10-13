@@ -50,14 +50,13 @@
                         <tr>
                             <th>Select</th>
                             <th>Buyer</th>
-                            <th>style</th>
-                            <th>color</th>
-                            <th>length</th>
-                            <th>width</th>
-                            <th>area</th>
-                            <th>quantity</th>
-                            <th>price</th>
-                            <th>amount</th>
+                            <th>Style</th>
+                            <th>Color</th>
+                            <th class="text-center">Size</th>
+                            <th class="text-center">Sq. Ins</th>
+                            <th class="text-center">Quantity</th>
+                            <th class="text-right">Rate</th>
+                            <th class="text-right">Amount</th>
                         </tr>
                     </thead>
                     <tbody id="invoice-item">
@@ -67,12 +66,11 @@
                                 <td>{{ $invoiceItem->buyer }}</td>
                                 <td>{{ $invoiceItem->style }}</td>
                                 <td>{{ $invoiceItem->color }}</td>
-                                <td>{{ $invoiceItem->length }}</td>
-                                <td>{{ $invoiceItem->width }}</td>
-                                <td>{{ $invoiceItem->area }}</td>
-                                <td>{{ $invoiceItem->quantity }}</td>
-                                <td>{{ $invoiceItem->price }}</td>
-                                <td>{{ $invoiceItem->amount }}</td>
+                                <td class="text-center">{{ $invoiceItem->length }} * {{ $invoiceItem->width }}</td>
+                                <td class="text-center">{{ $invoiceItem->area }}</td>
+                                <td class="text-center">{{ $invoiceItem->quantity }}</td>
+                                <td class="text-right">{{ $invoiceItem->price }}</td>
+                                <td class="text-right">{{ $invoiceItem->amount }}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -117,7 +115,7 @@
                                             <option selected="">-Select-</option>
                                             <option {{ $invoice->status == 'pending' ? "selected='selected'" : '' }} value="pending">Pending</option>
                                             <option {{ $invoice->status == 'paid' ? "selected='selected'" : '' }} value="paid">Paid</option>
-                                            <option {{ $invoice->status == 'partial_paid' ? "selected='selected'" : '' }} value="partial_paid">Partial Paid</option>
+                                            <option {{ $invoice->status == 'due' ? "selected='selected'" : '' }} value="due">Due</option>
                                         </select>
                                     </td>
                                 </tr>
