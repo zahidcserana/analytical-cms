@@ -16,7 +16,7 @@ class InvoiceController extends Controller
 {
     public function index()
     {
-        $data['invoices'] = Invoice::get();
+        $data['invoices'] = Invoice::latest('id')->paginate(50);
 
         return view('invoices.index', $data);
     }
@@ -120,6 +120,7 @@ class InvoiceController extends Controller
 
     public function destroy(Invoice $invoice)
     {
+        $invoice->invoiceItems()->delete();
         $invoice->delete();
 
         return redirect()->back()->withStatus(__('Invoice successfully deleted.'));

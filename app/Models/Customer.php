@@ -12,4 +12,14 @@ class Customer extends Model
     use SoftDeletes;
 
     protected $guarded = [];
+
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class);
+    }
+
+    public function dueInvoices()
+    {
+        return $this->invoices()->where('status', '<>', Invoice::STATUS_PAID);
+    }
 }

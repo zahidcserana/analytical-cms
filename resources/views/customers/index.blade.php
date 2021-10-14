@@ -7,7 +7,7 @@
 
             </div>
             <div class="pb-20">
-                <table class="data-table table stripe hover nowrap">
+                <table class="table stripe hover nowrap">
                     <thead>
                         <tr>
                             <th class="table-plus datatable-nosort">Name</th>
@@ -36,7 +36,6 @@
                                         <i class="dw dw-more"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                        <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
                                         <a class="dropdown-item" href="{{route('customers.edit', ['customer' => $row->id])}}"><i class="dw dw-edit2"></i> Edit</a>
                                         @include('layouts.utils.delete',array( 'url' => route('customers.destroy', ['customer' => $row->id]), 'class'=>'dropdown-item','text' => "<i class='dw dw-delete-3'></i>Delete"))
                                     </div>
@@ -46,6 +45,9 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="my-pagination">
+                    {!! $customers->links() !!}
+                </div>
             </div>
         </div>
     </div>

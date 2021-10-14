@@ -40,11 +40,6 @@
 					<img src="assets/vendors/images/deskapp-logo.svg" alt="">
 				</a>
 			</div>
-			<div class="login-menu">
-				<ul>
-					<li><a href="register.html">Register</a></li>
-				</ul>
-			</div>
 		</div>
 	</div>
 	<div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">

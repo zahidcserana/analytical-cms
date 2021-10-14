@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\InvoiceIssued;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -11,7 +12,15 @@ class Invoice extends Model
     use HasFactory;
     use SoftDeletes;
 
+    const STATUS_PAID = 'paid';
+    const STATUS_PENDING = 'pending';
+    const STATUS_DUE = 'due';
+
     protected $guarded = [];
+
+    protected $dispatchesEvents = [
+        'saved' => InvoiceIssued::class,
+    ];
 
     public function calculate()
     {
@@ -24,7 +33,7 @@ class Invoice extends Model
         $this->total = $subTotal - $this->discount;
         $this->sub_total = $subTotal;
 
-        if ($this->total == $this->paid) {
+        if ((int)$this->total == (int)$this->paid) {
             $this->status = 'paid';
         }
 

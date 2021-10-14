@@ -1,5 +1,5 @@
 # Features have to do
 
-- pagination
-- reports
-- sidemenu
+- search in list
+- menu active
+- payment

@@ -4,7 +4,6 @@
             <div class="pd-20 clearfix">
                 <h4 class="text-blue h4 pull-left">Invoice List</h4>
                 <a href="{{ route('invoices.create') }}" class="btn btn-info pull-right"><i class="fa fa-plus-circle"></i> New </a>
-
             </div>
             <div class="pb-20" style="padding: 0% 1%;">
                 <div class="row">
@@ -28,37 +27,36 @@
                         <table class="table table-striped table-info">
                             <thead>
                                 <tr>
-                                    <th>Total</th>
+                                    <th>Subtotal</th>
                                     <th>Discount</th>
-                                    <th>Payable</th>
+                                    <th>Amount</th>
                                     <th>Paid</th>
                                     <th>Due</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>{{ $summary['total'] }}</td>
+                                    <td>{{ $summary['sub_total'] }}</td>
                                     <td>{{ $summary['discount'] }}</td>
-                                    <td>{{ $summary['payable'] }}</td>
+                                    <td>{{ $summary['total'] }}</td>
                                     <td>{{ $summary['paid'] }}</td>
-                                    <td>{{ $summary['due'] }}</td>
+                                    <td>{{ $summary['total'] - $summary['paid'] }}</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-                
-                
                 <table class="table stripe hover nowrap">
                     <thead class="my-table-header">
                         <tr>
                             <th>Invoice No</th>
                             <th>Customer</th>
-                            <th>Total</th>
+                            <th>Subtotal</th>
                             <th>Discount</th>
-                            <th>Payable</th>
+                            <th>Amount</th>
                             <th>Paid</th>
                             <th>Due</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -66,11 +64,12 @@
                         <tr>
                             <td>{{ $row->invoice_no }}</td>
                             <td>{{ $row->customer->name }}</td>
-                            <td>{{ $row->total }}</td>
+                            <td>{{ $row->sub_total }}</td>
                             <td>{{ $row->discount }}</td>
-                            <td>{{ $row->total - $row->discount }}</td>
+                            <td>{{ $row->total }}</td>
                             <td>{{ $row->paid }}</td>
-                            <td>{{ ($row->total - $row->discount) - $row->paid }}</td>
+                            <td>{{ $row->total - $row->paid }}</td>
+                            <td><span class="badge {{ status_class($row->status) }}">{{ $row->status }}</span></td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -78,4 +77,14 @@
             </div>
         </div>
     </div>
+
+    @push('scripts')
+        <style>
+        .table td {
+            font-size: 14px;
+            font-weight: 500;
+            padding: .5rem 1rem!important;
+        }
+        </style>
+    @endpush
 </x-app-layout>

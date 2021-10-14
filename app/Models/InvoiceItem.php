@@ -12,4 +12,9 @@ class InvoiceItem extends Model
     use SoftDeletes;
 
     protected $guarded = [];
+
+    public function invoice()
+    {
+        return $this->belongsTo(Invoice::class);
+    }
 }

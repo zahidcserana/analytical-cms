@@ -7,14 +7,14 @@
 
             </div>
             <div class="pb-20">
-                <table class="data-table table stripe hover nowrap">
+                <table class="table stripe hover nowrap">
                     <thead>
                         <tr>
                             <th class="table-plus datatable-nosort">No</th>
                             <th>Customer</th>
-                            <th>Total</th>
+                            <th>Subtotal</th>
                             <th>Discount</th>
-                            <th>Payble</th>
+                            <th>Amount</th>
                             <th>Paid</th>
                             <th>Due</th>
                             <th>Status</th>
@@ -28,11 +28,11 @@
                                 <a href="{{route('invoices.edit', ['invoice' => $row->id])}}">{{ $row->invoice_no }}</a>
                             </td>
                             <td>{{ $row->customer->name }}</td>
-                            <td>{{ $row->total }}</td>
+                            <td>{{ $row->sub_total }}</td>
                             <td>{{ $row->discount }}</td>
-                            <td>{{ $row->total - $row->discount }}</td>
+                            <td>{{ $row->total }}</td>
                             <td>{{ $row->paid }}</td>
-                            <td>{{ ($row->total - $row->discount) - $row->paid }}</td>
+                            <td>{{ $row->total - $row->paid }}</td>
                             <td><span class="badge {{ status_class($row->status) }}">{{ $row->status }}</span></td>
                             <td>
                                 <div class="dropdown">
@@ -51,12 +51,15 @@
                         @endforeach
                     </tbody>
                 </table>
-                <div class="modal fade bs-example-modal-lg" id="bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-body"></div>
-                        </div>
-                    </div>
+                <div class="my-pagination">
+                    {!! $invoices->links() !!}
+                </div>
+            </div>
+        </div>
+        <div class="modal fade bs-example-modal-lg" id="bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body"></div>
                 </div>
             </div>
         </div>
@@ -80,5 +83,4 @@
             }
        </style>
     @endpush
-
 </x-app-layout>

@@ -27,7 +27,7 @@
                 </li>
                 <li class="dropdown {{ in_array($route, $invoices) ? 'show' : ''}}">
                     <a href="javascript:;" class="dropdown-toggle">
-                        <span class="micon dw dw-user3"></span><span class="mtext">Invoices</span>
+                        <span class="micon dw dw-invoice"></span><span class="mtext">Invoices</span>
                     </a>
                     <ul class="submenu">
                         <li><a href="{{ route('invoices.index') }}" class="{{ $route == 'invoices.index'? 'active' : ''}}">List</a></li>
@@ -55,7 +55,7 @@
                                 <li><a href="{{ route('reports.invoices') }}" class="{{ $route == 'reports.invoices'? 'active' : ''}}">All</a></li>
                                 <li><a href="{{ route('reports.invoices',['status' => 'due']) }}" class="{{ $route == 'reports.invoices'? 'active' : ''}}"> Due</a></li>
                                 <li><a href="{{ route('reports.invoices',['status' => 'paid']) }}" class="{{ $route == 'reports.invoices'? 'active' : ''}}"> Paid</a></li>
-                                <li><a href="{{ route('reports.invoices',['status' => 'partial']) }}" class="{{ $route == 'reports.invoices'? 'active' : ''}}"> Paid</a></li>
+                                <li><a href="{{ route('reports.invoices',['status' => 'pending']) }}" class="{{ $route == 'reports.invoices'? 'active' : ''}}"> Pending</a></li>
                             </ul>
                         </li>
                     </ul>

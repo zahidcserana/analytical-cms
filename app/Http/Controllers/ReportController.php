@@ -11,7 +11,7 @@ class ReportController extends Controller
 {
     public function invoices(Request $request)
     {
-        // dd($request->daterange);
+        $query = $request->query();
         $collection = Invoice::query();
 
         $collection->when($request->status, function ($q) use ($request) {
@@ -33,28 +33,28 @@ class ReportController extends Controller
             $dateE = Carbon::now();
 
             $collection = $collection->whereDate('created_at', '>=', $dateS)->whereDate('created_at', '<=', $dateE);
+
+            $dateS = date('m/d/Y', strtotime($dateS));
+            $dateE = date('m/d/Y', strtotime($dateE));
+            $query['daterange'] = $dateS . ' - ' . $dateE;
         }
 
-        $invoices = $collection->get();
+        $invoices = $collection->latest('id')->get();
         $summary = [
-            'total' => 0,
+            'sub_total' => 0,
             'discount' => 0,
-            'payable' => 0,
+            'total' => 0,
             'paid' => 0,
-            'due' => 0,
         ];
 
         foreach ($invoices as $invoice) {
-            $summary['total'] += $invoice->total;
+            $summary['sub_total'] += $invoice->sub_total;
             $summary['discount'] += $invoice->discount;
+            $summary['total'] += $invoice->total;
             $summary['paid'] += $invoice->paid;
         }
 
-        $summary['payable'] = $summary['total'] - $summary['discount'];
-        $summary['due'] = $summary['payable'] - $summary['paid'];
-
-
-        $data['query'] = $request->query();
+        $data['query'] = $query;
         $data['invoices'] = $invoices;
         $data['summary'] = $summary;
         $data['customers'] = Customer::select('id', 'name')->get();

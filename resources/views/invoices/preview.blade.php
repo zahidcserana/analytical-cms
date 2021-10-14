@@ -31,9 +31,9 @@
                         <thead class="invoice-desc-head clearfix">
                             <tr>
                                 <th>Buyer</th>
-                                <th>Style</th>
-                                <th>Color</th>
-                                <th class="text-center">Size</th>
+                                <th style="width: 10%">Style</th>
+                                <th style="width: 10%">Color</th>
+                                <th style="width: 20%" class="text-center">Size</th>
                                 <th class="text-center">Sq. Ins</th>
                                 <th class="text-center">Quantity</th>
                                 <th class="text-right">Rate</th>
