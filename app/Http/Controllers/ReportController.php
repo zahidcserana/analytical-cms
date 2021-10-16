@@ -64,7 +64,16 @@ class ReportController extends Controller
 
     public function customers()
     {
-        $data['customers'] = Customer::get();
+        $customers = Customer::get();
+        $summary['balance'] = 0;
+
+        foreach ($customers as $customer) {
+            $summary['balance'] += $customer->balance;
+        }
+
+        $data['customers'] = $customers;
+        $data['summary'] = $summary;
+
 
         return view('reports.customers.index', $data);
     }

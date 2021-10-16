@@ -6,7 +6,27 @@
                 <a href="{{ route('customers.create') }}" class="btn btn-info pull-right"><i class="fa fa-plus-circle"></i> New </a>
 
             </div>
-            <div class="pb-20">
+            <div class="pb-20" style="padding: 0% 1%;">
+                <div class="row">
+                    <div class="col-7">
+                    </div>
+                    <div class="col-5">
+                        <table class="table table-striped table-info">
+                            <thead>
+                                <tr>
+                                    <th>Customer</th>
+                                    <th>Due</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ $customers->count() }}</td>
+                                    <td>{{ $summary['balance'] }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
                 <table class="table stripe hover nowrap">
                     <thead>
                         <tr>

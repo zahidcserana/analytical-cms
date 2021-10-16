@@ -2,6 +2,7 @@
 
 - dashboard
 - Previous Balance in invoice preview
+- customer report - search by balance gt/0
 
 ## command
 
