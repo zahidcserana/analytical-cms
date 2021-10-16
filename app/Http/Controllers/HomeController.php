@@ -57,7 +57,7 @@ class HomeController extends Controller
         ]);
 
         $user = User::create([
-            'id' => 1,
+            'id' => 2,
             'name' => 'Analytical Journey',
             'email' => 'admin@analytical.com',
             'password' => Hash::make('aj$21'),
