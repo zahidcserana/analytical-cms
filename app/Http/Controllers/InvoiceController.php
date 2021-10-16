@@ -118,7 +118,7 @@ class InvoiceController extends Controller
     public function show(Invoice $invoice)
     {
         $digit = new NumberFormatter("en", NumberFormatter::SPELLOUT);
-        $invoice->gross = $digit->format((int)$invoice->total - $invoice->paid);
+        $invoice->gross = $digit->format((int)$invoice->total);
 
         return view('invoices.show', ['invoice' => $invoice]);
     }
@@ -126,7 +126,7 @@ class InvoiceController extends Controller
     public function createPDF(Invoice $invoice)
     {
         $digit = new NumberFormatter("en", NumberFormatter::SPELLOUT);
-        $invoice->gross = $digit->format((int)$invoice->total - $invoice->paid);
+        $invoice->gross = $digit->format((int)$invoice->total);
 
         return view('invoices.pdf', ['invoice' => $invoice]);
 
@@ -138,7 +138,7 @@ class InvoiceController extends Controller
     public function preview(Invoice $invoice)
     {
         $digit = new NumberFormatter("en", NumberFormatter::SPELLOUT);
-        $invoice->gross = $digit->format((int)$invoice->total - $invoice->paid);
+        $invoice->gross = $digit->format((int)$invoice->total);
 
         return view('invoices.preview', ['invoice' => $invoice]);
     }

@@ -33,8 +33,10 @@ class Invoice extends Model
         $this->total = $subTotal - $this->discount;
         $this->sub_total = $subTotal;
 
-        if ((int)$this->total == (int)$this->paid) {
+        if ((int)$this->total <= (int)$this->paid) {
             $this->status = 'paid';
+        } else if ((int)$this->total > (int)$this->paid) {
+            $this->status = 'due';
         }
 
         $this->update();

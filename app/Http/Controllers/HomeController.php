@@ -57,17 +57,5 @@ class HomeController extends Controller
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
-        
-        // DB::table('customers')->truncate();
-        // DB::table('invoice_items')->truncate();
-        // DB::table('invoices')->truncate();
-        // DB::table('users')->truncate();
-        // DB::table('payments')->truncate();
-
-        // $seeder = new UserSeeder();
-
-        // $seeder->run();
-
-        // return redirect()->intended(RouteServiceProvider::HOME);
     }
 }

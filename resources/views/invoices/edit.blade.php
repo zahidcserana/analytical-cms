@@ -102,22 +102,11 @@
                                 </tr>
                                 <tr>
                                     <td>Paid/Adv:</td>
-                                    <td><input class="form-control" type="text" name="paid" id="paid" value="{{ $invoice->paid }}" onkeyup="calculate()"></td>
+                                    <td><input class="form-control" type="text" name="paid" id="paid" value="{{ $invoice->paid }}" onkeyup="calculate()"  ></td>
                                 </tr>
                                 <tr>
                                     <td>Balance/Due:</td>
                                     <td><p id="due">{{ $invoice->total - $invoice->paid }}</p></td>
-                                </tr>
-                                <tr>
-                                    <td>Status</td>
-                                    <td>
-                                        <select class="custom-select col-12" name="status">
-                                            <option value="">-Select-</option>
-                                            <option {{ $invoice->status == 'pending' ? "selected='selected'" : '' }} value="pending">Pending</option>
-                                            <option {{ $invoice->status == 'paid' ? "selected='selected'" : '' }} value="paid">Paid</option>
-                                            <option {{ $invoice->status == 'due' ? "selected='selected'" : '' }} value="due">Due</option>
-                                        </select>
-                                    </td>
                                 </tr>
                             </table>
                         </div>
@@ -160,6 +149,13 @@
                 $("#total").text(total.toFixed(2));
 
                 let paid = $("#paid").val();
+
+                if (paid > total) {
+                    paid = total;
+
+                    $("#paid").val(paid)
+                }
+
                 let due = total - paid;
                 $("#due").text(due.toFixed(2));
             }
@@ -254,12 +250,11 @@
                                             "<td>" + data.buyer + "</td>" +
                                             "<td>" + data.style + "</td>" +
                                             "<td>" + data.color + "</td>" +
-                                            "<td>" + data.length + "</td>" +
-                                            "<td>" + data.width + "</td>" +
-                                            "<td>" + data.area + "</td>" +
-                                            "<td>" + data.quantity + "</td>" +
-                                            "<td>" + data.price + "</td>" +
-                                            "<td>" + data.amount + "</td> </tr>";
+                                            "<td class='text-center'>" + data.length + "*"+ data.width + "</td>" +
+                                            "<td class='text-center'>" + data.area + "</td>" +
+                                            "<td class='text-center'>" + data.quantity + "</td>" +
+                                            "<td class='text-right'>" + data.price + "</td>" +
+                                            "<td class='text-right'>" + data.amount + "</td> </tr>";
 
                                         $("#invoice-item").append(markup);
                                         calculate();
