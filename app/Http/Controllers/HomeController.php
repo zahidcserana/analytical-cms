@@ -52,9 +52,9 @@ class HomeController extends Controller
             'password' => Hash::make('aj$21'),
         ]);
 
-        event(new Registered($user));
+        // event(new Registered($user));
 
-        Auth::login($user);
+        // Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
     }
