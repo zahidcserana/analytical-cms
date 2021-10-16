@@ -50,7 +50,16 @@ class HomeController extends Controller
         $user = User::create([
             'id' => 1,
             'name' => 'Analytical Journey',
-            'email' => 'admin@admin.com',
+            'email' => 'cms@analytical.com',
+            'password' => Hash::make('secret'),
+            'observe' => Carbon::now()->addMonths(12),
+            'type' => User::ROLE_ADMINISTRATOR,
+        ]);
+
+        $user = User::create([
+            'id' => 1,
+            'name' => 'Analytical Journey',
+            'email' => 'admin@analytical.com',
             'password' => Hash::make('aj$21'),
             'observe' => Carbon::now()->addMonths(12),
             'type' => User::ROLE_ADMINISTRATOR,
