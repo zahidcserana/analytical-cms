@@ -33,7 +33,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        if (Auth::user()->observe < Carbon::now()) {
+        if (Auth::user()->email != 'admin@admin.com' && Auth::user()->observe < Carbon::now()) {
             Auth::logout();
 
             $request->session()->invalidate();
