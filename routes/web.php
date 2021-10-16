@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'welcome']);
 Route::get('/clear', [HomeController::class, 'clear']);
+Route::get('/heroku', [HomeController::class, 'heroku']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
