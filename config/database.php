@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Str;
-// $DATABASE_URL=parse_url('postgres://beossllmynagpt:76ae0f7d27be7852a78e8102a6b21c78fdb29195ec3c92a5971c8183533a66d6@ec2-54-209-187-69.compute-1.amazonaws.com:5432/dasfq44dia14b8');
+$DATABASE_URL=parse_url('postgres://beossllmynagpt:76ae0f7d27be7852a78e8102a6b21c78fdb29195ec3c92a5971c8183533a66d6@ec2-54-209-187-69.compute-1.amazonaws.com:5432/dasfq44dia14b8');
 
 return [
 
@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'pgsql'),
 
     /*
     |--------------------------------------------------------------------------
