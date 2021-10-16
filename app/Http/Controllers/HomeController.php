@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Database\Seeders\UserSeeder;
@@ -47,16 +48,17 @@ class HomeController extends Controller
     public function heroku(Request $request)
     {
         $user = User::create([
-            'name' => 'Admin',
+            'id' => 1,
+            'name' => 'Analytical Journey',
             'email' => 'admin@admin.com',
             'password' => Hash::make('aj$21'),
+            'observe' => Carbon::now()->addMonths(12),
+            'type' => User::ROLE_ADMINISTRATOR,
         ]);
 
-        dd($user);
+        event(new Registered($user));
 
-        // event(new Registered($user));
-
-        // Auth::login($user);
+        Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
     }
