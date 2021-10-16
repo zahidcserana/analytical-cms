@@ -112,7 +112,7 @@
                                     <td>Status</td>
                                     <td>
                                         <select class="custom-select col-12" name="status">
-                                            <option selected="">-Select-</option>
+                                            <option value="">-Select-</option>
                                             <option {{ $invoice->status == 'pending' ? "selected='selected'" : '' }} value="pending">Pending</option>
                                             <option {{ $invoice->status == 'paid' ? "selected='selected'" : '' }} value="paid">Paid</option>
                                             <option {{ $invoice->status == 'due' ? "selected='selected'" : '' }} value="due">Due</option>

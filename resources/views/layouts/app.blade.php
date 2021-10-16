@@ -2,6 +2,7 @@
 $route = \Request::route()->getName();
 $uri = Request::getRequestUri();
 $customers = ['customers.index', 'customers.create'];
+$payments = ['payments.index', 'payments.create'];
 $invoices = ['invoices.index', 'invoices.create'];
 $reports = ['reports.invoices', 'reports.customers'];
 
@@ -54,7 +55,7 @@ $reports = ['reports.invoices', 'reports.customers'];
 <body>
     <div class="pre-loader">
         <div class="pre-loader-box">
-            <div class="loader-logo"><img src="{{ asset('assets/vendors/images/deskapp-logo.svg') }}" alt=""></div>
+            <div class="loader-logo"><img src="{{ asset('assets/vendors/images/analyticalj.png') }}" alt=""></div>
             <div class='loader-progress' id="progress_div">
                 <div class='bar' id='bar1'></div>
             </div>
@@ -177,7 +178,7 @@ $reports = ['reports.invoices', 'reports.customers'];
     <script src="{{ asset('assets/vendors/scripts/script.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/scripts/process.js') }}"></script>
     <script src="{{ asset('assets/vendors/scripts/layout-settings.js') }}"></script>
-    {{-- <script src="{{ asset('assets/src/plugins/apexcharts/apexcharts.min.js') }}"></script> --}}
+    <script src="{{ asset('assets/src/plugins/apexcharts/apexcharts.min.js') }}"></script>
     <script src="{{ asset('assets/src/plugins/datatables/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/src/plugins/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/src/plugins/datatables/js/dataTables.responsive.min.js') }}"></script>

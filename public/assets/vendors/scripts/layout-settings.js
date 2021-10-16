@@ -6,8 +6,8 @@
 		var currentOptions = {
 			headerBackground: "header-white",
 			navigationBackground: "sidebar-dark",
-			menuDropdownIcon: 'icon-style-1',
-			menuListIcon: 'icon-list-style-1',
+			menuDropdownIcon: 'icon-style-3',
+			menuListIcon: 'icon-list-style-5',
 		}
 
 		/**
@@ -187,7 +187,6 @@
 			location.reload();
 		});
 
-		
 
 	});
 

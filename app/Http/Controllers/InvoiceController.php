@@ -14,9 +14,34 @@ use App\Http\Requests\InvoiceItem\ItemStoreRequest;
 
 class InvoiceController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $data['invoices'] = Invoice::latest('id')->paginate(50);
+        $query = $request->query();
+        $collection = Invoice::query();
+
+        $collection->when($request->status, function ($q) use ($request) {
+            return $q->where('status', $request['status']);
+        });
+        $collection->when($request->customer_id, function ($q) use ($request) {
+            return $q->where('customer_id', $request['customer_id']);
+        });
+        $collection->when($request->invoice_no, function ($q) use ($request) {
+            return $q->where('invoice_no', $request['invoice_no']);
+        });
+
+        if (!empty($request->daterange)) {
+            $daterange = explode(' - ', $request->daterange);
+            $dateS = date('Y-m-d', strtotime($daterange[0]));
+            $dateE = date('Y-m-d', strtotime($daterange[1]));
+
+            $collection = $collection->whereDate('created_at', '>=', $dateS)->whereDate('created_at', '<=', $dateE);
+        }
+
+        $invoices = $collection->latest('id')->paginate(20);
+
+        $data['invoices'] = $invoices;
+        $data['query'] = $query;
+        $data['customers'] = Customer::select('id', 'name')->get();
 
         return view('invoices.index', $data);
     }

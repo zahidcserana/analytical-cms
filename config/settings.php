@@ -2,7 +2,7 @@
 
 return [
     'paymentMethod' => [
-        'Cash',
+        'Cash' => 'Cash',
         'Mobile' => [
             'name' => 'Name',
             'transaction_id' => 'Transaction ID',

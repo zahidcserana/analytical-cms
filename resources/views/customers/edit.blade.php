@@ -18,7 +18,7 @@
                         <label class="col-sm-12 col-md-1 col-form-label">Status</label>
                         <div class="col-sm-12 col-md-5">
                             <select class="custom-select col-12" name="status">
-                                <option selected="">-Select-</option>
+                                <option value="">-Select-</option>
                                 <option {{ $customer->status == 'inactive' ? "selected='selected'" : "" }} value="inactive">Inactive</option>
                                 <option {{ $customer->status == 'active' ? "selected='selected'" : "" }} value="active">Active</option>
                             </select>

@@ -6,7 +6,29 @@
                 <a href="{{ route('invoices.create') }}" class="btn btn-info pull-right"><i class="fa fa-plus-circle"></i> New </a>
 
             </div>
-            <div class="pb-20">
+            <div class="pb-20 search-table">
+                <form class="form-inline" method="GET" action="{{ route('invoices.index') }}">
+                    <div class="form-group mb-2 mr-sm-2">
+                        <input type="text" class="form-control" name="invoice_no" placeholder="Invoice No" value="{{ $query['invoice_no'] ?? '' }}">
+                      </div>
+                    <select class="form-control mb-2 mr-sm-2" name="customer_id">
+                        <option value="">-- Select Customer --</option>
+                        @foreach ($customers as $customer)
+                            <option {{ !empty($query['customer_id']) && $query['customer_id'] == $customer->id ? 'selected="selected"':'' }} value="{{ $customer->id }}">{{ $customer->name }}</option>
+                        @endforeach
+                    </select>
+                    <select class="custom-select mb-2 mr-sm-2" name="status">
+                        <option value="">-- Select Status --</option>
+                        <option {{ (!empty($query['status']) && ($query['status'] == 'pending')) ? "selected='selected'" : '' }} value="pending">Pending</option>
+                        <option {{ (!empty($query['status']) && ($query['status'] == 'paid')) ? "selected='selected'" : '' }} value="paid">Paid</option>
+                        <option {{ (!empty($query['status']) && ($query['status'] == 'due')) ? "selected='selected'" : '' }} value="due">Due</option>
+                    </select>
+                    <div class="input-group mb-2 mr-sm-2">
+                        <input value="{{ $query['daterange'] ?? '' }}" class="form-control datetimepicker-range" name="daterange" placeholder="Select Month" type="text" autocomplete="off">
+                    </div>
+                    <button type="submit" class="btn mb-2 mr-sm-2" data-bgcolor="#c32361" data-color="#ffffff"><i class="fa fa-search"></i> {{ __('Search') }}</button>
+                    <a href="{{ route('invoices.index') }}" class="btn mb-2" data-bgcolor="#f46f30" data-color="#ffffff"><i class="fa fa-refresh"></i> {{ __('Reset') }}</a>
+                </form>
                 <table class="table stripe hover nowrap">
                     <thead>
                         <tr>

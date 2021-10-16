@@ -32159,6 +32159,15 @@ select {
   padding: 0 1%;
 }
 
+.payment-log {
+  padding: 5% 20%;
+}
+
+.search-table {
+  padding-left: 2%;
+  padding-right: 2%;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

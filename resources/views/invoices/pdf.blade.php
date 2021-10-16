@@ -87,7 +87,7 @@
     <div class="invoice-box" id="invoice-box">
         <div class="invoice-header">
             <div class="logo text-center">
-                <img src="{{ asset('assets/vendors/images/deskapp-logo.svg') }}" alt="">
+                <img src="{{ asset('assets/vendors/images/analyticalj.png') }}" alt="">
             </div>
         <h3 class="text-right mb-30 weight-600">INVOICE</h3>
         </div>

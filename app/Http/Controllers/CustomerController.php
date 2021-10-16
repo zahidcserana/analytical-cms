@@ -10,9 +10,24 @@ use Illuminate\Support\Facades\Validator;
 
 class CustomerController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $data['customers'] = Customer::latest('id')->paginate(20);
+        $query = $request->query();
+        $collection = Customer::query();
+
+        $collection->when($request->name, function ($q) use ($request) {
+            return $q->where('name', $request['name']);
+        });
+        $collection->when($request->mobile, function ($q) use ($request) {
+            return $q->where('mobile', $request['mobile']);
+        });
+        $collection->when($request->email, function ($q) use ($request) {
+            return $q->where('email', $request['email']);
+        });
+
+        $customers = $collection->paginate(20);
+
+        $data['customers'] = $customers;
 
         return view('customers.index', $data);
     }
@@ -29,17 +44,6 @@ class CustomerController extends Controller
         $user = Customer::create($input);
 
         return redirect()->route('customers.index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     public function edit(Customer $customer)

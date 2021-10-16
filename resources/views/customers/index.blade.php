@@ -6,7 +6,20 @@
                 <a href="{{ route('customers.create') }}" class="btn btn-info pull-right"><i class="fa fa-plus-circle"></i> New </a>
 
             </div>
-            <div class="pb-20">
+            <div class="pb-20 search-table">
+                <form class="form-inline" method="GET" action="{{ route('customers.index') }}">
+                    <div class="form-group mb-2 mr-sm-2">
+                        <input type="text" class="form-control" name="name" placeholder="Name" value="{{ $query['name'] ?? '' }}">
+                    </div>
+                    <div class="form-group mb-2 mr-sm-2">
+                        <input type="text" class="form-control" name="mobile" placeholder="Mobile" value="{{ $query['mobile'] ?? '' }}">
+                    </div>
+                    <div class="form-group mb-2 mr-sm-2">
+                        <input type="text" class="form-control" name="email" placeholder="Email" value="{{ $query['email'] ?? '' }}">
+                    </div>
+                    <button type="submit" class="btn mb-2 mr-sm-2" data-bgcolor="#c32361" data-color="#ffffff"><i class="fa fa-search"></i> {{ __('Search') }}</button>
+                    <a href="{{ route('customers.index') }}" class="btn mb-2" data-bgcolor="#f46f30" data-color="#ffffff"><i class="fa fa-refresh"></i> {{ __('Reset') }}</a>
+                </form>
                 <table class="table stripe hover nowrap">
                     <thead>
                         <tr>

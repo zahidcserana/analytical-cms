@@ -1,8 +1,8 @@
 <div class="left-side-bar">
     <div class="brand-logo">
-        <a href="index.html">
-            <img src="{{ asset('assets/vendors/images/deskapp-logo.svg') }}" alt="" class="dark-logo">
-            <img src="{{ asset('assets/vendors/images/deskapp-logo-white.svg') }}" alt="" class="light-logo">
+        <a href="{{ route('dashboard') }}">
+            <img src="{{ asset('assets/vendors/images/analyticalj.png') }}" alt="" class="dark-logo">
+            <img src="{{ asset('assets/vendors/images/analyticalj.png') }}" alt="" class="light-logo">
         </a>
         <div class="close-sidebar" data-toggle="left-sidebar-close">
             <i class="ion-close-round"></i>
@@ -18,7 +18,7 @@
                 </li>
                 <li class="dropdown {{ in_array($route, $customers) ? 'show' : ''}}">
                     <a href="javascript:;" class="dropdown-toggle">
-                        <span class="micon dw dw-user3"></span><span class="mtext">Customers</span>
+                        <span class="micon dw dw-user-2"></span><span class="mtext">Customers</span>
                     </a>
                     <ul class="submenu">
                         <li><a href="{{ route('customers.index') }}" class="{{ $route == 'customers.index'? 'active' : ''}}">List</a></li>
@@ -34,30 +34,38 @@
                         <li><a href="{{ route('invoices.create') }}" class="{{ $route == 'invoices.create'? 'active' : ''}}">New</a></li>
                     </ul>
                 </li>
-                <li class="dropdown {{ in_array($route, $reports) ? 'show' : ''}}">
+                <li class="dropdown {{ in_array($route, $payments) ? 'show' : ''}}">
                     <a href="javascript:;" class="dropdown-toggle">
-                        <span class="micon dw dw-apartment"></span><span class="mtext">Reports</span>
+                        <span class="micon dw dw-money"></span><span class="mtext">Payments</span>
                     </a>
                     <ul class="submenu">
-                        <li class="dropdown {{ $route == 'reports.customers'? 'show' : ''}}">
-                            <a href="javascript:;" class="dropdown-toggle">
-                                <span class="micon fa fa-plug"></span><span class="mtext">Customers</span>
-                            </a>
-                            <ul class="submenu child">
-                                <li><a href="{{ route('reports.customers') }}" class="{{ $route == 'reports.customers'? 'active' : ''}}">Customers</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown show">
-                            <a href="javascript:;" class="dropdown-toggle">
-                                <span class="micon fa fa-plug"></span><span class="mtext">Invoices</span>
-                            </a>
-                            <ul class="submenu child">
-                                <li><a href="{{ route('reports.invoices') }}" class="{{ $route == 'reports.invoices'? 'active' : ''}}">All</a></li>
-                                <li><a href="{{ route('reports.invoices',['status' => 'due']) }}" class="{{ $route == 'reports.invoices'? 'active' : ''}}"> Due</a></li>
-                                <li><a href="{{ route('reports.invoices',['status' => 'paid']) }}" class="{{ $route == 'reports.invoices'? 'active' : ''}}"> Paid</a></li>
-                                <li><a href="{{ route('reports.invoices',['status' => 'pending']) }}" class="{{ $route == 'reports.invoices'? 'active' : ''}}"> Pending</a></li>
-                            </ul>
-                        </li>
+                        <li><a href="{{ route('payments.index') }}" class="{{ $route == 'payments.index'? 'active' : ''}}">List</a></li>
+                        <li><a href="{{ route('payments.create') }}" class="{{ $route == 'payments.create'? 'active' : ''}}">New</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="dropdown-divider"></div>
+                </li>
+                <li>
+                    <div class="sidebar-small-cap">Reports</div>
+                </li>
+                <li class="dropdown {{ $route == 'reports.customers'? 'show' : ''}}">
+                    <a href="javascript:;" class="dropdown-toggle">
+                        <span class="micon dw dw-calculator"></span><span class="mtext">Customers</span>
+                    </a>
+                    <ul class="submenu child">
+                        <li><a href="{{ route('reports.customers') }}" class="{{ $route == 'reports.customers'? 'active' : ''}}">Customers</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown {{ $route == 'reports.invoices'? 'show' : ''}}">
+                    <a href="javascript:;" class="dropdown-toggle">
+                        <span class="micon dw dw-computer-1"></span><span class="mtext">Invoices</span>
+                    </a>
+                    <ul class="submenu child">
+                        <li><a href="{{ route('reports.invoices') }}" class="{{ $uri == '/reports/invoices'? 'active' : ''}}">All</a></li>
+                        <li><a href="{{ route('reports.invoices',['status' => 'due']) }}" class="{{ $uri == '/reports/invoices?status=due'? 'active' : ''}}"> Due</a></li>
+                        <li><a href="{{ route('reports.invoices',['status' => 'paid']) }}" class="{{ $uri == '/reports/invoices?status=paid'? 'active' : ''}}"> Paid</a></li>
+                        <li><a href="{{ route('reports.invoices',['status' => 'pending']) }}" class="{{ $uri == '/reports/invoices?status=pending'? 'active' : ''}}"> Pending</a></li>
                     </ul>
                 </li>
                 <li>

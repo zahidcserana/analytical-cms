@@ -13,7 +13,7 @@
                         <label class="col-sm-12 col-md-2 col-form-label">Customer</label>
                         <div class="col-sm-12 col-md-6">
                             <select class="custom-select col-12" name="customer_id">
-                                <option selected="">-Select-</option>
+                                <option value="">-Select-</option>
                                 @foreach ($customers as $customer)
                                     <option value="{{ $customer->id }}">{{ $customer->name }}</option>
                                 @endforeach
