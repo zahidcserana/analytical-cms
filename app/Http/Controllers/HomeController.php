@@ -52,6 +52,8 @@ class HomeController extends Controller
             'password' => Hash::make('aj$21'),
         ]);
 
+        dd($user);
+
         // event(new Registered($user));
 
         // Auth::login($user);
