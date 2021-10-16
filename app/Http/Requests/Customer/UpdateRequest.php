@@ -29,10 +29,10 @@ class UpdateRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'mobile' => ['required', 'string', 'max:20', Rule::unique('customers')->ignore($this->id)],
             'email' => ['string', 'email', 'max:255'],
-            'phone' => ['string', 'string', 'max:20'],
-            'address' => ['string', 'max:255'],
-            'status' => ['string', 'max:20'],
-            'balance' => ['string', 'max:20'],
+            'phone' => ['sometimes'],
+            'address' => ['sometimes'],
+            'status' => ['sometimes'],
+            'balance' => ['sometimes'],
         ];
     }
 }
