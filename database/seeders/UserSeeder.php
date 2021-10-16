@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -14,22 +16,36 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $admin =  User::factory()->create([
+        $sadmin =  User::factory()->create([
             'id' => 1,
-            'email' => 'admin@cms.com',
+            'name' => 'Analytical Journey',
+            'email' => 'admin@admin.com',
+            'password' => Hash::make('aj$21'),
+            'observe' => Carbon::now()->addMonths(12),
             'type' => User::ROLE_ADMINISTRATOR,
         ]);
 
-        $creator = User::factory()->create([
+        $admin =  User::factory()->create([
             'id' => 2,
+            'name' => 'Analytical Journey',
+            'email' => 'admin@cms.com',
+            'observe' => Carbon::now()->addMonths(1),
+            'type' => User::ROLE_ADMINISTRATOR,
+        ]);
+
+
+        $creator = User::factory()->create([
+            'id' => 3,
             'email' => 'creator@cms.com',
             'type' => User::ROLE_MEMBER,
+            'observe' => Carbon::now()->addDay(),
         ]);
 
         $member = User::factory()->create([
-            'id' => 3,
+            'id' => 4,
             'email' => 'member@cms.com',
             'type' => User::ROLE_MEMBER,
+            'observe' => Carbon::now()->addMonths(2),
         ]);
     }
 }

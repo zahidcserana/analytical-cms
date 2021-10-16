@@ -8,6 +8,7 @@ use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'welcome']);
+Route::get('/clear', [HomeController::class, 'clear']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
