@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Database\Seeders\UserSeeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Auth\Events\Registered;
 use App\Providers\RouteServiceProvider;
 
 class HomeController extends Controller
@@ -43,16 +46,28 @@ class HomeController extends Controller
 
     public function heroku(Request $request)
     {
-        DB::table('customers')->truncate();
-        DB::table('invoice_items')->truncate();
-        DB::table('invoices')->truncate();
-        DB::table('users')->truncate();
-        DB::table('payments')->truncate();
+        $user = User::create([
+            'name' => 'Admin',
+            'email' => 'admin@admin.com',
+            'password' => Hash::make('aj$21'),
+        ]);
 
-        $seeder = new UserSeeder();
+        event(new Registered($user));
 
-        $seeder->run();
+        Auth::login($user);
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        return redirect(RouteServiceProvider::HOME);
+        
+        // DB::table('customers')->truncate();
+        // DB::table('invoice_items')->truncate();
+        // DB::table('invoices')->truncate();
+        // DB::table('users')->truncate();
+        // DB::table('payments')->truncate();
+
+        // $seeder = new UserSeeder();
+
+        // $seeder->run();
+
+        // return redirect()->intended(RouteServiceProvider::HOME);
     }
 }
