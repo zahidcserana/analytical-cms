@@ -23,6 +23,8 @@ return [
         'phone' => '01977777777',
         'mobile' => '02865755',
         'email' => 'dotdesign@gmail.com',
-    ]
+    ],
+
+    'invoice_size' => 6,
 
 ];

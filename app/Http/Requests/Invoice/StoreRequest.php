@@ -25,12 +25,14 @@ class StoreRequest extends FormRequest
     {
         return [
             'customer_id' => ['required', 'exists:customers,id,deleted_at,NULL'],
-            'invoice_no' => ['sometimes'],
+            'invoice_no' => ['required', 'string', 'max:20', 'unique:invoices'],
             'receive_no' => ['sometimes'],
             'total' => ['sometimes'],
             'discount' => ['sometimes'],
             'paid' => ['sometimes'],
             'status' => ['sometimes'],
+            'type' => ['sometimes'],
+            'invoice_date' => ['sometimes'],
         ];
     }
 }

@@ -4022,6 +4022,12 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
 
+$('.my-date-picker').datepicker({
+  language: 'en',
+  autoClose: true,
+  dateFormat: 'yyyy-mm-dd'
+});
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

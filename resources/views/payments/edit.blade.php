@@ -23,7 +23,7 @@
                         </div>
                         <label class="col-sm-12 col-md-2 col-form-label">Amount</label>
                         <div class="col-sm-12 col-md-4">
-                            <input class="form-control" placeholder="Amount" type="number" name="amount" value="{{ $payment->amount }}">
+                            <input class="form-control" placeholder="Amount" type="text" name="amount" value="{{ $payment->amount }}">
                         </div>
                     </div>
                     <div class="form-group row">

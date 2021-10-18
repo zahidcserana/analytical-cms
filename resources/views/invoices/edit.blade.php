@@ -15,17 +15,17 @@
                     <input type="hidden" name="invoice_id" value="{{ $invoice->id }}">
                     <div class="form-group row">
                         <div class="col-sm-12 col-md-2">
-                            <input class="form-control" type="text" placeholder="Buyer" name="buyer">
+                            <input class="form-control" type="text" placeholder="Buyer" name="buyer" id="buyer">
                         </div>
                         <div class="col-sm-12 col-md-2">
-                            <input class="form-control" placeholder="Style" type="text" name="style">
+                            <input class="form-control" placeholder="Style" type="text" name="style" id="style">
                         </div>
                         <div class="col-sm-12 col-md-1">
-                            <input class="form-control" placeholder="Color" type="text" name="color">
+                            <input class="form-control" placeholder="Color" type="text" name="color" id="color" onkeyup="setQuantity()">
                         </div>
                         <div class="col-sm-12 col-md-2" style="display: flex">
-                            <input style="flex: 1" class="form-control" placeholder="Length" type="text"name="length" id="length" onkeyup="getArea()">
                             <input style="flex: 1" class="form-control" placeholder="Width" type="text" name="width" id="width" onkeyup="getArea()">
+                            <input style="flex: 1" class="form-control" placeholder="Length" type="text"name="length" id="length" onkeyup="getArea()">
                         </div>
                         <div class="col-sm-12 col-md-1">
                             <input class="form-control" placeholder="Sq. Ins" type="text" name="area" id="area" readonly>
@@ -127,11 +127,14 @@
         <script>
             var subtotal = @json($invoice->sub_total);
             var total = @json($invoice->total);
+            var intRegex = /^\d+$/;
 
             function getArea() {
                 let length = $("#length").val();
                 let width = $("#width").val();
-                $("#area").val(length * width);
+                if(intRegex.test(length) && intRegex.test(width)) {
+                    $("#area").val(length * width);
+                }
 
                 getAmount();
             }
@@ -140,7 +143,21 @@
                 let area = $("#area").val();
                 let price = $("#price").val();
                 let quantity = $("#quantity").val();
-                $("#amount").val(area * price * quantity);
+                if ($.isNumeric(price)) {
+                    $("#amount").val(setAmount(area * price * quantity));
+                }
+            }
+
+            function setAmount($amount)
+            {
+                return $amount < 150 ? 150 : $amount;
+            }
+
+            function setQuantity() {
+                let color = $("#color").val();
+                if(intRegex.test(color)) {
+                    let quantity = $("#quantity").val(color);
+                }
             }
 
             function calculate() {
@@ -201,22 +218,53 @@
                         }
                     });
                 });
-                if ($("#post-form").length > 0) {
+
+                $( "#post-form" ).submit(function( event ) {
+                    event.preventDefault();
+
                     $("#post-form").validate({
                         rules: {
                             width: {
-                                required: true
+                                required: true,
+                                number: true
                             },
                             length: {
-                                required: true
+                                required: true,
+                                number: true
+                            },
+                            quantity: {
+                                required: true,
+                                digits: true
+                            },
+                            price: {
+                                required: true,
+                                number: true
+                            },
+                            amount: {
+                                required: true,
+                                number: true
                             }
                         },
                         messages: {
                             width: {
-                                required: "*"
+                                required: "*",
+                                number: "*"
                             },
                             length: {
-                                required: "*"
+                                required: "*",
+                                number: "*"
+                            },
+                            quantity: {
+                                required: "*",
+                                digits: "*"
+                            },
+                            price: {
+                                required: "*",
+                                number: "*"
+                            },
+                            amount: {
+                                required: "*",
+                                number: "*"
                             },
                         },
                         submitHandler: function(form) {
@@ -269,7 +317,8 @@
                             });
                         }
                     })
-                }
+                });
+
             });
         </script>
 

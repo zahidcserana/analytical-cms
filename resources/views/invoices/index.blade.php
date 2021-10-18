@@ -32,7 +32,8 @@
                 <table class="table stripe hover nowrap">
                     <thead>
                         <tr>
-                            <th class="table-plus datatable-nosort">No</th>
+                            <th class="table-plus datatable-nosort">Invoice/Bill</th>
+                            <th>Date</th>
                             <th>Customer</th>
                             <th>Subtotal</th>
                             <th>Discount</th>
@@ -49,6 +50,7 @@
                             <td class="table-plus">
                                 <a href="{{route('invoices.edit', ['invoice' => $row->id])}}">{{ $row->invoice_no }}</a>
                             </td>
+                            <td> {{ Carbon\Carbon::parse($row->invoice_date)->format('d/m/Y') }} </td>
                             <td>{{ $row->customer->name }}</td>
                             <td>{{ $row->sub_total }}</td>
                             <td>{{ $row->discount }}</td>

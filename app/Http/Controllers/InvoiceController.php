@@ -8,6 +8,7 @@ use App\Models\Invoice;
 use App\Models\Customer;
 use App\Models\InvoiceItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\Invoice\StoreRequest;
 use App\Http\Requests\Invoice\UpdateRequest;
 use App\Http\Requests\InvoiceItem\ItemStoreRequest;
@@ -48,7 +49,18 @@ class InvoiceController extends Controller
 
     public function create()
     {
-        $data['customers'] = Customer::select('id', 'name')->get();
+        $customers = Customer::select('id', 'name')->get();
+        $invoice = Invoice::latest()->first();
+
+        if ($invoice) {
+            $invoiceNo = sprintf("%0" . config("settings.invoice_size") . "d", $invoice->id + 1);
+        } else {
+            $invoiceNo = sprintf("%0" . config("settings.invoice_size") . "d", 1);
+        }
+
+        $data['customers'] = $customers;
+        $data['invoiceNo'] = $invoiceNo;
+
 
         return view('invoices.create', $data);
     }
@@ -57,9 +69,11 @@ class InvoiceController extends Controller
     {
         $input = $request->validated();
 
+        if ($input['type'] == 2 && empty($input['total'])) {
+            return Redirect::back()->withErrors(['msg' => 'Please enter Total amount.']);
+        }
 
         $invoice = Invoice::create($input);
-        $invoice->invoice_no = sprintf("%06d", $invoice->id);
         $invoice->update();
 
         return redirect()->route('invoices.edit', ['invoice' => $invoice]);
@@ -101,6 +115,10 @@ class InvoiceController extends Controller
 
     public function edit(Invoice $invoice)
     {
+        if ($invoice->type == Invoice::TYPE_LOCAL) {
+            return view('invoices.edit_local', ['invoice' => $invoice]);
+        }
+
         return view('invoices.edit', ['invoice' => $invoice]);
     }
 

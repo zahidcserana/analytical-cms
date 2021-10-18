@@ -16,6 +16,9 @@ class Invoice extends Model
     const STATUS_PENDING = 'pending';
     const STATUS_DUE = 'due';
 
+    const TYPE_CORPORATE = 1;
+    const TYPE_LOCAL = 2;
+
     protected $guarded = [];
 
     protected $dispatchesEvents = [
@@ -24,14 +27,17 @@ class Invoice extends Model
 
     public function calculate()
     {
-        $subTotal = 0;
 
-        foreach ($this->invoiceItems as $invoiceItem) {
-            $subTotal += $invoiceItem->area * $invoiceItem->price * $invoiceItem->quantity;
+        if ($this->type == 1) {
+            $subTotal = 0;
+
+            foreach ($this->invoiceItems as $invoiceItem) {
+                $subTotal += $this->getAmount($invoiceItem->amount);
+            }
+
+            $this->total = $subTotal - $this->discount;
+            $this->sub_total = $subTotal;
         }
-
-        $this->total = $subTotal - $this->discount;
-        $this->sub_total = $subTotal;
 
         if ((int)$this->total <= (int)$this->paid) {
             $this->status = 'paid';
@@ -40,6 +46,11 @@ class Invoice extends Model
         }
 
         $this->update();
+    }
+
+    public function getAmount($amount)
+    {
+        return $amount < 150 ? 150 : $amount;
     }
 
     public function invoiceItems()

@@ -25,6 +25,7 @@ class InvoiceFactory extends Factory
             'customer_id' => 1,
             'invoice_no' => $this->faker->randomNumber(6),
             'receive_no' => $this->faker->randomNumber(6),
+            'invoice_date' => $this->faker->date(),
         ];
     }
 }

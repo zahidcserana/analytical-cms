@@ -1,5 +1,6 @@
 # Features have to do
 
+- Server update
 - dashboard
 - Previous Balance in invoice preview
 - customer report - search by balance gt/0
