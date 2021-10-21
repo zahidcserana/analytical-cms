@@ -26,6 +26,7 @@ Route::post('payments/{payment}/adjust', [PaymentController::class, 'applied'])-
 Route::post('invoice-item/{invoice}', [InvoiceController::class, 'addItem']);
 Route::get('invoices/{invoice}/pdf', [InvoiceController::class, 'createPDF'])->name('invoices.pdf');
 Route::get('invoices/{invoice}/preview', [InvoiceController::class, 'preview'])->name('invoices.preview');
+Route::get('invoices/{invoice}/emailing', [InvoiceController::class, 'emailing'])->name('invoices.emailing');
 Route::post('invoice-item-delete/{invoice}', [InvoiceController::class, 'deleteItem']);
 Route::get('reports/invoices', [ReportController::class, 'invoices'])->name('reports.invoices');
 Route::get('reports/customers', [ReportController::class, 'customers'])->name('reports.customers');

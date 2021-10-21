@@ -57,13 +57,13 @@ class CustomerController extends Controller
 
         $customer->update($input);
 
-        return redirect()->back()->withStatus(__('Customer successfully updated.'));
+        return back()->with('success', 'Customer successfully updated.');
     }
 
     public function destroy(Customer $customer)
     {
         $customer->delete();
 
-        return redirect()->back()->withStatus(__('Customer successfully deleted.'));
+        return back()->with('success', 'Customer successfully deleted.');
     }
 }

@@ -8,10 +8,13 @@ use App\Models\Invoice;
 use App\Models\Customer;
 use App\Models\InvoiceItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\Invoice\StoreRequest;
 use App\Http\Requests\Invoice\UpdateRequest;
 use App\Http\Requests\InvoiceItem\ItemStoreRequest;
+use App\Mail\InvoiceIssued;
+use App\Mail\InvoicePrepared;
 
 class InvoiceController extends Controller
 {
@@ -130,7 +133,7 @@ class InvoiceController extends Controller
         $invoice->calculate();
         $invoice->refresh();
 
-        return redirect()->back()->withStatus(__('Invoice successfully updated.'));
+        return back()->with('success','Invoice successfully updated.');
     }
 
     public function show(Invoice $invoice)
@@ -166,6 +169,18 @@ class InvoiceController extends Controller
         $invoice->invoiceItems()->delete();
         $invoice->delete();
 
-        return redirect()->back()->withStatus(__('Invoice successfully deleted.'));
+        return back()->with('success','Invoice successfully deleted.');
+    }
+
+    public function emailing(Request $request, Invoice $invoice)
+    {
+        $digit = new NumberFormatter("en", NumberFormatter::SPELLOUT);
+        $invoice->gross = $digit->format((int)$invoice->total);
+
+        // return new InvoicePrepared($invoice);
+
+        Mail::to($invoice->customer->email)->send(new InvoicePrepared($invoice));
+
+        return back()->with('success','Invoice successfully sent.');
     }
 }

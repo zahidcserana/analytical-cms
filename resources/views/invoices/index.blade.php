@@ -29,6 +29,8 @@
                     <button type="submit" class="btn mb-2 mr-sm-2" data-bgcolor="#c32361" data-color="#ffffff"><i class="fa fa-search"></i> {{ __('Search') }}</button>
                     <a href="{{ route('invoices.index') }}" class="btn mb-2" data-bgcolor="#f46f30" data-color="#ffffff"><i class="fa fa-refresh"></i> {{ __('Reset') }}</a>
                 </form>
+                @include("layouts.alert")
+
                 <table class="table stripe hover nowrap">
                     <thead>
                         <tr>
@@ -66,6 +68,7 @@
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                         <a class="dropdown-item" href="javascript:void(0);" onclick="preview({{ $row->id }})"><i class="dw dw-eye"></i> Preview</a>
                                         <a class="dropdown-item" href="{{route('invoices.pdf', ['invoice' => $row->id])}}" target="_blank"><i class="dw dw-print"></i> Print</a>
+                                        <a class="dropdown-item" href="{{route('invoices.emailing', ['invoice' => $row->id])}}"><i class="dw dw-email"></i> Email</a>
                                         <a class="dropdown-item" href="{{route('invoices.edit', ['invoice' => $row->id])}}"><i class="dw dw-edit2"></i> Edit</a>
                                         @include('layouts.utils.delete',array( 'url' => route('invoices.destroy', ['invoice' => $row->id]), 'class'=>'dropdown-item','text' => "<i class='dw dw-delete-3'></i>Delete"))
                                     </div>

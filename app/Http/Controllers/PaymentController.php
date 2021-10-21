@@ -73,7 +73,7 @@ class PaymentController extends Controller
 
         $payment->update($input);
 
-        return redirect()->back()->withStatus(__('Payment successfully updated.'));
+        return back()->with('success', 'Payment successfully updated.');
     }
 
     public function adjust(Payment $payment)
@@ -102,7 +102,7 @@ class PaymentController extends Controller
             $this->distributePayment($payment, $invoices);
         }
 
-        return redirect()->back()->withStatus(__('Payment successfully adjusted.'));
+        return back()->with('success', 'Payment successfully adjusted.');
     }
 
     private function distributePayment($payment, $invoices)
@@ -152,6 +152,6 @@ class PaymentController extends Controller
     {
         $payment->delete();
 
-        return redirect()->back()->withStatus(__('Payment successfully deleted.'));
+        return back()->with('success', 'Payment successfully deleted.');
     }
 }

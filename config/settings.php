@@ -17,12 +17,12 @@ return [
     ],
 
     'company' => [
-        'name' => 'DotDesign',
+        'name' => 'DOT DESIGN',
         'city' => 'Dhaka',
-        'address' => 'Mirpur-10',
-        'phone' => '01977777777',
-        'mobile' => '02865755',
-        'email' => 'dotdesign@gmail.com',
+        'address' => 'Akhanda Tower, Mirpur-10',
+        'phone' => '',
+        'mobile' => '01715 199064',
+        'email' => 'dotdesign2007@gmail.com',
     ],
 
     'invoice_size' => 6,

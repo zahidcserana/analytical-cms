@@ -25,6 +25,7 @@ class CreateInvoicesTable extends Migration
             $table->string('status')->default('pending');
             $table->integer('type')->default('1');
             $table->date('invoice_date')->nullable();
+            $table->boolean('emailing')->default(false);
 
             $table->timestamps();
             $table->softDeletes();
