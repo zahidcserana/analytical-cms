@@ -19,9 +19,9 @@ class CreateInvoiceItemsTable extends Migration
             $table->string('buyer')->nullable();
             $table->string('style')->nullable();
             $table->string('color')->nullable();
-            $table->string('length')->nullable();
-            $table->string('width')->nullable();
-            $table->string('area')->nullable();
+            $table->decimal('width', 15, 2)->nullable();
+            $table->decimal('length', 15, 2)->nullable();
+            $table->decimal('area', 15, 2)->nullable();
             $table->integer('quantity')->nullable();
             $table->decimal('price', 15, 2)->nullable();
             $table->decimal('amount', 15, 2)->nullable();

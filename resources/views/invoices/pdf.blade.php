@@ -128,7 +128,7 @@
                             <td>{{ $invoiceItem->buyer }}</td>
                             <td>{{ $invoiceItem->style }}</td>
                             <td>{{ $invoiceItem->color }}</td>
-                            <td class="header-quantity">{{ $invoiceItem->width }} * {{ $invoiceItem->length }}</td>
+                            <td class="header-quantity">{{ $invoiceItem->width }} &times; {{ $invoiceItem->length }}</td>
                             <td class="header-quantity">{{ $invoiceItem->area }}</td>
                             <td class="header-quantity">{{ $invoiceItem->quantity }}</td>
                             <td class="header-amount">{{ $invoiceItem->price }}</td>

@@ -66,7 +66,7 @@
                                 <td>{{ $invoiceItem->buyer }}</td>
                                 <td>{{ $invoiceItem->style }}</td>
                                 <td>{{ $invoiceItem->color }}</td>
-                                <td class="text-center">{{ $invoiceItem->length }} * {{ $invoiceItem->width }}</td>
+                                <td class="text-center">{{ $invoiceItem->width }} &times; {{ $invoiceItem->length }}</td>
                                 <td class="text-center">{{ $invoiceItem->area }}</td>
                                 <td class="text-center">{{ $invoiceItem->quantity }}</td>
                                 <td class="text-right">{{ $invoiceItem->price }}</td>
@@ -132,10 +132,7 @@
             function getArea() {
                 let length = $("#length").val();
                 let width = $("#width").val();
-                if(intRegex.test(length) && intRegex.test(width)) {
-                    $("#area").val(length * width);
-                }
-
+                $("#area").val(length * width);
                 getAmount();
             }
 
@@ -298,7 +295,7 @@
                                             "<td>" + data.buyer + "</td>" +
                                             "<td>" + data.style + "</td>" +
                                             "<td>" + data.color + "</td>" +
-                                            "<td class='text-center'>" + data.length + "*"+ data.width + "</td>" +
+                                            "<td class='text-center'>" + data.width + "&times;"+ data.length + "</td>" +
                                             "<td class='text-center'>" + data.area + "</td>" +
                                             "<td class='text-center'>" + data.quantity + "</td>" +
                                             "<td class='text-right'>" + data.price + "</td>" +

@@ -1,5 +1,8 @@
 # Features have to do
 
+- payment adjusted value
+- decimal value in width
+- digit 2 decimal
 - Invoice create 2 menu
 - invoice preview for local
 - Html ascci code for *
