@@ -10,6 +10,9 @@ if (!function_exists('status_class')) {
             'due' => 'badge-info',
             'adjusted' => 'badge-info',
             'advanced' => 'badge-success',
+            '0' => 'badge-secondary',
+            '1' => 'badge-success',
+
         ];
 
         return $class[$status];

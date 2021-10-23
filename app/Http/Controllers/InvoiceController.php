@@ -174,6 +174,9 @@ class InvoiceController extends Controller
 
     public function emailing(Request $request, Invoice $invoice)
     {
+        $invoice->emailing = true;
+        $invoice->update();
+
         $digit = new NumberFormatter("en", NumberFormatter::SPELLOUT);
         $invoice->gross = $digit->format((int)$invoice->total);
 

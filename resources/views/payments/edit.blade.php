@@ -47,7 +47,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Payload</label>
+                        <label class="col-sm-12 col-md-2 col-form-label">Remarks</label>
                         <div class="col-sm-12 col-md-10">
                             <textarea class="form-control" name="payload" placeholder="Payload" value="{{ $payment->payload }}">{{ $payment->payload }}</textarea>
                         </div>
@@ -58,31 +58,33 @@
                     </div>
                 </form>
             </div>
-            <div class="payment-log">
-                <table class="table stripe hover nowrap">
-                    <caption style="text-align: center;caption-side: top">
-                        <h5 class="pb-2">Payment log</h5>
-                    </caption>
-                    <thead>
-                        <tr>
-                            <th class="table-plus datatable-nosort">Sl</th>
-                            <th>Invoice No</th>
-                            <th>Paid Amount</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($payment->log as $i=>$log)
-                        <tr>
-                            <td class="table-plus">{{ $i + 1 }}</td>
-                            <td>{{ $log['invoiceNo'] }}</td>
-                            <td>{{ $log['paidAmount'] }}</td>
-                            <td>{{ $log['invoiceStatus'] }}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+            @if (!empty($payment->log))
+                <div class="payment-log">
+                    <table class="table stripe hover nowrap">
+                        <caption style="text-align: center;caption-side: top">
+                            <h5 class="pb-2">Payment log</h5>
+                        </caption>
+                        <thead>
+                            <tr>
+                                <th class="table-plus datatable-nosort">Sl</th>
+                                <th>Invoice No</th>
+                                <th>Paid Amount</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($payment->log as $i=>$log)
+                            <tr>
+                                <td class="table-plus">{{ $i + 1 }}</td>
+                                <td>{{ $log['invoiceNo'] }}</td>
+                                <td>{{ $log['paidAmount'] }}</td>
+                                <td>{{ $log['invoiceStatus'] }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            @endif
         </div>
     </div>
 </x-app-layout>

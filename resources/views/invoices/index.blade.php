@@ -42,6 +42,7 @@
                             <th>Amount</th>
                             <th>Paid</th>
                             <th>Due</th>
+                            <th>Email</th>
                             <th>Status</th>
                             <th class="datatable-nosort">Action</th>
                         </tr>
@@ -59,6 +60,7 @@
                             <td>{{ $row->total }}</td>
                             <td>{{ $row->paid }}</td>
                             <td>{{ $row->total - $row->paid }}</td>
+                            <td><span class="badge {{ status_class($row->emailing) }}">{{ $row->emailing ? 'Yes' : 'No' }}</span></td>
                             <td><span class="badge {{ status_class($row->status) }}">{{ $row->status }}</span></td>
                             <td>
                                 <div class="dropdown">

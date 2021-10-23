@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Payload</label>
+                        <label class="col-sm-12 col-md-2 col-form-label">Remarks</label>
                         <div class="col-sm-12 col-md-10">
                             <textarea class="form-control" name="payload" placeholder="Payload" value="{{ old('payload') }}"></textarea>
                         </div>
