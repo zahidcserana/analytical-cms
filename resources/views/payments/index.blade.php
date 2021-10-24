@@ -2,7 +2,7 @@
     <div class="min-height-200px">
         <div class="card-box mb-30">
             <div class="pd-20 clearfix">
-                <h4 class="text-blue h4 pull-left">Payment List</h4>
+                <h4 class="text-title h4 pull-left">Payment List</h4>
                 <a href="{{ route('payments.create') }}" class="btn btn-info pull-right"><i class="fa fa-plus-circle"></i> New </a>
 
             </div>
@@ -38,7 +38,9 @@
                             <th class="table-plus datatable-nosort">Sl</th>
                             <th>Customer</th>
                             <th>Method</th>
-                            <th>Amount</th>
+                            <th>Paid</th>
+                            <th>Adjust</th>
+                            <th>Remaining</th>
                             <th>Status</th>
                             <th>Remarks</th>
                             <th class="datatable-nosort">Action</th>
@@ -50,7 +52,9 @@
                             <td class="table-plus">{{ $i + 1 }}</td>
                             <td>{{ $row->customer->name }}</td>
                             <td>{{ $row->method }}</td>
-                            <td>{{ $row->amount }}</td>
+                            <td>{{ $row->amount + $row->adjust }}</td>
+                            <td>{{ (int)$row->adjust }}</td>
+                            <td>{{ (int)$row->amount }}</td>
                             <td><span class="badge {{ status_class($row->status) }}">{{ $row->status }}</span></td>
                             <td>{{ $row->payload }}</td>
                             <td>

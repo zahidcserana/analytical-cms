@@ -110,32 +110,34 @@
 
         <div class="invoice-desc pb-30">
             <table class="invoice-table table">
-                <thead class="invoice-desc-head clearfix">
-                    <tr>
-                        <th style="width: 15%" class="header-string">Buyer</th>
-                        <th style="width: 10%" class="header-string">Style</th>
-                        <th style="width: 10%" class="header-string">Color</th>
-                        <th style="width: 20%;padding-left: 0;" class="text-center">Size</th>
-                        <th style="width: 15%;padding-left: 0;">Sq. Ins</th>
-                        <th style="width: 10%;padding-left: 0;">Quantity</th>
-                        <th style="width: 10%">Rate</th>
-                        <th style="width: 10%">Amount</th>
-                    </tr>
-                </thead>
-                <tbody class="invoice-desc-body">
-                    @foreach ($invoice->invoiceItems as $invoiceItem)
-                        <tr class="clearfix">
-                            <td>{{ $invoiceItem->buyer }}</td>
-                            <td>{{ $invoiceItem->style }}</td>
-                            <td>{{ $invoiceItem->color }}</td>
-                            <td class="header-quantity">{{ $invoiceItem->width }} &times; {{ $invoiceItem->length }}</td>
-                            <td class="header-quantity">{{ $invoiceItem->area }}</td>
-                            <td class="header-quantity">{{ $invoiceItem->quantity }}</td>
-                            <td class="header-amount">{{ $invoiceItem->price }}</td>
-                            <td class="header-amount">{{ $invoiceItem->amount }}</td>
+                @if ($invoice->invoiceItems->count() > 0)
+                    <thead class="invoice-desc-head clearfix">
+                        <tr>
+                            <th style="width: 15%" class="header-string">Buyer</th>
+                            <th style="width: 10%" class="header-string">Style</th>
+                            <th style="width: 10%" class="header-string">Color</th>
+                            <th style="width: 20%;padding-left: 0;" class="text-center">Size</th>
+                            <th style="width: 15%;padding-left: 0;">Sq. Ins</th>
+                            <th style="width: 10%;padding-left: 0;">Quantity</th>
+                            <th style="width: 10%">Rate</th>
+                            <th style="width: 10%">Amount</th>
                         </tr>
-                    @endforeach
-                </tbody>
+                    </thead>
+                    <tbody class="invoice-desc-body">
+                        @foreach ($invoice->invoiceItems as $invoiceItem)
+                            <tr class="clearfix">
+                                <td>{{ $invoiceItem->buyer }}</td>
+                                <td>{{ $invoiceItem->style }}</td>
+                                <td>{{ $invoiceItem->color }}</td>
+                                <td class="header-quantity" style="width: 20%; font-size: 11px">{{ $invoiceItem->width }} &times; {{ $invoiceItem->length }}</td>
+                                <td class="header-quantity">{{ $invoiceItem->area }}</td>
+                                <td class="header-quantity">{{ $invoiceItem->quantity }}</td>
+                                <td class="header-amount">{{ $invoiceItem->price }}</td>
+                                <td class="header-amount">{{ $invoiceItem->amount }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                @endif
                 <thead class="invoice-desc-head clearfix">
                     <tr>
                         <th class="amount-word">In Word:</th>
@@ -146,8 +148,8 @@
 
             <div class="invoice-desc-footer">
                 <div class="history">
-                    <p class="font-14 mb-5">Delivery Date:</p>
-                    <p class="font-14 mb-5">Previouse Balance:</p>
+                    <p class="font-14 mb-5">Delivery Date: {{ Carbon\Carbon::parse($invoice->invoice_date)->format('d/m/Y') }}</p>
+                    <p class="font-14 mb-5">Previouse Balance: {{ $invoice->customer->balance }}</p>
                 </div>
                 <div class="invoice-desc" style="width: 40%">
                     <table class="invoice-desc-body summary text-right">

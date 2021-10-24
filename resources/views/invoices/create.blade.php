@@ -2,7 +2,7 @@
     <div class="min-height-200px mb-10">
         <div class="card-box mb-30">
             <div class="pd-20 clearfix">
-                <h4 class="text-blue h4 pull-left">Invoice Create</h4>
+                <h4 class="text-title h4 pull-left">Invoice Create</h4>
                 <a href="{{ route('invoices.index') }}" class="btn btn-info pull-right"><i class="fa fa-angle-double-left"></i> Back </a>
             </div>
             <div class="pd-20">

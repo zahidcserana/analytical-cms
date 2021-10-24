@@ -28,3 +28,9 @@
     padding-left: 2%;
     padding-right: 2%;
 }
+.size-wl {
+    font-size: 12px !important;
+}
+.text-title {
+    color: rgb(0, 180, 137) !important;
+}

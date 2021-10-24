@@ -169,7 +169,7 @@ $reports = ['reports.invoices', 'reports.customers'];
                 {{ $slot }}
             </main>
             <div class="footer-wrap pd-20 mb-20 card-box">
-                Customer Management System - Powered By <a href="http://analyticalj.com" target="_blank">AnalyticalJ</a>
+                Software Solution Company <a href="http://analyticalj.com" target="_blank"><i class="fa fa-copyright" aria-hidden="true" style="color:  rgb(244, 111, 48)">AnalyticalJ</i></a>
             </div>
         </div>
     </div>

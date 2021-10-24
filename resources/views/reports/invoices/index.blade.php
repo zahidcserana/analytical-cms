@@ -2,7 +2,7 @@
     <div class="min-height-200px">
         <div class="card-box mb-30">
             <div class="pd-20 clearfix">
-                <h4 class="text-blue h4 pull-left">Invoice List</h4>
+                <h4 class="text-title h4 pull-left">Invoice List</h4>
                 <a href="{{ route('invoices.create') }}" class="btn btn-info pull-right"><i class="fa fa-plus-circle"></i> New </a>
             </div>
             <div class="pb-20" style="padding: 0% 1%;">
@@ -68,7 +68,7 @@
                             <td>{{ $row->discount }}</td>
                             <td>{{ $row->total }}</td>
                             <td>{{ $row->paid }}</td>
-                            <td>{{ $row->total - $row->paid }}</td>
+                            <td>{{ number_format(($row->total - $row->paid), 2, '.', ',') }}</td>
                             <td><span class="badge {{ status_class($row->status) }}">{{ $row->status }}</span></td>
                         </tr>
                         @endforeach

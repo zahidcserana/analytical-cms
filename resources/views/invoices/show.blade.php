@@ -65,8 +65,8 @@
 
                     <div class="row invoice-desc-footer">
                         <div class="col-8">
-                            <p>Delivery Date:</p>
-                            <p>Previouse Balance:</p>
+                            <p>Delivery Date: {{ Carbon\Carbon::parse($invoice->invoice_date)->format('d/m/Y') }}</p>
+                            <p>Previouse Balance: {{ $invoice->customer->balance }}</p>
                         </div>
                         <div class="col-4">
                             <table class="summary text-right">

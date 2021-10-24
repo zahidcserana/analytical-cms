@@ -2,7 +2,7 @@
     <div class="min-height-200px">
         <div class="card-box mb-30">
             <div class="pd-20 clearfix">
-                <h4 class="text-blue h4 pull-left">Payment Adjust: <span style="color: black">Amount: {{ $payment->amount }}, Due: {{ $summary['total'] - $summary['paid'] }}</span></h4>
+                <h4 class="text-title h4 pull-left">Payment Adjust: <span style="color: black">Amount: {{ $payment->amount }}, Due: {{ $summary['total'] - $summary['paid'] }}</span></h4>
                 <a href="{{ route('payments.index') }}" class="btn btn-info pull-right"><i class="fa fa-angle-double-left"></i> Back </a>
             </div>
             <div class="pb-20">
@@ -24,14 +24,14 @@
                             </td>
                             <td>{{ $row->total }}</td>
                             <td>{{ $row->paid }}</td>
-                            <td>{{ $row->total - $row->paid }}</td>
+                            <td>{{ number_format(($row->total - $row->paid), 2, '.', ',') }}</td>
                         </tr>
                         @endforeach
                         <tr>
                             <td>Total</td>
                             <td>{{ $summary['total'] }}</td>
                             <td>{{ $summary['paid'] }}</td>
-                            <td><strong>{{ $summary['total'] - $summary['paid'] }}</strong></td>
+                            <td><strong>{{ number_format(($summary['total'] - $summary['paid']), 2, '.', ',')}}</strong></td>
                         </tr>
                     </tbody>
                 </table>

@@ -125,32 +125,34 @@
 
         <div class="invoice-desc pb-30">
             <table class="table table-bordered" style="width: 100%">
-                <thead class="">
-                    <tr>
-                        <th style="width: 15%">Buyer</th>
-                        <th style="width: 10%">Style</th>
-                        <th style="width: 10%">Color</th>
-                        <th style="width: 20%" class="text-center">Size</th>
-                        <th style="width: 15%" class="text-center">Sq. Ins</th>
-                        <th style="width: 10%" class="text-center">Quantity</th>
-                        <th style="width: 10%" class="text-center">Rate</th>
-                        <th style="width: 10%" class="text-center">Amount</th>
-                    </tr>
-                </thead>
-                <tbody class="my-body">
-                    @foreach ($invoice->invoiceItems as $invoiceItem)
+                @if ($invoice->invoiceItems->count() > 0)
+                    <thead class="">
                         <tr>
-                            <td class="text-center">{{ $invoiceItem->buyer }}</td>
-                            <td>{{ $invoiceItem->style }}</td>
-                            <td>{{ $invoiceItem->color }}</td>
-                            <td class="text-center">{{ $invoiceItem->width }} &times; {{ $invoiceItem->length }}</td>
-                            <td class="text-center">{{ $invoiceItem->area }}</td>
-                            <td class="text-center">{{ $invoiceItem->quantity }}</td>
-                            <td class="text-center">{{ $invoiceItem->price }}</td>
-                            <td class="text-center">{{ $invoiceItem->amount }}</td>
+                            <th style="width: 15%">Buyer</th>
+                            <th style="width: 10%">Style</th>
+                            <th style="width: 10%">Color</th>
+                            <th style="width: 20%" class="text-center">Size</th>
+                            <th style="width: 15%" class="text-center">Sq. Ins</th>
+                            <th style="width: 10%" class="text-center">Quantity</th>
+                            <th style="width: 10%" class="text-center">Rate</th>
+                            <th style="width: 10%" class="text-center">Amount</th>
                         </tr>
-                    @endforeach
-                </tbody>
+                    </thead>
+                    <tbody class="my-body">
+                        @foreach ($invoice->invoiceItems as $invoiceItem)
+                            <tr>
+                                <td class="text-center">{{ $invoiceItem->buyer }}</td>
+                                <td>{{ $invoiceItem->style }}</td>
+                                <td>{{ $invoiceItem->color }}</td>
+                                <td class="text-center">{{ $invoiceItem->width }} &times; {{ $invoiceItem->length }}</td>
+                                <td class="text-center">{{ $invoiceItem->area }}</td>
+                                <td class="text-center">{{ $invoiceItem->quantity }}</td>
+                                <td class="text-center">{{ $invoiceItem->price }}</td>
+                                <td class="text-center">{{ $invoiceItem->amount }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                @endif
                 <thead class="invoice-desc-head clearfix">
                     <tr>
                         <th class="amount-word">In Word:</th>
@@ -161,8 +163,8 @@
 
             <div class="invoice-desc-footer">
                 <div class="history">
-                    <p class="font-14 mb-5">Delivery Date:</p>
-                    <p class="font-14 mb-5">Previouse Balance:</p>
+                    <p class="font-14 mb-5">Delivery Date: {{ Carbon\Carbon::parse($invoice->invoice_date)->format('d/m/Y') }}</p>
+                    <p class="font-14 mb-5">Previouse Balance: {{ $invoice->customer->balance }}</p>
                 </div>
                 <div class="invoice-desc" style="width: 40%">
                     <table class="invoice-desc-body summary text-right">
@@ -184,14 +186,14 @@
                         </tr>
                         <tr>
                             <td>Balance/Due:</td>
-                            <td class="amount-div">{{ $invoice->total - $invoice->paid }}</td>
+                            <td class="amount-div">{{ number_format(($invoice->total - $invoice->paid), 2, '.', ',') }}</td>
                         </tr>
                     </table>
                 </div>
             </div>
         </div>
         <div>
-            <p style="text-align: center;font-size: 12px;">Powered by <a href="https://analyticalj.com">AnalyticalJ, email: analyticalzahid@gmail.com</a></p>
+            <p style="text-align: center;font-size: 12px;">Powered by <a href="https://analyticalj.com">AnalyticalJ (analyticalzahid@gmail.com)</a></p>
         </div>
     </div>
 </body>

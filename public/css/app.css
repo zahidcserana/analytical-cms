@@ -32168,6 +32168,14 @@ select {
   padding-right: 2%;
 }
 
+.size-wl {
+  font-size: 12px !important;
+}
+
+.text-title {
+  color: rgb(0, 180, 137) !important;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

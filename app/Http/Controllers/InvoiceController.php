@@ -30,7 +30,7 @@ class InvoiceController extends Controller
             return $q->where('customer_id', $request['customer_id']);
         });
         $collection->when($request->invoice_no, function ($q) use ($request) {
-            return $q->where('invoice_no', $request['invoice_no']);
+            return $q->where('invoice_no', 'like', '%'. $request['invoice_no'] . '%');
         });
 
         if (!empty($request->daterange)) {

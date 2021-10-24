@@ -16,18 +16,19 @@ class CustomerController extends Controller
         $collection = Customer::query();
 
         $collection->when($request->name, function ($q) use ($request) {
-            return $q->where('name', $request['name']);
+            return $q->where('name', 'like', '%'. $request['name'] . '%');
         });
         $collection->when($request->mobile, function ($q) use ($request) {
-            return $q->where('mobile', $request['mobile']);
+            return $q->where('mobile', 'like', '%'. $request['mobile'] . '%');
         });
         $collection->when($request->email, function ($q) use ($request) {
-            return $q->where('email', $request['email']);
+            return $q->where('email', 'like', '%'. $request['email'] . '%');
         });
 
-        $customers = $collection->paginate(20);
+        $customers = $collection->latest('id')->paginate(20);
 
         $data['customers'] = $customers;
+        $data['query'] = $query;
 
         return view('customers.index', $data);
     }
