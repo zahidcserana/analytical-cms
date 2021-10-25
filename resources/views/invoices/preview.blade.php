@@ -3,7 +3,7 @@
             <div class="invoice-box" id="invoice-box">
                 <div class="invoice-header">
                     <div class="logo text-center">
-                        <img src="{{ asset('assets/vendors/images/analyticalj.png') }}" alt="">
+                        <img src="{{ asset('assets/vendors/images/dot1.jpg') }}" alt="Dot Design">
                     </div>
                 </div>
                 <h4 class="text-center mb-30 weight-600">INVOICE</h4>
