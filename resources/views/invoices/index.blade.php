@@ -69,7 +69,8 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                         <a class="dropdown-item" href="javascript:void(0);" onclick="preview({{ $row->id }})"><i class="dw dw-eye"></i> Preview</a>
-                                        <a class="dropdown-item" href="{{route('invoices.pdf', ['invoice' => $row->id])}}" target="_blank"><i class="dw dw-print"></i> Print</a>
+                                        <a class="dropdown-item" href="{{route('invoices.pdf', ['invoice' => $row->id])}}"><i class="dw dw-download"></i> Download</a>
+                                        <a class="dropdown-item" href="{{route('invoices.print', ['invoice' => $row->id])}}" target="_blank"><i class="dw dw-print"></i> Print</a>
                                         <a class="dropdown-item" href="{{route('invoices.emailing', ['invoice' => $row->id])}}"><i class="dw dw-email"></i> Email</a>
                                         <a class="dropdown-item" href="{{route('invoices.edit', ['invoice' => $row->id])}}"><i class="dw dw-edit2"></i> Edit</a>
                                         @include('layouts.utils.delete',array( 'url' => route('invoices.destroy', ['invoice' => $row->id]), 'class'=>'dropdown-item','text' => "<i class='dw dw-delete-3'></i>Delete"))

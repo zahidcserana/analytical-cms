@@ -100,4 +100,7 @@
   'themify' => array(
     'normal' => $fontDir . '/themify_normal_f6ce741cf468b1f66d6a0e44062ed8a1',
   ),
+  'glyphicons halflings' => array(
+    'normal' => $fontDir . '/glyphicons_halflings_normal_8e86a4237ba60c1dffdf8238865a2d17',
+  ),
 ) ?>

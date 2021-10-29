@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use PDF;
 use NumberFormatter;
 use App\Models\Invoice;
 use App\Models\Customer;
+use PDF;
+use App\Mail\InvoiceIssued;
 use App\Models\InvoiceItem;
 use Illuminate\Http\Request;
+use App\Mail\InvoicePrepared;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\Invoice\StoreRequest;
 use App\Http\Requests\Invoice\UpdateRequest;
 use App\Http\Requests\InvoiceItem\ItemStoreRequest;
-use App\Mail\InvoiceIssued;
-use App\Mail\InvoicePrepared;
 
 class InvoiceController extends Controller
 {
@@ -30,7 +30,7 @@ class InvoiceController extends Controller
             return $q->where('customer_id', $request['customer_id']);
         });
         $collection->when($request->invoice_no, function ($q) use ($request) {
-            return $q->where('invoice_no', 'like', '%'. $request['invoice_no'] . '%');
+            return $q->where('invoice_no', 'like', '%' . $request['invoice_no'] . '%');
         });
 
         if (!empty($request->daterange)) {
@@ -133,7 +133,7 @@ class InvoiceController extends Controller
         $invoice->calculate();
         $invoice->refresh();
 
-        return back()->with('success','Invoice successfully updated.');
+        return back()->with('success', 'Invoice successfully updated.');
     }
 
     public function show(Invoice $invoice)
@@ -144,16 +144,37 @@ class InvoiceController extends Controller
         return view('invoices.show', ['invoice' => $invoice]);
     }
 
-    public function createPDF(Invoice $invoice)
+    public function pdf(Invoice $invoice)
     {
         $digit = new NumberFormatter("en", NumberFormatter::SPELLOUT);
         $invoice->gross = $digit->format((int)$invoice->total);
 
-        return view('invoices.pdf', ['invoice' => $invoice]);
+        // return view('invoices.pdf', ['invoice' => $invoice]);
 
-        // $pdf = PDF::loadView('invoices.pdf', compact('invoice'));
+        $pdf = PDF::loadView('invoices.email', compact('invoice'));
 
-        // return $pdf->download('invoice.pdf');
+        return $pdf->download('invoice-' . $invoice->invoice_no . '.pdf');
+    }
+
+    public function print(Invoice $invoice)
+    {
+        $digit = new NumberFormatter("en", NumberFormatter::SPELLOUT);
+        $invoice->gross = $digit->format((int)$invoice->total);
+
+        return view('invoices.print', ['invoice' => $invoice]);
+    }
+
+    public function emailing(Invoice $invoice)
+    {
+        $invoice->emailing = true;
+        $invoice->update();
+
+        $digit = new NumberFormatter("en", NumberFormatter::SPELLOUT);
+        $invoice->gross = $digit->format((int)$invoice->total);
+
+        Mail::to($invoice->customer->email)->send(new InvoicePrepared($invoice));
+
+        return back()->with('success', 'Invoice successfully sent.');
     }
 
     public function preview(Invoice $invoice)
@@ -169,21 +190,6 @@ class InvoiceController extends Controller
         $invoice->invoiceItems()->delete();
         $invoice->delete();
 
-        return back()->with('success','Invoice successfully deleted.');
-    }
-
-    public function emailing(Request $request, Invoice $invoice)
-    {
-        $invoice->emailing = true;
-        $invoice->update();
-
-        $digit = new NumberFormatter("en", NumberFormatter::SPELLOUT);
-        $invoice->gross = $digit->format((int)$invoice->total);
-
-        // return new InvoicePrepared($invoice);
-
-        Mail::to($invoice->customer->email)->send(new InvoicePrepared($invoice));
-
-        return back()->with('success','Invoice successfully sent.');
+        return back()->with('success', 'Invoice successfully deleted.');
     }
 }

@@ -1,5 +1,6 @@
 # Features have to do
 
+- invoice logo remove space on top
 - Invoice create 2 menu
 - dashboard
 - Previous Balance in invoice preview
