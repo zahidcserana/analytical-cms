@@ -94,7 +94,8 @@
                         </div>
                     </div>
                 </div>
-                <a href="{{ route('invoices.pdf', ['invoice' => $invoice->id]) }}" target="_blank" class="btn" data-bgcolor="#3d464d" data-color="#ffffff" style="color: rgb(255, 255, 255); background-color: rgb(61, 70, 77);"><i class="fa fa-dropbox"></i> {{ __('Print') }}</a>
+                <a href="{{ route('invoices.print', ['invoice' => $invoice->id]) }}" target="_blank" class="btn" data-bgcolor="#3d464d" data-color="#ffffff" style="color: rgb(255, 255, 255); background-color: rgb(61, 70, 77);"><i class="fa fa-dropbox"></i> {{ __('Print') }}</a>
+                <a href="{{ route('invoices.pdf', ['invoice' => $invoice->id]) }}" class="btn" data-bgcolor="#f46f30" data-color="#ffffff" style="color: rgb(255, 255, 255); background-color: rgb(244, 111, 48);"><i class="fa fa-instagram"></i> {{ __('PDF') }}</a>
                 <a href="{{ route('invoices.emailing', ['invoice' => $invoice->id]) }}" class="btn" data-bgcolor="#db4437" data-color="#ffffff" style="color: rgb(255, 255, 255); background-color: rgb(219, 68, 55);float: right;"><i class="fa fa-plane"></i> {{ __('Send email') }}</a>
             </div>
         </div>
