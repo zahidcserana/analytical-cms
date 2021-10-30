@@ -9,6 +9,12 @@
             <div class="pd-20">
 
                 @include("layouts.alert")
+                <div id="res_message" class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Success!</strong> Data saved.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
 
                 <form class="mb-30" id="post-form" method="post" action="javascript:void(0)">
                     @csrf
@@ -21,20 +27,20 @@
                             <input class="form-control" placeholder="Style" type="text" name="style" id="style">
                         </div>
                         <div class="col-sm-12 col-md-1">
-                            <input class="form-control" placeholder="Color" type="text" name="color" id="color" onkeyup="setQuantity()">
+                            <input class="form-control calculation" placeholder="Color" type="text" name="color" id="color">
                         </div>
                         <div class="col-sm-12 col-md-2" style="display: flex">
-                            <input style="flex: 1" class="form-control" placeholder="Width" type="text" name="width" id="width" onkeyup="getArea()">
-                            <input style="flex: 1" class="form-control" placeholder="Length" type="text"name="length" id="length" onkeyup="getArea()">
+                            <input style="flex: 1" class="form-control calculation" placeholder="Width" type="text" name="width" id="width">
+                            <input style="flex: 1" class="form-control calculation" placeholder="Length" type="text"name="length" id="length">
                         </div>
                         <div class="col-sm-12 col-md-1">
                             <input class="form-control" placeholder="Sq. Ins" type="text" name="area" id="area" readonly>
                         </div>
                         <div class="col-sm-12 col-md-1">
-                            <input class="form-control" placeholder="Quantity" type="text" name="quantity" id="quantity" onkeyup="getAmount()">
+                            <input class="form-control calculation" placeholder="Quantity" type="text" name="quantity" id="quantity">
                         </div>
                         <div class="col-sm-12 col-md-1">
-                            <input class="form-control" placeholder="Rate" type="text" name="price" id="price" onkeyup="getAmount()">
+                            <input class="form-control calculation" placeholder="Rate" type="number" step="any" name="price" id="price">
                         </div>
                         <div class="col-sm-12 col-md-1">
                             <input class="form-control" placeholder="Amount" type="text" name="amount" id="amount" readonly>
@@ -129,32 +135,25 @@
             var total = @json($invoice->total);
             var intRegex = /^\d+$/;
 
-            function getArea() {
+            function calculation() {
                 let length = $("#length").val();
                 let width = $("#width").val();
-                $("#area").val(length * width);
-                getAmount();
-            }
-
-            function getAmount() {
-                let area = $("#area").val();
-                let price = $("#price").val();
-                let quantity = $("#quantity").val();
-                if ($.isNumeric(price)) {
-                    $("#amount").val(setAmount(area * price * quantity));
+                let color = $("#color").val();
+                if(intRegex.test(color)) {
+                    let quantity = $("#quantity").val(color);
                 }
+                let quantity = $("#quantity").val();
+                let price = $("#price").val();
+
+                $("#area").val(length * width * quantity);
+                let area = $("#area").val();
+
+                $("#amount").val(setAmount(area * price));
             }
 
             function setAmount($amount)
             {
                 return $amount < 150 ? 150 : $amount;
-            }
-
-            function setQuantity() {
-                let color = $("#color").val();
-                if(intRegex.test(color)) {
-                    let quantity = $("#quantity").val(color);
-                }
             }
 
             function calculate() {
@@ -177,6 +176,11 @@
             $(document).ready(function() {
                 let itemId = [];
                 var invoiceId = @json($invoice->id);
+
+
+                $(".calculation").on("keyup change", function(e) {
+                    calculation();
+                })
 
                 $(".delete-row").click(function() {
                     $("table tbody").find('input[name="record"]').each(function() {
@@ -217,8 +221,6 @@
                 });
 
                 $( "#post-form" ).submit(function( event ) {
-                    event.preventDefault();
-
                     $("#post-form").validate({
                         rules: {
                             width: {
@@ -234,10 +236,6 @@
                                 digits: true
                             },
                             price: {
-                                required: true,
-                                number: true
-                            },
-                            amount: {
                                 required: true,
                                 number: true
                             }
@@ -258,11 +256,7 @@
                             price: {
                                 required: "*",
                                 number: "*"
-                            },
-                            amount: {
-                                required: "*",
-                                number: "*"
-                            },
+                            }
                         },
                         submitHandler: function(form) {
                             $.ajaxSetup({
@@ -309,19 +303,21 @@
                                     setTimeout(function() {
                                         $('#res_message').hide();
                                         $('#msg_div').hide();
-                                    }, 10000);
+                                    }, 5000);
                                 }
                             });
                         }
                     })
                 });
-
             });
         </script>
 
         <style>
             .error {
                 color: red;
+            }
+            #res_message {
+                display: none;
             }
 
         </style>

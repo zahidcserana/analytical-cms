@@ -1,5 +1,7 @@
 # Features have to do
 
+- Sq. Ins w*l*q
+- Email remove text
 - invoice logo remove space on top
 - Invoice create 2 menu
 - dashboard
