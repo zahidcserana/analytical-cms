@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
+use NumberFormatter;
 use App\Events\InvoiceIssued;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Invoice extends Model
 {
@@ -24,6 +25,12 @@ class Invoice extends Model
     protected $dispatchesEvents = [
         'saved' => InvoiceIssued::class,
     ];
+
+    public function getGrossAttribute()
+    {
+        $digit = new NumberFormatter("en", NumberFormatter::SPELLOUT);
+        return $digit->format((int)$this->total);
+    }
 
     public function calculate()
     {

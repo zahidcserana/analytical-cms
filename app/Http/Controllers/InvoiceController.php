@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use NumberFormatter;
 use App\Models\Invoice;
 use App\Models\Customer;
 use PDF;
-use App\Mail\InvoiceIssued;
 use App\Models\InvoiceItem;
 use Illuminate\Http\Request;
 use App\Mail\InvoicePrepared;
@@ -138,18 +136,12 @@ class InvoiceController extends Controller
 
     public function show(Invoice $invoice)
     {
-        $digit = new NumberFormatter("en", NumberFormatter::SPELLOUT);
-        $invoice->gross = $digit->format((int)$invoice->total);
-
         return view('invoices.show', ['invoice' => $invoice]);
     }
 
     public function pdf(Invoice $invoice)
     {
-        $digit = new NumberFormatter("en", NumberFormatter::SPELLOUT);
-        $invoice->gross = $digit->format((int)$invoice->total);
-
-        // return view('invoices.pdf', ['invoice' => $invoice]);
+        // return view('invoices.email', ['invoice' => $invoice]);
 
         $pdf = PDF::loadView('invoices.email', compact('invoice'));
 
@@ -158,9 +150,6 @@ class InvoiceController extends Controller
 
     public function print(Invoice $invoice)
     {
-        $digit = new NumberFormatter("en", NumberFormatter::SPELLOUT);
-        $invoice->gross = $digit->format((int)$invoice->total);
-
         return view('invoices.print', ['invoice' => $invoice]);
     }
 
@@ -169,9 +158,6 @@ class InvoiceController extends Controller
         $invoice->emailing = true;
         $invoice->update();
 
-        $digit = new NumberFormatter("en", NumberFormatter::SPELLOUT);
-        $invoice->gross = $digit->format((int)$invoice->total);
-
         Mail::to($invoice->customer->email)->send(new InvoicePrepared($invoice));
 
         return back()->with('success', 'Invoice successfully sent.');
@@ -179,9 +165,6 @@ class InvoiceController extends Controller
 
     public function preview(Invoice $invoice)
     {
-        $digit = new NumberFormatter("en", NumberFormatter::SPELLOUT);
-        $invoice->gross = $digit->format((int)$invoice->total);
-
         return view('invoices.preview', ['invoice' => $invoice]);
     }
 
