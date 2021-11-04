@@ -2,11 +2,11 @@
         <div class="invoice-wrap">
             <div class="invoice-box" id="invoice-box">
                 <div class="invoice-header">
-                    <div class="logo text-center">
-                        <img src="{{ asset('assets/vendors/images/dot1.jpg') }}" alt="Dot Design">
+                    <div class="row logo">
+                        <img class="col-md-4" src="{{ asset('assets/vendors/images/dot1.jpg') }}" alt="Dot Design">
+                        <h4 class="col-md-8 text-right weight-600 pt-10">INVOICE</h4>
                     </div>
                 </div>
-                <h4 class="text-center mb-30 weight-600">INVOICE</h4>
                 <div class="row pb-30">
                     <div class="col-md-6">
                         <p class="font-14 mb-5">Invoice No: <strong class="weight-600">{{ $invoice->invoice_no }}</strong></p>

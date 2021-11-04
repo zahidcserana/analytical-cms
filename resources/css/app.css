@@ -34,3 +34,6 @@
 .text-title {
     color: rgb(0, 180, 137) !important;
 }
+.invoice-header {
+    padding-bottom: 10px !important;
+}
