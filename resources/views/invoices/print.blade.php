@@ -96,8 +96,8 @@
 <body onload="window.print()">
     <div class="invoice-box" id="invoice-box">
         <div style="display: flex;width: 100%">
-            <div style="flex: 1; width: 100%">
-                <img style="padding-top: 2%;" src="https://scontent.fdac17-1.fna.fbcdn.net/v/t1.15752-9/243529074_385207316681142_5232001197312670516_n.jpg?_nc_cat=100&ccb=1-5&_nc_sid=ae9488&_nc_ohc=Yn0Wd5WgKjIAX_cFOpN&_nc_ht=scontent.fdac17-1.fna&oh=35e3bce0376bc1e637e3dcfe9a30f6ce&oe=619692DD" alt="Dot Design">
+            <div style="flex: 1; width: 100%;padding-top: 2%;">
+                <img src="https://scontent.fdac17-1.fna.fbcdn.net/v/t1.15752-9/243529074_385207316681142_5232001197312670516_n.jpg?_nc_cat=100&ccb=1-5&_nc_sid=ae9488&_nc_ohc=Yn0Wd5WgKjIAX_cFOpN&_nc_ht=scontent.fdac17-1.fna&oh=35e3bce0376bc1e637e3dcfe9a30f6ce&oe=619692DD" alt="Dot Design">
             </div>
             <div class="text-right" style="flex: 1; width: 100%">
                 <h3 style="text-align: right;" class="weight-600">INVOICE</h3>

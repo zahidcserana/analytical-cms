@@ -45,4 +45,9 @@
             </div>
         </div>
     </div>
+    @push('scripts')
+        <script>
+            new Invoice();
+        </script>
+    @endpush
 </x-app-layout>

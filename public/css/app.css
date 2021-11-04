@@ -32180,6 +32180,14 @@ select {
   padding-bottom: 10px !important;
 }
 
+.error {
+  color: red;
+}
+
+#res_message {
+  display: none;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

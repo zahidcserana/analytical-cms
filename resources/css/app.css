@@ -37,3 +37,9 @@
 .invoice-header {
     padding-bottom: 10px !important;
 }
+.error {
+    color: red;
+}
+#res_message {
+    display: none;
+}
