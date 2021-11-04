@@ -2,11 +2,11 @@
         <div class="invoice-wrap">
             <div class="invoice-box" id="invoice-box">
                 <div class="invoice-header">
-                    <div class="logo text-center">
-                        <img src="{{ asset('assets/vendors/images/dot1.jpg') }}" alt="Dot Design">
+                    <div class="row logo">
+                        <img class="col-md-4" src="{{ asset('assets/vendors/images/dot1.jpg') }}" alt="Dot Design">
+                        <h4 class="col-md-8 text-right weight-600 pt-10">INVOICE</h4>
                     </div>
                 </div>
-                <h4 class="text-center mb-30 weight-600">INVOICE</h4>
                 <div class="row pb-30">
                     <div class="col-md-6">
                         <p class="font-14 mb-5">Invoice No: <strong class="weight-600">{{ $invoice->invoice_no }}</strong></p>
@@ -94,9 +94,9 @@
                         </div>
                     </div>
                 </div>
-                <a href="{{ route('invoices.print', ['invoice' => $invoice->id]) }}" target="_blank" class="btn" data-bgcolor="#3d464d" data-color="#ffffff" style="color: rgb(255, 255, 255); background-color: rgb(61, 70, 77);"><i class="fa fa-dropbox"></i> {{ __('Print') }}</a>
-                <a href="{{ route('invoices.pdf', ['invoice' => $invoice->id]) }}" class="btn" data-bgcolor="#f46f30" data-color="#ffffff" style="color: rgb(255, 255, 255); background-color: rgb(244, 111, 48);"><i class="fa fa-instagram"></i> {{ __('PDF') }}</a>
-                <a href="{{ route('invoices.emailing', ['invoice' => $invoice->id]) }}" class="btn" data-bgcolor="#db4437" data-color="#ffffff" style="color: rgb(255, 255, 255); background-color: rgb(219, 68, 55);float: right;"><i class="fa fa-plane"></i> {{ __('Send email') }}</a>
+                <a href="{{ route('invoices.print', ['invoice' => $invoice->id]) }}" target="_blank" class="btn" data-bgcolor="#3d464d" data-color="#ffffff" style="color: rgb(255, 255, 255); background-color: rgb(61, 70, 77);"><i class="fa fa-print"></i> {{ __('Print') }}</a>
+                <a href="{{ route('invoices.pdf', ['invoice' => $invoice->id]) }}" class="btn" data-bgcolor="#f46f30" data-color="#ffffff" style="color: rgb(255, 255, 255); background-color: rgb(244, 111, 48);"><i class="fa fa-download"></i> {{ __('Download') }}</a>
+                <a href="{{ route('invoices.emailing', ['invoice' => $invoice->id]) }}" class="btn" data-bgcolor="#db4437" data-color="#ffffff" style="color: rgb(255, 255, 255); background-color: rgb(219, 68, 55);float: right;"><i class="fa fa-plane"></i> {{ __('Email') }}</a>
             </div>
         </div>
     </div>

@@ -1,6 +1,6 @@
 # Features have to do
 
-- invoice logo remove space on top
+- logo must from gmail doc
 - Invoice create 2 menu
 - dashboard
 - Previous Balance in invoice preview

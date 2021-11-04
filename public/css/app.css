@@ -32176,6 +32176,18 @@ select {
   color: rgb(0, 180, 137) !important;
 }
 
+.invoice-header {
+  padding-bottom: 10px !important;
+}
+
+.error {
+  color: red;
+}
+
+#res_message {
+  display: none;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
@@ -188610,4 +188622,3 @@ select {
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
-
