@@ -18,6 +18,8 @@ class CreateInvoicesTable extends Migration
             $table->unsignedBigInteger('customer_id');
             $table->string('invoice_no')->unique();
             $table->string('receive_no')->nullable();
+            $table->string('created_by')->nullable();
+            $table->string('received_by')->nullable();
             $table->decimal('total', 15, 2)->nullable();
             $table->decimal('sub_total', 15, 2)->nullable();
             $table->decimal('discount', 15, 2)->nullable();

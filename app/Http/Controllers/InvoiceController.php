@@ -34,7 +34,7 @@ class InvoiceController extends Controller
         if (!empty($request->daterange)) {
             $daterange = explode(' - ', $request->daterange);
             $dateS = date('Y-m-d', strtotime($daterange[0]));
-            $dateE = date('Y-m-d', strtotime($daterange[1]));
+            $dateE = !empty($daterange[1]) ? date('Y-m-d', strtotime($daterange[1])) : $dateS;
 
             $collection = $collection->whereDate('created_at', '>=', $dateS)->whereDate('created_at', '<=', $dateE);
         }
@@ -48,7 +48,7 @@ class InvoiceController extends Controller
         return view('invoices.index', $data);
     }
 
-    public function create()
+    public function create(Request $request)
     {
         $customers = Customer::select('id', 'name')->get();
         $invoice = Invoice::latest()->first();
@@ -62,6 +62,9 @@ class InvoiceController extends Controller
         $data['customers'] = $customers;
         $data['invoiceNo'] = $invoiceNo;
 
+        if (!empty($request->type) && $request->type == Invoice::TYPE_LOCAL) {
+            return view('invoices.create_local', $data);
+        }
 
         return view('invoices.create', $data);
     }
@@ -71,11 +74,10 @@ class InvoiceController extends Controller
         $input = $request->validated();
 
         if ($input['type'] == 2 && empty($input['total'])) {
-            return Redirect::back()->withErrors(['msg' => 'Please enter Total amount.']);
+            return Redirect::back()->withErrors(['msg' => 'Please enter total amount.']);
         }
 
         $invoice = Invoice::create($input);
-        $invoice->update();
 
         return redirect()->route('invoices.edit', ['invoice' => $invoice]);
     }

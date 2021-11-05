@@ -93,6 +93,18 @@
                             </table>
                         </div>
                     </div>
+                    <div class="row mt-10">
+                        <div class="col-md-6">
+                            <span>&nbsp;&nbsp;{{ $invoice->created_by }}</span><br>
+                            <span>-----------------</span><br>
+                            <span>&nbsp;&nbsp;Created By</span>
+                        </div>
+                        <div class="col-md-6">
+                            <span>&nbsp;&nbsp;{{ $invoice->received_by }}</span><br>
+                            <span>-----------------</span><br>
+                            <span>&nbsp;&nbsp;Received By</span>
+                        </div>
+                    </div>
                 </div>
                 <a href="{{ route('invoices.print', ['invoice' => $invoice->id]) }}" target="_blank" class="btn" data-bgcolor="#3d464d" data-color="#ffffff" style="color: rgb(255, 255, 255); background-color: rgb(61, 70, 77);"><i class="fa fa-print"></i> {{ __('Print') }}</a>
                 <a href="{{ route('invoices.pdf', ['invoice' => $invoice->id]) }}" class="btn" data-bgcolor="#f46f30" data-color="#ffffff" style="color: rgb(255, 255, 255); background-color: rgb(244, 111, 48);"><i class="fa fa-download"></i> {{ __('Download') }}</a>

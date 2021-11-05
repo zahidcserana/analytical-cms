@@ -31,7 +31,8 @@
                     </a>
                     <ul class="submenu">
                         <li><a href="{{ route('invoices.index') }}" class="{{ $route == 'invoices.index'? 'active' : ''}}">List</a></li>
-                        <li><a href="{{ route('invoices.create') }}" class="{{ $route == 'invoices.create'? 'active' : ''}}">New</a></li>
+                        <li><a href="{{ route('invoices.create') }}" class="{{ $route == 'invoices.create'? 'active' : ''}}">Corporate Bill</a></li>
+                        <li><a href="{{ route('invoices.create', ['type' => 2]) }}" class="{{ $uri == '/invoices?type=2'? 'active' : ''}}">Local Bill</a></li>
                     </ul>
                 </li>
                 <li class="dropdown {{ in_array($route, $payments) ? 'show' : ''}}">
