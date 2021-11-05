@@ -162,6 +162,18 @@
                     </table>
                 </div>
             </div>
+            <div class="mt-10" style="display: flex;width: 100%">
+                <div style="flex: 1;width:100%">
+                    <span>&nbsp;&nbsp;{{ $invoice->created_by }}</span><br>
+                    <span>-----------------</span><br>
+                    <span>&nbsp;&nbsp;Created By</span>
+                </div>
+                <div style="flex: 1;width:100%;text-align: center">
+                    <span>&nbsp;&nbsp;{{ $invoice->received_by }}</span><br>
+                    <span>-----------------</span><br>
+                    <span>&nbsp;&nbsp;Received By</span>
+                </div>
+            </div>
         </div>
         <div>
             <p style="text-align: center;font-size: 12px;">Powered by <a href="https://analyticalj.com">AnalyticalJ (analyticalzahid@gmail.com)</a></p>

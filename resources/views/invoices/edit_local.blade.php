@@ -46,6 +46,16 @@
                             <input class="form-control" placeholder="Paid" type="text" name="paid" value="{{ $invoice->paid }}">
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-1 col-form-label">Created By</label>
+                        <div class="col-sm-12 col-md-5">
+                            <input class="form-control" placeholder="Created By" type="text" name="created_by" value="{{ $invoice->created_by }}">
+                        </div>
+                        <label class="col-sm-12 col-md-1 col-form-label">Received By</label>
+                        <div class="col-sm-12 col-md-5">
+                            <input class="form-control" placeholder="Received By" type="text" name="received_by" value="{{ $invoice->received_by }}">
+                        </div>
+                    </div>
                     <div class="text-center">
                         <x-button class="btn btn-primary">{{ __('Save') }}</x-button>
                     </div>

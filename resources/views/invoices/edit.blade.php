@@ -100,8 +100,19 @@
                     @method('PUT')
                     <input type="hidden" name="id" value="{{ $invoice->id }}">
                     <div class="row">
-                        <div class="col-8">
-
+                        <div class="col-8 mt-10">
+                            <div class="form-group row">
+                                <label class="col-sm-12 col-md-2 col-form-label">Created By</label>
+                                <div class="col-sm-12 col-md-4">
+                                    <input class="form-control" name="created_by" placeholder="Created By" type="text" value="{{ $invoice->created_by }}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-12 col-md-2 col-form-label">Received By</label>
+                                <div class="col-sm-12 col-md-4">
+                                    <input class="form-control" placeholder="Received By" type="text" name="received_by" value="{{ $invoice->received_by }}">
+                                </div>
+                            </div>
                         </div>
                         <div class="col-4">
                             <table class="table">
@@ -124,6 +135,12 @@
                                 <tr>
                                     <td>Balance/Due:</td>
                                     <td><p id="due">{{ $invoice->total - $invoice->paid }}</p></td>
+                                </tr>
+                                <tr>
+                                    <td>Date:</td>
+                                    <td>
+                                        <input value="{{ $invoice->invoice_date }}" class="form-control my-date-picker" name="invoice_date" placeholder="Select Date" type="text" autocomplete="off">
+                                    </td>
                                 </tr>
                             </table>
                         </div>
