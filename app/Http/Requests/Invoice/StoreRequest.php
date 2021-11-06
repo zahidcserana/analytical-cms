@@ -33,6 +33,8 @@ class StoreRequest extends FormRequest
             'status' => ['sometimes'],
             'type' => ['sometimes'],
             'invoice_date' => ['sometimes'],
+            'created_by' => ['sometimes'],
+            'received_by' => ['sometimes'],
         ];
     }
 }

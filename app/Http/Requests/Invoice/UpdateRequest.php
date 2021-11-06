@@ -33,6 +33,8 @@ class UpdateRequest extends FormRequest
             'paid' => ['sometimes'],
             'status' => ['sometimes'],
             'invoice_date' => ['sometimes'],
+            'created_by' => ['sometimes'],
+            'received_by' => ['sometimes'],
         ];
     }
 }

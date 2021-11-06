@@ -29,7 +29,7 @@ class PaymentController extends Controller
         if (!empty($request->daterange)) {
             $daterange = explode(' - ', $request->daterange);
             $dateS = date('Y-m-d', strtotime($daterange[0]));
-            $dateE = date('Y-m-d', strtotime($daterange[1]));
+            $dateE = !empty($daterange[1]) ? date('Y-m-d', strtotime($daterange[1])) : $dateS;
 
             $collection = $collection->whereDate('created_at', '>=', $dateS)->whereDate('created_at', '<=', $dateE);
         }
