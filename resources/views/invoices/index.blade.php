@@ -29,8 +29,6 @@
                     <button type="submit" class="btn mb-2 mr-sm-2" data-bgcolor="#c32361" data-color="#ffffff"><i class="fa fa-search"></i> {{ __('Search') }}</button>
                     <a href="{{ route('invoices.index') }}" class="btn mb-2" data-bgcolor="#f46f30" data-color="#ffffff"><i class="fa fa-refresh"></i> {{ __('Reset') }}</a>
                 </form>
-                @include("layouts.alert")
-
                 <table class="table stripe hover nowrap">
                     <thead>
                         <tr>

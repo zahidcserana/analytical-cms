@@ -6,7 +6,6 @@
                 <a href="{{ route('payments.index') }}" class="btn btn-info pull-right"><i class="fa fa-angle-double-left"></i> Back </a>
             </div>
             <div class="pd-20">
-                @include("layouts.alert")
                 <form method="post" action="{{ route('payments.update', ['payment' => $payment]) }}" autocomplete="off" novalidate>
                     @csrf
                     @method('PUT')

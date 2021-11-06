@@ -164,6 +164,8 @@ $reports = ['reports.invoices', 'reports.customers'];
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
             <main>
+                @include("layouts.alert")
+
                 {{ $slot }}
             </main>
             <div class="footer-wrap pd-20 mb-20 card-box">

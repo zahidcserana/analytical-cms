@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Customer\StoreRequest;
-use App\Http\Requests\Customer\UpdateRequest;
+use App\Models\Invoice;
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\Customer\StoreRequest;
+use App\Http\Requests\Customer\UpdateRequest;
+use App\Mail\InvoiceDue;
 
 class CustomerController extends Controller
 {
@@ -16,13 +19,13 @@ class CustomerController extends Controller
         $collection = Customer::query();
 
         $collection->when($request->name, function ($q) use ($request) {
-            return $q->where('name', 'like', '%'. $request['name'] . '%');
+            return $q->where('name', 'like', '%' . $request['name'] . '%');
         });
         $collection->when($request->mobile, function ($q) use ($request) {
-            return $q->where('mobile', 'like', '%'. $request['mobile'] . '%');
+            return $q->where('mobile', 'like', '%' . $request['mobile'] . '%');
         });
         $collection->when($request->email, function ($q) use ($request) {
-            return $q->where('email', 'like', '%'. $request['email'] . '%');
+            return $q->where('email', 'like', '%' . $request['email'] . '%');
         });
 
         $customers = $collection->latest('id')->paginate(20);
@@ -31,6 +34,13 @@ class CustomerController extends Controller
         $data['query'] = $query;
 
         return view('customers.index', $data);
+    }
+
+    public function invoices(Customer $customer)
+    {
+        Mail::to($customer->email)->send(new InvoiceDue($customer));
+
+        return back()->with('success', 'Invoices statement successfully sent.');
     }
 
     public function create()

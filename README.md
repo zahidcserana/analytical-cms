@@ -1,5 +1,7 @@
 # Features have to do
 
+- Invoice edit amount 2 decimal
+- Email for due invoices of customer
 - logo must from gmail doc
 - logo space should be reduce
 - Invoice create 2 menu

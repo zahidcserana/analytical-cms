@@ -97,7 +97,7 @@
         <div class="invoice-desc" style="padding-top: -10%!important;">
             <table class="table table-bordered invoice-table">
                 @if ($invoice->invoiceItems->count() > 0)
-                    <thead class="">
+                    <thead>
                         <tr>
                             <th style="width: 15%">Buyer</th>
                             <th style="width: 10%">Style</th>

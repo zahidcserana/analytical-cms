@@ -6,7 +6,6 @@
                 <a href="{{ route('invoices.index') }}" class="btn btn-info pull-right"><i class="fa fa-angle-double-left"></i> Back </a>
             </div>
             <div class="pd-20">
-                @include("layouts.alert")
                 <form method="POST" action="{{ route('invoices.store') }}">
                     @csrf
                     <input value="{{ date('Y-m-d') }}" name="invoice_date" type="hidden">
