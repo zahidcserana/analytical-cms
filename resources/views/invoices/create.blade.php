@@ -11,6 +11,7 @@
                     @csrf
                     <input value="{{ date('Y-m-d') }}" name="invoice_date" type="hidden">
                     <input type="hidden" name="type" value="1">
+                    <input value="{{ $invoiceNo }}" name="invoice_no" type="hidden">
                     <div class="form-group row">
                         <div class="col-sm-12 col-md-2" title="Invoice No">
                             <label for=""></label>
