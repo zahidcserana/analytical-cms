@@ -94,7 +94,7 @@
             </div>
         </div>
 
-        <div class="invoice-desc" style="padding-top: -10%!important;">
+        <div class="invoice-desc" style="padding-top: -12%!important;">
             <table class="table table-bordered invoice-table">
                 @if ($invoice->invoiceItems->count() > 0)
                     <thead>
@@ -162,7 +162,7 @@
                     </table>
                 </div>
             </div>
-            <div class="mt-10" style="display: flex;width: 100%">
+            <div style="display: flex;width: 100%">
                 <div style="flex: 1;width:100%">
                     <span>&nbsp;&nbsp;{{ $invoice->created_by }}</span><br>
                     <span>-----------------</span><br>
