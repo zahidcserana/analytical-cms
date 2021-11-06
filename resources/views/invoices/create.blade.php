@@ -11,13 +11,15 @@
                     @csrf
                     <input value="{{ date('Y-m-d') }}" name="invoice_date" type="hidden">
                     <input type="hidden" name="type" value="1">
+                    <input value="{{ $invoiceNo }}" name="invoice_no" type="hidden">
                     <div class="form-group row">
-                        <div class="col-sm-12 col-md-2" title="Invoice No">
-                            <label for=""></label>
+                        <div class="col-sm-12 col-md-2">&nbsp;</div>
+                        <div class="col-sm-12 col-md-2">
+                            <label for="customer_id">Select Customer</label>
                         </div>
                         <div class="col-sm-12 col-md-3">
                             <select class="custom-select col-12" name="customer_id">
-                                <option value="">-Select Customer-</option>
+                                <option value="">-- Select One --</option>
                                 @foreach ($customers as $customer)
                                     <option value="{{ $customer->id }}">{{ $customer->name }}</option>
                                 @endforeach
