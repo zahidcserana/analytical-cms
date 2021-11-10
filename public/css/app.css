@@ -32184,7 +32184,11 @@ select {
   color: red;
 }
 
-#res_message {
+.ajax-error {
+  display: none;
+}
+
+.ajax-success {
   display: none;
 }
 

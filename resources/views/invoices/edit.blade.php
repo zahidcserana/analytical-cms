@@ -86,7 +86,7 @@
                         @endif
                     </div>
                     <div class="col-md-4">
-                        @include("alerts.success")
+                        @include("layouts.alerts.ajax_success")
                     </div>
                 </div>
 

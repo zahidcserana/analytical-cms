@@ -80,18 +80,11 @@
 						<span class="user-name">{{ Auth::user()->name }}</span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-						{{-- <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
-						<a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a>
-						<a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a> --}}
-                        <form class="dropdown-item" method="POST" action="{{ route('logout') }}">
-                            @csrf
+						<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+							document.getElementById('logout-form').submit();">
                             <i class="dw dw-logout"></i>
-                            <x-dropdown-link style="padding-left: 0!important" :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('Log Out') }}
-                            </x-dropdown-link>
-                        </form>
+							<span class="nav-link-text">{{ __('Logout') }}</span>
+						</a>
 					</div>
 				</div>
 			</div>

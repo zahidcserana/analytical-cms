@@ -1,13 +1,7 @@
 window.Invoice = function () {
     $(document).ready(function() {
         console.log('in invoice');
-
-        $('.my-date-picker').datepicker({
-            language: 'en',
-            autoClose: true,
-            dateFormat: 'yyyy-mm-dd',
-        });
-
+        datePicker();
 
         var subtotal = $("#subtotal").val();
         var total = $("#total").val();
@@ -112,9 +106,8 @@ window.Invoice = function () {
                         data: $('#post-form').serialize(),
                         success: function(response) {
                             $('#send_form').html('Add');
-                            $('#res_message').show();
-                            $('#res_message').html(response.msg);
-                            $('#msg_div').removeClass('d-none');
+
+                            ajaxMessageBox('Data successfully saved.', true);
 
                             document.getElementById("post-form").reset();
 
@@ -140,11 +133,6 @@ window.Invoice = function () {
                                 calculate();
                                 $("#subtotal").val(subtotal);
                             }
-
-                            setTimeout(function() {
-                                $('#res_message').hide();
-                                $('#msg_div').hide();
-                            }, 5000);
                         }
                     });
                 }

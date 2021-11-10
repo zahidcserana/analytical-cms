@@ -4067,6 +4067,51 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/js/functions.js":
+/*!***********************************!*\
+  !*** ./resources/js/functions.js ***!
+  \***********************************/
+/***/ (() => {
+
+$(document).ready(function () {
+  window.dateTimePicker = function () {
+    $('.date-time-picker').daterangepicker({
+      singleDatePicker: true,
+      timePicker: true,
+      timePicker24Hour: true,
+      locale: {
+        format: 'Y-MM-DD HH:mm:ss'
+      }
+    });
+  };
+
+  window.datePicker = function () {
+    $('.my-date-picker').datepicker({
+      language: 'en',
+      autoClose: true,
+      dateFormat: 'yyyy-mm-dd'
+    });
+  };
+
+  window.ajaxMessageBox = function (message, success) {
+    var time = 2000;
+
+    if (success) {
+      $('.ajax-success').html(message).show();
+      setTimeout(function () {
+        $('.ajax-success').hide();
+      }, time);
+    } else {
+      $('.ajax-error').html(message).show();
+      setTimeout(function () {
+        $('.ajax-error').hide();
+      }, time);
+    }
+  };
+});
+
+/***/ }),
+
 /***/ "./resources/js/invoice.js":
 /*!*********************************!*\
   !*** ./resources/js/invoice.js ***!
@@ -4076,11 +4121,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.Invoice = function () {
   $(document).ready(function () {
     console.log('in invoice');
-    $('.my-date-picker').datepicker({
-      language: 'en',
-      autoClose: true,
-      dateFormat: 'yyyy-mm-dd'
-    });
+    datePicker();
     var subtotal = $("#subtotal").val();
     var total = $("#total").val();
     var intRegex = /^\d+$/;
@@ -4177,9 +4218,7 @@ window.Invoice = function () {
             data: $('#post-form').serialize(),
             success: function success(response) {
               $('#send_form').html('Add');
-              $('#res_message').show();
-              $('#res_message').html(response.msg);
-              $('#msg_div').removeClass('d-none');
+              ajaxMessageBox('Data successfully saved.', true);
               document.getElementById("post-form").reset();
 
               if (response.status) {
@@ -4192,11 +4231,6 @@ window.Invoice = function () {
                 calculate();
                 $("#subtotal").val(subtotal);
               }
-
-              setTimeout(function () {
-                $('#res_message').hide();
-                $('#msg_div').hide();
-              }, 5000);
             }
           });
         }
@@ -21839,6 +21873,7 @@ module.exports = JSON.parse('{"_args":[["axios@0.21.4","/var/www/html/@analytica
 /******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/app.js")))
 /******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/billing.js")))
 /******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/bootstrap.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/functions.js")))
 /******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/invoice.js")))
 /******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/css/app.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
