@@ -23,9 +23,12 @@
                             <a href="{{ route('reports.invoices', ['status' => $query['status'] ?? '']) }}" class="btn mb-2" data-bgcolor="#f46f30" data-color="#ffffff"><i class="fa fa-refresh"></i> {{ __('Reset') }}</a>
                         </form>
                     </div>
-                    <div class="col-1">
-                        <a href="#" class="btn" data-toggle="modal" data-target="#invoices-modal" data-bgcolor="#f46f30" data-color="#ffffff"><i class="fa fa-download"></i> {{ __('Preview') }}</a>
-                    </div>
+                    @if (!empty($query['customer_id']))
+                        <div class="col-1">
+                            <a href="#" class="btn" data-toggle="modal" data-target="#invoices-modal" data-bgcolor="#f46f30" data-color="#ffffff"><i class="icon-copy fi-monitor"></i> {{ __('Preview') }}</a>
+                        </div>
+                    @endif
+
                     <div class="col-md-4">
                         <table class="table table-striped table-info">
                             <thead>
@@ -89,7 +92,7 @@
                 </div>
                 <div class="modal-body">
                     <table class="table stripe hover nowrap">
-                        <thead>
+                        <thead class="report-table-header">
                             <tr>
                                 <th>Invoice No</th>
                                 <th>Customer</th>
@@ -114,11 +117,10 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <a href="{{ route('customers.invoices', ['customer' => $customer->id]) }}" class="btn" data-bgcolor="#db4437" data-color="#ffffff" style="color: rgb(255, 255, 255); background-color: rgb(219, 68, 55);float: right;"><i class="fa fa-plane"></i> {{ __('Email') }}</a>
+                    <a href="{{ route('customers.invoices', ['customer' => ($query['customer_id'] ?? 1)]) }}" class="btn" data-bgcolor="#db4437" data-color="#ffffff" style="color: rgb(255, 255, 255); background-color: rgb(219, 68, 55);float: right;"><i class="fa fa-plane"></i> {{ __('Email') }}</a>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>

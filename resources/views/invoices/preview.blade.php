@@ -93,7 +93,7 @@
                             </table>
                         </div>
                     </div>
-                    <div class="row mt-10">
+                    <div class="row">
                         <div class="col-md-6">
                             <span>&nbsp;&nbsp;{{ $invoice->created_by }}</span><br>
                             <span>-----------------</span><br>

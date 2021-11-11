@@ -17,6 +17,9 @@
 .my-table-header {
     background: lightskyblue;
 }
+.report-table-header {
+    background: darkgray;
+}
 .my-pagination {
     padding: 0 1%;
 }

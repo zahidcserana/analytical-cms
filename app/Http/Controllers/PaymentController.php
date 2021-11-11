@@ -56,7 +56,7 @@ class PaymentController extends Controller
 
         $user = Payment::create($input);
 
-        return redirect()->route('payments.index');
+        return redirect()->route('payments.index')->with('success', 'Payment successfully added.');
     }
 
     public function edit(Payment $payment)
