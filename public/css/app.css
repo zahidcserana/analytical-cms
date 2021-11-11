@@ -32155,6 +32155,10 @@ select {
   background: lightskyblue;
 }
 
+.report-table-header {
+  background: darkgray;
+}
+
 .my-pagination {
   padding: 0 1%;
 }
@@ -32184,7 +32188,11 @@ select {
   color: red;
 }
 
-#res_message {
+.ajax-error {
+  display: none;
+}
+
+.ajax-success {
   display: none;
 }
 

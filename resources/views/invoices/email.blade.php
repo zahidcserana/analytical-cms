@@ -94,10 +94,10 @@
             </div>
         </div>
 
-        <div class="invoice-desc" style="padding-top: -10%!important;">
+        <div class="invoice-desc" style="padding-top: -12%!important;">
             <table class="table table-bordered invoice-table">
                 @if ($invoice->invoiceItems->count() > 0)
-                    <thead class="">
+                    <thead>
                         <tr>
                             <th style="width: 15%">Buyer</th>
                             <th style="width: 10%">Style</th>
@@ -131,52 +131,48 @@
                     </tr>
                 </thead>
             </table>
+        </div>
 
-            <div class="invoice-desc-footer" style="display: flex;width: 100%">
-                <div style="flex: 1;width:100%">
-                    <p class="font-14 mb-5">Delivery Date: {{ Carbon\Carbon::parse($invoice->invoice_date)->format('d/m/Y') }}</p>
-                    <p class="font-14 mb-5">Previouse Balance: {{ $invoice->customer->balance }}</p>
-                </div>
-                <div class="invoice-desc" style="flex: 1;width:100%">
-                    <table class="invoice-desc-body summary">
-                        <tr>
-                            <td>Sub Total:</td>
-                            <td class="amount-div">{{ $invoice->sub_total }}</td>
-                        </tr>
-                        <tr>
-                            <td>Discount:</td>
-                            <td class="amount-div">{{ $invoice->discount }}</td>
-                        </tr>
-                        <tr>
-                            <td>Total:</td>
-                            <td class="amount-div">{{ $invoice->total }}</td>
-                        </tr>
-                        <tr>
-                            <td>Paid/Adv:</td>
-                            <td class="amount-div">{{ $invoice->paid }}</td>
-                        </tr>
-                        <tr>
-                            <td>Balance/Due:</td>
-                            <td class="amount-div">{{ number_format(($invoice->total - $invoice->paid), 2, '.', ',') }}</td>
-                        </tr>
-                    </table>
-                </div>
+        <div class="row" style="display: flex">
+            <div class="col-md-6" style="flex: 1">
+                <p class="font-14 mb-5">Delivery Date: {{ Carbon\Carbon::parse($invoice->invoice_date)->format('d/m/Y') }}</p>
+                <p class="font-14 mb-5">Previouse Balance: {{ $invoice->customer->balance }}</p>
             </div>
-            <div class="mt-10" style="display: flex;width: 100%">
-                <div style="flex: 1;width:100%">
-                    <span>&nbsp;&nbsp;{{ $invoice->created_by }}</span><br>
-                    <span>-----------------</span><br>
-                    <span>&nbsp;&nbsp;Created By</span>
-                </div>
-                <div style="flex: 1;width:100%;text-align: center">
-                    <span>&nbsp;&nbsp;{{ $invoice->received_by }}</span><br>
-                    <span>-----------------</span><br>
-                    <span>&nbsp;&nbsp;Received By</span>
-                </div>
+            <div class="col-md-6" style="flex: 1">
+                <table class="invoice-desc-body summary">
+                    <tr>
+                        <td>Sub Total:</td>
+                        <td class="amount-div">{{ $invoice->sub_total }}</td>
+                    </tr>
+                    <tr>
+                        <td>Discount:</td>
+                        <td class="amount-div">{{ $invoice->discount }}</td>
+                    </tr>
+                    <tr>
+                        <td>Total:</td>
+                        <td class="amount-div">{{ $invoice->total }}</td>
+                    </tr>
+                    <tr>
+                        <td>Paid/Adv:</td>
+                        <td class="amount-div">{{ $invoice->paid }}</td>
+                    </tr>
+                    <tr>
+                        <td>Balance/Due:</td>
+                        <td class="amount-div">{{ number_format(($invoice->total - $invoice->paid), 2, '.', ',') }}</td>
+                    </tr>
+                </table>
             </div>
         </div>
-        <div>
-            <p style="text-align: center;font-size: 12px;">Powered by <a href="https://analyticalj.com">AnalyticalJ (analyticalzahid@gmail.com)</a></p>
+
+        <div class="row" style="display: flex;">
+            <div class="col-md-4" style="flex: 1">
+                <span class="font-14 mb-5">Created By: {{ $invoice->created_by }}</span>
+            </div>
+            <div class="col-md-4" style="flex: 1;text-align: center">
+                <span class="font-14 mb-5">Received By: {{ $invoice->received_by }}</span>
+            </div>
+            <div class="col-md-4" style="flex: 1;float: right">
+            </div>
         </div>
     </div>
 </body>

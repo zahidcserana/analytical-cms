@@ -1,7 +1,7 @@
 @component('mail::message')
-# Hi {{ $invoice->customer->name }},
+# Hi {{ $customer->name }},
 
-Thank you for being with us. Your invoice is attached below.
+Thank you for being with us. Your invoice statement is attached below.
 
 Thanks,<br>
 {{ Config::get('settings.company.name') }}<br>

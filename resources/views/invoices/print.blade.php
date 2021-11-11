@@ -188,8 +188,7 @@
                     </table>
                 </div>
             </div>
-            <div class="clear-both"></div>
-            <div class="mt-10" style="padding-top: 2%;display: flex;width: 100%">
+            <div style="display: flex;width: 100%">
                 <div style="flex: 1;width:100%">
                     <span>&nbsp;&nbsp;{{ $invoice->created_by }}</span><br>
                     <span>-----------------</span><br>

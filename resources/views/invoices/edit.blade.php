@@ -3,14 +3,10 @@
         <div class="card-box mb-30">
             <div class="pd-20 clearfix">
                 <h4 class="text-title h4 pull-left">Invoice No: &nbsp;{{ $invoice->invoice_no }}, &nbsp; Status: {{ $invoice->status }}</h4>
-                
                 <a href="{{ route('invoices.index') }}" class="btn btn-info pull-right"><i
                         class="fa fa-angle-double-left"></i> Back </a>
             </div>
             <div class="pd-20">
-                
-                @include("layouts.alert")
-
                 @if ($invoice->status != \App\Models\Invoice::STATUS_PAID)
                     <form class="mb-30" id="post-form" method="post" action="javascript:void(0)">
                         @csrf
@@ -90,7 +86,7 @@
                         @endif
                     </div>
                     <div class="col-md-4">
-                        @include("alerts.success")
+                        @include("layouts.alerts.ajax_success")
                     </div>
                 </div>
 

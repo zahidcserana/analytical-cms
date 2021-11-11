@@ -70,15 +70,11 @@
                     </ul>
                 </li>
                 <li>
-                    <form class="dropdown-toggle no-arrow" method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <span class="micon dw dw-logout"></span>
-                        <x-dropdown-link class="link-logout" style="padding-left: 0!important" :href="route('logout')"
-                                onclick="event.preventDefault();
-                                            this.closest('form').submit();">
-                            {{ __('Log Out') }}
-                        </x-dropdown-link>
-                    </form>
+                    <a class="dropdown-toggle no-arrow" href="{{ route('logout') }}" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+                        <i class="micon dw dw-logout"></i>
+                        <span class="nav-link-text">{{ __('Logout') }}</span>
+                    </a>
                 </li>
             </ul>
         </div>
