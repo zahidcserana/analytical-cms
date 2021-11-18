@@ -28,7 +28,7 @@
 
     <style>
         body{
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: Helvetica;
             font-size: 12px;
         }
         .invoice-box {
