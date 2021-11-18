@@ -28,7 +28,7 @@
 
     <style>
         body{
-            font-family: Myriad Pro;
+            font-family: Arial, Helvetica, sans-serif;
             font-size: 13pt;
         }
         .invoice-box {
