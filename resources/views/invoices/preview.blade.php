@@ -9,11 +9,11 @@
                 </div>
                 <div class="row pb-30">
                     <div class="col-md-6">
-                        <p class="font-14 mb-5">Invoice No: <strong class="weight-600">{{ $invoice->invoice_no }}</strong></p>
+                        <p class="font-14 mb-5">Invoice No: <strong class="weight-600 font-18">{{ $invoice->invoice_no }}</strong></p>
                         <p class="font-14 mb-5">Name: <strong class="weight-600">{{ $invoice->customer->name }}</strong></p>
                         <p class="font-14 mb-5">Mobile: <strong class="weight-600">{{ $invoice->customer->mobile }}</strong></p>
                         <p class="font-14 mb-5">Date: <strong class="weight-600">{{ \Carbon\Carbon::parse($invoice->created_at)->format('M j, Y')}}</strong></p>
-                        <p class="font-14 mb-5">Status: <strong class="weight-600">{{ $invoice->status }}</strong></p>
+                        <p class="font-14 mb-5">Status: <strong class="weight-600 font-18">{{ $invoice->status }}</strong></p>
                     </div>
                     <div class="col-md-6">
                         <div class="text-right">
@@ -31,14 +31,14 @@
                         @if ($invoice->invoiceItems->count() > 0)
                             <thead class="invoice-desc-head clearfix">
                                 <tr>
-                                    <th>Buyer</th>
-                                    <th style="width: 10%">Style</th>
-                                    <th style="width: 10%">Color</th>
+                                    <th style="width: 15%">Buyer</th>
+                                    <th style="width: 25%">Style</th>
+                                    <th style="width: 5%">Color</th>
                                     <th style="width: 20%" class="text-center">Size</th>
                                     <th style="width: 15%" class="text-center">Sq. Ins</th>
-                                    <th class="text-center">Quantity</th>
-                                    <th class="text-right">Rate</th>
-                                    <th class="text-right">Amount</th>
+                                    <th style="width: 5%">Qty</th>
+                                    <th style="width: 5%">Rate</th>
+                                    <th style="width: 10%">Amount</th>
                                 </tr>
                             </thead>
                             <tbody class="invoice-desc-body">
@@ -65,8 +65,24 @@
                     </table>
                     <div class="row invoice-desc-footer">
                         <div class="col-8">
-                            <p>Delivery Date: {{ Carbon\Carbon::parse($invoice->invoice_date)->format('d/m/Y') }}</p>
-                            <p>Previouse Balance: {{ $invoice->customer->balance }}</p>
+                            <table class="invoice-desc-body" style="width: 100%">
+                                <tr>
+                                    <td>Delivery Date</td>
+                                    <td>: {{ Carbon\Carbon::parse($invoice->invoice_date)->format('d/m/Y') }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Previouse Balance</td>
+                                    <td>: {{ amount_with_symbol($invoice->customer->balance) }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Created By</td>
+                                    <td>: {{ $invoice->created_by }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Received By</td>
+                                    <td>: {{ $invoice->received_by }}</td>
+                                </tr>
+                            </table>
                         </div>
                         <div class="col-4">
                             <table class="summary text-right">
@@ -88,23 +104,12 @@
                                 </tr>
                                 <tr>
                                     <td>Balance/Due:</td>
-                                    <td>{{ $invoice->total - $invoice->paid }}</td>
+                                    <td>{{ $invoice->due }}</td>
                                 </tr>
                             </table>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <span>&nbsp;&nbsp;{{ $invoice->created_by }}</span><br>
-                            <span>-----------------</span><br>
-                            <span>&nbsp;&nbsp;Created By</span>
-                        </div>
-                        <div class="col-md-6">
-                            <span>&nbsp;&nbsp;{{ $invoice->received_by }}</span><br>
-                            <span>-----------------</span><br>
-                            <span>&nbsp;&nbsp;Received By</span>
-                        </div>
-                    </div>
+                    <div class="text-center font-12">Powered By: AnalyticalJ (analyticalzahid@gmail.com)</div>
                 </div>
                 <a href="{{ route('invoices.print', ['invoice' => $invoice->id]) }}" target="_blank" class="btn" data-bgcolor="#3d464d" data-color="#ffffff" style="color: rgb(255, 255, 255); background-color: rgb(61, 70, 77);"><i class="fa fa-print"></i> {{ __('Print') }}</a>
                 <a href="{{ route('invoices.pdf', ['invoice' => $invoice->id]) }}" class="btn" data-bgcolor="#f46f30" data-color="#ffffff" style="color: rgb(255, 255, 255); background-color: rgb(244, 111, 48);"><i class="fa fa-download"></i> {{ __('Download') }}</a>

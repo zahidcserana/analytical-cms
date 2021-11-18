@@ -27,3 +27,18 @@ if (!function_exists('word_amount')) {
         return $digit->format((int)$amount);
     }
 }
+
+if (!function_exists('format_amount')) {
+    function format_amount($amount)
+    {
+        $digit = new NumberFormatter("en", NumberFormatter::DEFAULT_STYLE);
+        return $digit->format((int)$amount);
+    }
+}
+
+if (!function_exists('amount_with_symbol')) {
+    function amount_with_symbol($amount)
+    {
+        return html_entity_decode('&#2547;') . ' ' . format_amount($amount);
+    }
+}

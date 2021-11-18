@@ -32,6 +32,12 @@ class Invoice extends Model
         return $digit->format((int)$this->total);
     }
 
+    public function getDueAttribute()
+    {
+        $digit = new NumberFormatter("en", NumberFormatter::DEFAULT_STYLE);
+        return $digit->format((int)($this->total - $this->paid));
+    }
+
     public function calculate()
     {
 

@@ -40,7 +40,7 @@
                             <select class="custom-select col-12" name="status">
                                 <option value="">-Select-</option>
                                 <option {{ $payment->status == 'pending' ? "selected='selected'" : '' }} value="pending">Pending</option>
-                                <option {{ $payment->status == 'adjust' ? "selected='selected'" : '' }} value="adjust">Adjust</option>
+                                <option {{ $payment->status == 'adjusted' ? "selected='selected'" : '' }} value="adjusted">Adjust</option>
                                 <option {{ $payment->status == 'advanced' ? "selected='selected'" : '' }} value="advanced">Advanced</option>
                             </select>
                         </div>
