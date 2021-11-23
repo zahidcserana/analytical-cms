@@ -157,6 +157,9 @@ $reports = ['reports.invoices', 'reports.customers'];
         </div>
     </div>
 
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+    </form>
     @include('layouts.sidebar')
 
     <div class="mobile-menu-overlay"></div>
@@ -164,6 +167,8 @@ $reports = ['reports.invoices', 'reports.customers'];
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
             <main>
+                @include("layouts.alert")
+
                 {{ $slot }}
             </main>
             <div class="footer-wrap pd-20 mb-20 card-box">
@@ -172,9 +177,9 @@ $reports = ['reports.invoices', 'reports.customers'];
         </div>
     </div>
 
-    <script src="{{ mix('/js/app.js') }}"></script>
 
     <!-- js -->
+    <script src="{{ asset('assets/src/scripts/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/scripts/core.js') }}"></script>
     <script src="{{ asset('assets/vendors/scripts/script.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/scripts/process.js') }}"></script>
@@ -196,6 +201,8 @@ $reports = ['reports.invoices', 'reports.customers'];
     <script src="{{ asset('assets/src/plugins/datatables/js/vfs_fonts.js') }}"></script>
     <!-- Datatable Setting js -->
     <script src="{{ asset('assets/vendors/scripts/datatable-setting.js') }}"></script>
+
+    <script src="{{ mix('/js/app.js') }}"></script>
 
     @stack('scripts')
 </body>

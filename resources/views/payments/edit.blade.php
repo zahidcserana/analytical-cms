@@ -6,7 +6,6 @@
                 <a href="{{ route('payments.index') }}" class="btn btn-info pull-right"><i class="fa fa-angle-double-left"></i> Back </a>
             </div>
             <div class="pd-20">
-                @include("layouts.alert")
                 <form method="post" action="{{ route('payments.update', ['payment' => $payment]) }}" autocomplete="off" novalidate>
                     @csrf
                     @method('PUT')
@@ -41,7 +40,7 @@
                             <select class="custom-select col-12" name="status">
                                 <option value="">-Select-</option>
                                 <option {{ $payment->status == 'pending' ? "selected='selected'" : '' }} value="pending">Pending</option>
-                                <option {{ $payment->status == 'adjust' ? "selected='selected'" : '' }} value="adjust">Adjust</option>
+                                <option {{ $payment->status == 'adjusted' ? "selected='selected'" : '' }} value="adjusted">Adjust</option>
                                 <option {{ $payment->status == 'advanced' ? "selected='selected'" : '' }} value="advanced">Advanced</option>
                             </select>
                         </div>

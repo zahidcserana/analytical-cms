@@ -6,7 +6,6 @@
                 <a href="{{ route('customers.index') }}" class="btn btn-info pull-right"><i class="fa fa-angle-double-left"></i> Back </a>
             </div>
             <div class="pd-20">
-                @include("layouts.alert")
                 <form method="post" action="{{ route('customers.update', ['customer' => $customer]) }}" autocomplete="off" novalidate>
                     @csrf
                     @method('PUT')

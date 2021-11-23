@@ -7,7 +7,7 @@
             </div>
             <div class="pb-20" style="padding: 0% 1%;">
                 <div class="row">
-                    <div class="col-7">
+                    <div class="col-md-7">
                         <form class="form-inline" method="GET" action="{{ route('reports.invoices') }}">
                             <input type="hidden" name="status" value="{{ $query['status'] ?? '' }}">
                             <select class="form-control mb-2 mr-sm-2" name="customer_id">
@@ -23,7 +23,13 @@
                             <a href="{{ route('reports.invoices', ['status' => $query['status'] ?? '']) }}" class="btn mb-2" data-bgcolor="#f46f30" data-color="#ffffff"><i class="fa fa-refresh"></i> {{ __('Reset') }}</a>
                         </form>
                     </div>
-                    <div class="col-5">
+                    @if (!empty($query['customer_id']))
+                        <div class="col-1">
+                            <a href="#" class="btn" data-toggle="modal" data-target="#invoices-modal" data-bgcolor="#f46f30" data-color="#ffffff"><i class="icon-copy fi-monitor"></i> {{ __('Preview') }}</a>
+                        </div>
+                    @endif
+
+                    <div class="col-md-4">
                         <table class="table table-striped table-info">
                             <thead>
                                 <tr>
@@ -74,6 +80,48 @@
                         @endforeach
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade bs-example-modal-lg" id="invoices-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myLargeModalLabel">Due Invoices</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <table class="table stripe hover nowrap">
+                        <thead class="report-table-header">
+                            <tr>
+                                <th>Invoice No</th>
+                                <th>Customer</th>
+                                <th>Subtotal</th>
+                                <th>Discount</th>
+                                <th>Amount</th>
+                                <th>Paid</th>
+                                <th>Due</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($invoices as $row)
+                            <tr>
+                                <td>{{ $row->invoice_no }}</td>
+                                <td>{{ $row->customer->name }}</td>
+                                <td>{{ $row->sub_total }}</td>
+                                <td>{{ $row->discount }}</td>
+                                <td>{{ $row->total }}</td>
+                                <td>{{ $row->paid }}</td>
+                                <td>{{ number_format(($row->total - $row->paid), 2, '.', ',') }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <a href="{{ route('customers.invoices', ['customer' => ($query['customer_id'] ?? 1)]) }}" class="btn" data-bgcolor="#db4437" data-color="#ffffff" style="color: rgb(255, 255, 255); background-color: rgb(219, 68, 55);float: right;"><i class="fa fa-plane"></i> {{ __('Email') }}</a>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>

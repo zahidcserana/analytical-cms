@@ -6,7 +6,6 @@
                 <a href="{{ route('payments.index') }}" class="btn btn-info pull-right"><i class="fa fa-angle-double-left"></i> Back </a>
             </div>
             <div class="pd-20">
-                @include("layouts.alert")
                 <form method="POST" action="{{ route('payments.store') }}">
                     @csrf
                     <div class="form-group row">

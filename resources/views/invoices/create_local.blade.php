@@ -6,7 +6,6 @@
                 <a href="{{ route('invoices.index') }}" class="btn btn-info pull-right"><i class="fa fa-angle-double-left"></i> Back </a>
             </div>
             <div class="pd-20">
-                @include("layouts.alert")
                 <form method="post" action="{{ route('invoices.store') }}" autocomplete="off" novalidate>
                     @csrf
                     <input type="hidden" name="type" value="2">

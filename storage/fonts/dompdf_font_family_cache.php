@@ -81,12 +81,12 @@
     'normal' => $fontDir . '/fontawesome_normal_c815e803d273560df3d4ad0269dcbaf8',
   ),
   'inter' => array(
-    '300' => $fontDir . '/inter_300_758725db4bd01cfbe949e9adef88b1bc',
-    'normal' => $fontDir . '/inter_normal_099dd62a6d4bf6d743aa4e24b005d89d',
-    '500' => $fontDir . '/inter_500_55ace704169182817ce790676063cc36',
-    '600' => $fontDir . '/inter_600_c419225264d45ede210affe911a25a74',
-    'bold' => $fontDir . '/inter_bold_53ab5654aeb81b94e28febe567383925',
-    '800' => $fontDir . '/inter_800_d7989dd797d1f083f00b28b4040da0c7',
+    '300' => $fontDir . '/inter_300_913c48c3f936e5f8d0c1ce587e1d622f',
+    'normal' => $fontDir . '/inter_normal_257606853d48d71366a3ba9abc6feee0',
+    '500' => $fontDir . '/inter_500_c3b3147ec232f890bab4518b4fc7777a',
+    '600' => $fontDir . '/inter_600_4f0c7b53ff66517797d46ba3605c46e1',
+    'bold' => $fontDir . '/inter_bold_7fa84dd6d18d3d99127d0039e4eb61bf',
+    '800' => $fontDir . '/inter_800_82ece01d100c811c66f1b6401a346fd2',
   ),
   'dropways' => array(
     'normal' => $fontDir . '/dropways_normal_17bca8b8c08e29a5967a1956c804da50',
