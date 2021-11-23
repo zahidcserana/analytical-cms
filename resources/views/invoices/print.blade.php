@@ -77,7 +77,7 @@
     <div class="invoice-box" id="invoice-box">
         <div style="display: flex;width: 100%;margin-bottom: -1%">
             <div style="flex: 1; width: 100%;">
-                <img src="{{ Config::get('settings.company.logo') }}" alt="Dot Design">
+                <img src="{{ asset('assets/vendors/images/dot1.jpg') }}" alt="Dot Design">
             </div>
             <h4 style="float: right;" class="weight-600">INVOICE</h4>
         </div>
