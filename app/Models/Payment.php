@@ -18,7 +18,9 @@ class Payment extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'log' => 'array'
+        'log' => 'array',
+        'bank_details' => 'array'
+
     ];
 
     public function customer()

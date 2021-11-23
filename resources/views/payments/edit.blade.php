@@ -10,48 +10,61 @@
                     @csrf
                     @method('PUT')
                     <input type="hidden" name="id" value="{{ $payment->id }}">
+                    <input type="hidden" name="customer_id" value="{{ $payment->customer_id }}">
+                    <input type="hidden" name="method" value="{{ $payment->method }}">
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label">Customer</label>
                         <div class="col-sm-12 col-md-4">
-                            <select class="custom-select col-12" name="customer_id">
-                                <option value="">-Select-</option>
-                                @foreach ($customers as $customer)
-                                    <option {{ $payment->customer_id == $customer->id ? "selected='selected'" : '' }} value="{{ $customer->id }}">{{ $customer->name }}</option>
-                                @endforeach
-                            </select>
+                            <p class="form-control-plaintext">{{ $payment->customer->name }}</p>
+                        </div>
+                        <label class="col-sm-12 col-md-2 col-form-label">Status</label>
+                        <div class="col-sm-12 col-md-4">
+                            <p class="form-control-plaintext">{{ $payment->status }}</p>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label">Payment Method</label>
+                        <div class="col-sm-12 col-md-4">
+                            <p class="form-control-plaintext">{{ $payment->method }}</p>
                         </div>
                         <label class="col-sm-12 col-md-2 col-form-label">Amount</label>
                         <div class="col-sm-12 col-md-4">
                             <input class="form-control" placeholder="Amount" type="text" name="amount" value="{{ $payment->amount }}">
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Payment Method</label>
-                        <div class="col-sm-12 col-md-4">
-                            <select class="custom-select col-12" name="method">
-                                <option value="">-Select-</option>
-                                @foreach (Config::get('settings.paymentMethod') as $key => $value)
-                                    <option {{ $payment->method == $key ? "selected='selected'" : '' }} value="{{ $key }}">{{ $key }}</option>
-                                @endforeach
-                            </select>
+                    @if ($payment->method == "Bank")
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Bank Details</label>
+                            <div class="col-sm-12 col-md-3">
+                                <input class="form-control" placeholder="Bank Name" type="text" name="bank_details[name]" value="{{ $payment->bank_details['name'] }}">
+                            </div>
+                            <div class="col-sm-12 col-md-3">
+                                <input class="form-control" placeholder="Check No" type="text" name="bank_details[check_no]" value="{{ $payment->bank_details['check_no'] }}">
+                            </div>
+                            <div class="col-sm-12 col-md-2">
+                                <input class="form-control" placeholder="Check Date" type="text" name="bank_details[check_date]" value="{{ $payment->bank_details['check_date'] }}">
+                            </div>
+                            <div class="col-sm-12 col-md-2">
+                                <input class="form-control" placeholder="Check Amount" type="text" name="bank_details[check_amount]" value="{{ $payment->bank_details['check_amount'] }}">
+                            </div>
                         </div>
-                        <label class="col-sm-12 col-md-2 col-form-label">Status</label>
+                    @endif
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label">Created By</label>
                         <div class="col-sm-12 col-md-4">
-                            <select class="custom-select col-12" name="status">
-                                <option value="">-Select-</option>
-                                <option {{ $payment->status == 'pending' ? "selected='selected'" : '' }} value="pending">Pending</option>
-                                <option {{ $payment->status == 'adjusted' ? "selected='selected'" : '' }} value="adjusted">Adjust</option>
-                                <option {{ $payment->status == 'advanced' ? "selected='selected'" : '' }} value="advanced">Advanced</option>
-                            </select>
+                            <input class="form-control" placeholder="Created By" type="text" name="created_by" value="{{ $payment->created_by }}">
+                        </div>
+                        <label class="col-sm-12 col-md-2 col-form-label">Received By</label>
+                        <div class="col-sm-12 col-md-4">
+                            <input class="form-control" placeholder="Received By" type="text" name="received_by" value="{{ $payment->received_by }}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label">Remarks</label>
                         <div class="col-sm-12 col-md-10">
-                            <textarea class="form-control" name="payload" placeholder="Remarks" value="{{ $payment->payload }}">{{ $payment->payload }}</textarea>
+                            <input class="form-control" placeholder="Remarks" type="text" name="payload" value="{{ $payment->payload }}">
                         </div>
                     </div>
-
                     <div class="text-center">
                         <x-button class="btn btn-primary">{{ __('Save') }}</x-button>
                     </div>

@@ -1,5 +1,6 @@
 # Features have to do
 
+- Table: payments-receipt_no,dues,received_by,created_by
 - spaces must be reduced
 - Invoice edit amount 2 decimal
 - Email for due invoices of customer

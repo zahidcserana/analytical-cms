@@ -35,34 +35,35 @@
                 <table class="table stripe hover nowrap">
                     <thead>
                         <tr>
-                            <th class="table-plus datatable-nosort">Sl</th>
+                            <th class="table-plus datatable-nosort">Receipt No</th>
                             <th>Customer</th>
                             <th>Method</th>
-                            <th>Paid</th>
+                            <th>Collected</th>
                             <th>Adjust</th>
                             <th>Remaining</th>
                             <th>Status</th>
-                            <th>Remarks</th>
                             <th class="datatable-nosort">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($payments as $i=>$row)
                         <tr>
-                            <td class="table-plus">{{ $i + 1 }}</td>
+                            <td>
+                                <a href="{{route('payments.edit', ['payment' => $row->id])}}">{{ $row->receipt_no }}</a>
+                            </td>
                             <td>{{ $row->customer->name }}</td>
                             <td>{{ $row->method }}</td>
                             <td>{{ $row->amount + $row->adjust }}</td>
                             <td>{{ (int)$row->adjust }}</td>
                             <td>{{ (int)$row->amount }}</td>
                             <td><span class="badge {{ status_class($row->status) }}">{{ $row->status }}</span></td>
-                            <td>{{ $row->payload }}</td>
                             <td>
                                 <div class="dropdown">
                                     <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                                         <i class="dw dw-more"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                        <a class="dropdown-item payment-preview" href="javascript:void(0);" data-id="{{ $row->id }}"><i class="dw dw-eye"></i> Preview</a>
                                         <a class="dropdown-item" href="{{route('payments.edit', ['payment' => $row->id])}}"><i class="dw dw-edit2"></i> Edit</a>
                                         @if ($row->status != 'adjusted')
                                             <a class="dropdown-item" href="{{route('payments.adjust', ['payment' => $row->id])}}"><i class="dw dw-analytics1"></i> Adjust</a>
@@ -80,5 +81,17 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade bs-example-modal-lg" id="money-receipt-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body"></div>
+                </div>
+            </div>
+        </div>
     </div>
+    @push('scripts')
+        <script>
+            new Payment();
+        </script>
+    @endpush
 </x-app-layout>

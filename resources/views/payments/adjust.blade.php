@@ -2,7 +2,7 @@
     <div class="min-height-200px">
         <div class="card-box mb-30">
             <div class="pd-20 clearfix">
-                <h4 class="text-title h4 pull-left">Payment Adjust: <span style="color: black">Amount: {{ $payment->amount }}, Due: {{ $summary['total'] - $summary['paid'] }}</span></h4>
+                <h4 class="text-title h4 pull-left">Payment Adjust: <span class="identity">Receipt No: {{ $payment->receipt_no }} </span> <span style="color: black">Amount: {{ $payment->amount }}, Due: {{ $summary['total'] - $summary['paid'] }}</span></h4>
                 <a href="{{ route('payments.index') }}" class="btn btn-info pull-right"><i class="fa fa-angle-double-left"></i> Back </a>
             </div>
             <div class="pb-20">
@@ -35,9 +35,11 @@
                         </tr>
                     </tbody>
                 </table>
-                <div class="text-center">
-                    @include('layouts.utils.adjust',array( 'url' => route('payments.adjust', ['payment' => $payment->id]), 'class'=>'btn btn-warning','text' => "Proceed"))
-                </div>
+                @if ($payment->amount > 10)
+                    <div class="text-center">
+                        @include('layouts.utils.adjust',array( 'url' => route('payments.adjust', ['payment' => $payment->id]), 'class'=>'btn btn-warning','text' => "Proceed"))
+                    </div>
+                @endif
                 @else
                     <div style="margin: 0 23%; text-align: center;">
                         No  data found
