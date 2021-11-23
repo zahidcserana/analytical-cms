@@ -49,3 +49,8 @@
 .ajax-success {
     display: none;
 }
+.identity {
+    padding-left: 10px;
+    padding-right: 10px;
+    color:darkgoldenrod;
+}

@@ -18,10 +18,14 @@ class CreatePaymentsTable extends Migration
             $table->unsignedBigInteger('customer_id');
             $table->string('method')->nullable();
             $table->string('payload')->nullable();
+            $table->string('receipt_no')->nullable();
             $table->json('log')->nullable();
             $table->decimal('amount', 15, 2);
             $table->decimal('adjust', 15, 2)->nullable();
+            $table->decimal('dues', 15, 2)->nullable();
             $table->string('status')->default('pending');
+            $table->string('created_by')->nullable();
+            $table->string('received_by')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

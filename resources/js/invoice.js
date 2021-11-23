@@ -1,6 +1,5 @@
 window.Invoice = function () {
     $(document).ready(function() {
-        console.log('in invoice');
         datePicker();
 
         var subtotal = $("#subtotal").val();
