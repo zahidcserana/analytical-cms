@@ -84,7 +84,7 @@
         </div>
         <div style="display: flex;width: 100%;margin-bottom: 10px;">
             <div style="flex: 1; width: 100%">
-                <table class="invoice-desc-body" style="width: 60%">
+                <table class="invoice-desc-body" style="width: 100%">
                     <tr>
                         <td>Invoice No</td>
                         <td>: <strong style="font-size: 11px">{{ $invoice->invoice_no }}</strong></td>
