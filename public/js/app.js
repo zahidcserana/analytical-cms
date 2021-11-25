@@ -4024,18 +4024,6 @@ __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
 
 /***/ }),
 
-/***/ "./resources/js/billing.js":
-/*!*********************************!*\
-  !*** ./resources/js/billing.js ***!
-  \*********************************/
-/***/ (() => {
-
-window.Billing = function () {
-  $(document).ready(function () {});
-};
-
-/***/ }),
-
 /***/ "./resources/js/bootstrap.js":
 /*!***********************************!*\
   !*** ./resources/js/bootstrap.js ***!
@@ -4120,7 +4108,6 @@ $(document).ready(function () {
 
 window.Invoice = function () {
   $(document).ready(function () {
-    console.log('in invoice');
     datePicker();
     var subtotal = $("#subtotal").val();
     var total = $("#total").val();
@@ -4274,6 +4261,51 @@ window.Invoice = function () {
       var due = total - paid;
       $("#due").text(due.toFixed(2));
     }
+  });
+};
+
+/***/ }),
+
+/***/ "./resources/js/payment.js":
+/*!*********************************!*\
+  !*** ./resources/js/payment.js ***!
+  \*********************************/
+/***/ (() => {
+
+window.Payment = function () {
+  $(document).ready(function () {
+    datePicker();
+    $('.payment-method').on('change', function () {
+      console.log(this.value);
+
+      if (this.value == 'Bank') {
+        $(".bank-details").show();
+      } else {
+        $(".bank-details").hide();
+      }
+    });
+    $('.customer-select').on('change', function () {
+      console.log(this.value);
+      $.ajax({
+        url: "/customers/" + this.value + "/details",
+        type: "GET",
+        success: function success(response) {
+          if (response.balance) {
+            $("#dues").val(response.balance);
+          }
+        }
+      });
+    });
+    $('.payment-preview').on('click', function () {
+      $.ajax({
+        url: '/payments/' + $(this).attr('data-id') + '/preview',
+        type: "GET",
+        success: function success(response) {
+          $(".modal-body").html(response);
+          $("#money-receipt-modal").modal("show");
+        }
+      });
+    });
   });
 };
 
@@ -21871,10 +21903,10 @@ module.exports = JSON.parse('{"_args":[["axios@0.21.4","/var/www/html/@analytica
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
 /******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/billing.js")))
 /******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/bootstrap.js")))
 /******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/functions.js")))
 /******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/invoice.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/payment.js")))
 /******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/css/app.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	

@@ -73,21 +73,21 @@
         }
     </style>
 </head>
-<body>
+<body onload="window.print()">
     <div class="invoice-box" id="invoice-box">
         <div style="display: flex;width: 100%;margin-bottom: -1%">
             <div style="flex: 1; width: 100%;">
                 <img src="{{ asset('assets/vendors/images/dot1.jpg') }}" alt="Dot Design">
             </div>
-            <h4 style="float: right;" class="weight-600">INVOICE</h4>
+            <h4 style="float: right;" class="weight-600">Money Receipt</h4>
         </div>
         <div style="display: flex;width: 100%;">
             <div style="flex: 1; width: 100%">
-                <p class="font-12 mb-5">Invoice No: <strong class="weight-600 font-18">{{ $invoice->invoice_no }}</strong></p>
-                <p class="font-12 mb-5">Name: <strong class="weight-600">{{ $invoice->customer->name }}</strong></p>
-                <p class="font-12 mb-5">Mobile: <strong class="weight-600">{{ $invoice->customer->mobile }}</strong></p>
-                <p class="font-12 mb-5">Date: <strong class="weight-600">{{ \Carbon\Carbon::parse($invoice->created_at)->format('M j, Y')}}</strong></p>
-                <p class="font-12 mb-5">Status: <strong class="weight-600 font-18">{{ $invoice->status }}</strong></p>
+                <p class="font-14 mb-5">Receipt No: <strong class="weight-600 font-18">{{ $payment->receipt_no }}</strong></p>
+                <p class="font-14 mb-5">Name: <strong class="weight-600">{{ $payment->customer->name }}</strong></p>
+                <p class="font-14 mb-5">Mobile: <strong class="weight-600">{{ $payment->customer->mobile }}</strong></p>
+                <p class="font-14 mb-5">Date: <strong class="weight-600">{{ \Carbon\Carbon::parse($payment->created_at)->format('M j, Y')}}</strong></p>
+                <p class="font-14 mb-5">Status: <strong class="weight-600 font-18">{{ $payment->status }}</strong></p>
             </div>
             <div style="flex: 1; width: 100%">
                 <p class="font-12 mb-5" style="text-align: right">{{ Config::get('settings.company.name') }}</strong></p>
@@ -100,85 +100,93 @@
 
         <div class="invoice-desc" style="padding-top: -12%!important;">
             <table class="table table-bordered invoice-table">
-                @if ($invoice->invoiceItems->count() > 0)
-                    <thead>
+                @if (!empty($payment->log))
+                <thead>
+                    <tr>
+                        <th>Invoice No</th>
+                        <th>Paid Amount</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody class="my-body">
+                    @foreach ($payment->log as $i=>$log)
                         <tr>
-                            <th style="width: 15%">Buyer</th>
-                            <th style="width: 25%">Style</th>
-                            <th style="width: 5%">Color</th>
-                            <th style="width: 20%">Size</th>
-                            <th style="width: 15%">Sq. Ins</th>
-                            <th style="width: 5%">Qty</th>
-                            <th style="width: 5%">Rate</th>
-                            <th style="width: 10%">Amount</th>
+                            <td>{{ $log['invoiceNo'] }}</td>
+                            <td>{{ $log['paidAmount'] }}</td>
+                            <td>{{ $log['invoiceStatus'] }}</td>
                         </tr>
-                    </thead>
-                    <tbody class="my-body">
-                        @foreach ($invoice->invoiceItems as $invoiceItem)
-                            <tr>
-                                <td>{{ $invoiceItem->buyer }}</td>
-                                <td>{{ $invoiceItem->style }}</td>
-                                <td>{{ $invoiceItem->color }}</td>
-                                <td>{{ $invoiceItem->width }} &times; {{ $invoiceItem->length }}</td>
-                                <td>{{ $invoiceItem->area }}</td>
-                                <td>{{ $invoiceItem->quantity }}</td>
-                                <td>{{ $invoiceItem->price }}</td>
-                                <td>{{ $invoiceItem->amount }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
+                    @endforeach
+                </tbody>
                 @endif
                 <thead class="invoice-desc-head clearfix">
                     <tr>
                         <th class="amount-word">In Word:</th>
-                        <th colspan="7"  style="text-align: left !important;">{{ $invoice->gross }}</th>
+                        <th colspan="2">{{ word_amount($payment->amount + $payment->adjust) }}</th>
                     </tr>
                 </thead>
             </table>
         </div>
 
+        @if ($payment->method == "Bank")
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="invoice-desc-body" style="width: 100%">
+                        <tr>
+                            <td>Bank Name</td>
+                            <td>: {{ $payment->bank_details['name'] }}</td>
+                            <td>Check Date</td>
+                            <td>: {{ $payment->bank_details['check_date'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>Check No</td>
+                            <td>: {{ $payment->bank_details['check_no'] }}</td>
+                            <td>Check Amount</td>
+                            <td>: {{ $payment->bank_details['check_amount'] }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        @endif
+
         <div class="row" style="display: flex">
             <div class="col-md-8" style="flex: 1">
-                <table class="invoice-desc-body" style="width: 60%">
+                <table class="invoice-desc-body" style="width: 100%">
                     <tr>
-                        <td>Delivery Date</td>
-                        <td>: {{ Carbon\Carbon::parse($invoice->invoice_date)->format('d/m/Y') }}</td>
+                        <td>Payment Date</td>
+                        <td>: {{ Carbon\Carbon::parse($payment->created_at)->format('d/m/Y') }}</td>
                     </tr>
                     <tr>
-                        <td>Previouse Balance</td>
-                        <td>: {{ format_amount($invoice->customer->balance) }}</td>
+                        <td>Payment Method</td>
+                        <td>: {{ $payment->method }}</td>
                     </tr>
                     <tr>
                         <td>Created By</td>
-                        <td>: {{ $invoice->created_by }}</td>
+                        <td>: {{ $payment->created_by }}</td>
                     </tr>
                     <tr>
                         <td>Received By</td>
-                        <td>: {{ $invoice->received_by }}</td>
+                        <td>: {{ $payment->received_by }}</td>
+                    </tr>
+                    <tr>
+                        <td>Remarks</td>
+                        <td>: {{ $payment->payload }}</td>
                     </tr>
                 </table>
             </div>
+            <hr>
             <div class="col-md-4" style="flex: 1">
                 <table class="invoice-desc-body summary">
                     <tr>
-                        <td>Sub Total:</td>
-                        <td>{{ $invoice->sub_total }}</td>
+                        <td>Total Dues:</td>
+                        <td>{{ amount_with_symbol($payment->dues) }}</td>
                     </tr>
                     <tr>
-                        <td>Discount:</td>
-                        <td>{{ $invoice->discount }}</td>
+                        <td>Collected:</td>
+                        <td>{{ amount_with_symbol($payment->amount + $payment->adjust) }}</td>
                     </tr>
                     <tr>
-                        <td>Total:</td>
-                        <td>{{ $invoice->total }}</td>
-                    </tr>
-                    <tr>
-                        <td>Paid/Adv:</td>
-                        <td>{{ $invoice->paid }}</td>
-                    </tr>
-                    <tr>
-                        <td>Balance/Due:</td>
-                        <td>{{ $invoice->due }}</td>
+                        <td>Net Dues:</td>
+                        <td>{{ amount_with_symbol($payment->customer->balance) }}</td>
                     </tr>
                 </table>
             </div>

@@ -31,6 +31,11 @@ class UpdateRequest extends FormRequest
             'payload' => ['sometimes'],
             'amount' => ['required'],
             'status' => ['sometimes'],
+            'dues' => ['sometimes'],
+            'created_by' => ['sometimes'],
+            'received_by' => ['sometimes'],
+            'receipt_no' => ['sometimes'],
+            'bank_details' => ['sometimes'],
         ];
     }
 }

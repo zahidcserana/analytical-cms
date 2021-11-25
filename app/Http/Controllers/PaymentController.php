@@ -54,14 +54,15 @@ class PaymentController extends Controller
     {
         $input = $request->validated();
 
-        $user = Payment::create($input);
+        $payment = Payment::create($input);
+        $payment->receipt_no = sprintf("%0" . config("settings.receipt_size") . "d", $payment->id + 1);
+        $payment->update();
 
         return redirect()->route('payments.index')->with('success', 'Payment successfully added.');
     }
 
     public function edit(Payment $payment)
     {
-        $data['customers'] = Customer::select('id', 'name')->get();
         $data['payment'] = $payment;
 
         return view('payments.edit', $data);
@@ -146,6 +147,16 @@ class PaymentController extends Controller
         }
 
         $payment->update();
+    }
+
+    public function preview(Payment $payment)
+    {
+        return view('payments.preview', ['payment' => $payment]);
+    }
+
+    public function print(Payment $payment)
+    {
+        return view('payments.print', ['payment' => $payment]);
     }
 
     public function destroy(Payment $payment)

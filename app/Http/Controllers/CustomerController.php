@@ -62,6 +62,11 @@ class CustomerController extends Controller
         return view('customers.edit', ['customer' => $customer]);
     }
 
+    public function details(Customer $customer)
+    {
+        return response()->json($customer);
+    }
+
     public function update(UpdateRequest $request, Customer $customer)
     {
         $input = $request->validated();
