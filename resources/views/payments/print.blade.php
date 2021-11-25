@@ -201,8 +201,8 @@
         @endif
         <table style="width: 100%">
             <tr>
-                <td style="width: 50%"><strong>Created By: </strong> {{ $payment->created_by }}</td>
-                <td style="width: 50%"><strong>Received By: </strong> {{ $payment->received_by }}</td>
+                <td style="width: 50%">Created By: {{ $payment->created_by }}</td>
+                <td style="width: 50%">Received By: {{ $payment->received_by }}</td>
             </tr>
         </table>
         <div style="position: relative">
