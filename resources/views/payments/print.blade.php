@@ -79,7 +79,6 @@
         }
     </style>
 </head>
-{{-- <body> --}}
 <body onload="window.print()">
     <div class="invoice-box" id="invoice-box">
         <div style="display: flex;width: 100%">
