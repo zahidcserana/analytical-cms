@@ -29,7 +29,8 @@
     <style>
         body{
             font-family: Helvetica;
-            font-size: 12px;
+            font-size: 10px;
+            line-height: 1.7em;
         }
         .invoice-box {
             width: 100%;
@@ -37,9 +38,6 @@
         }
         .logo {
             flex: 1;
-        }
-        .amount-word {
-            padding: .75rem;
         }
         .invoice-desc-footer {
             display: flex;
@@ -50,9 +48,7 @@
             text-align: right !important;
         }
         .summary tr td {
-            padding: 2px 0px!important;
-            font-size: 12px;
-            line-height: 1.71em;
+            font-size: 10px;
         }
         .invoice-table {
             width: 100% !important;
@@ -64,37 +60,64 @@
             text-align: center !important;
         }
         .table thead th {
-            font-weight: 600;
+            font-weight: 500;
             font-size: 12px;
         }
         .table td {
-            font-size: 12px;
-            font-weight: 500;
+            font-size: 10px;
+            font-weight: 400;
+        }
+        .font-10 {
+            font-size: 10px;
+        }
+        .amount-word {
+            text-align: center;
+        }
+        .bank-details {
+            padding-top: 5px;
+            padding-bottom: 5px;
         }
     </style>
 </head>
 <body onload="window.print()">
     <div class="invoice-box" id="invoice-box">
-        <div style="display: flex;width: 100%;margin-bottom: -1%">
+        <div style="display: flex;width: 100%">
             <div style="flex: 1; width: 100%;">
                 <img src="{{ asset('assets/vendors/images/dot1.jpg') }}" alt="Dot Design">
             </div>
-            <h4 style="float: right;" class="weight-600">Money Receipt</h4>
         </div>
-        <div style="display: flex;width: 100%;">
+        <div style="display: flex;width: 100%;margin-bottom: 10px;">
             <div style="flex: 1; width: 100%">
-                <p class="font-14 mb-5">Receipt No: <strong class="weight-600 font-18">{{ $payment->receipt_no }}</strong></p>
-                <p class="font-14 mb-5">Name: <strong class="weight-600">{{ $payment->customer->name }}</strong></p>
-                <p class="font-14 mb-5">Mobile: <strong class="weight-600">{{ $payment->customer->mobile }}</strong></p>
-                <p class="font-14 mb-5">Date: <strong class="weight-600">{{ \Carbon\Carbon::parse($payment->created_at)->format('M j, Y')}}</strong></p>
-                <p class="font-14 mb-5">Status: <strong class="weight-600 font-18">{{ $payment->status }}</strong></p>
+                <table class="invoice-desc-body" style="width: 60%">
+                    <tr>
+                        <td>Receipt No</td>
+                        <td>: <strong style="font-size: 11px">{{ $payment->invoice_no }}</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>: <strong>{{ $payment->customer->name }}</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Mobile</td>
+                        <td>: {{ $payment->customer->mobile }}</td>
+                    </tr>
+                    <tr>
+                        <td>Date</td>
+                        <td>: {{ \Carbon\Carbon::parse($payment->created_at)->format('M j, Y')}}</td>
+                    </tr>
+                    <tr>
+                        <td>Status</td>
+                        <td>: <strong style="text-transform:uppercase">{{ $payment->status }}</strong></td>
+                    </tr>
+                </table>
             </div>
-            <div style="flex: 1; width: 100%">
-                <p class="font-12 mb-5" style="text-align: right">{{ Config::get('settings.company.name') }}</strong></p>
-                <p class="font-12 mb-5" style="text-align: right">{{ Config::get('settings.company.email') }}</strong></p>
-                <p class="font-12 mb-5" style="text-align: right">{{ Config::get('settings.company.mobile') }}</strong></p>
-                <p class="font-12 mb-5" style="text-align: right">{{ Config::get('settings.company.city') }}</strong></p>
-                <p class="font-12 mb-5" style="text-align: right">{{ Config::get('settings.company.address') }}</strong></p>
+            <h4 class="weight-600">Money Receipt</h4>
+            <div style="flex: 1; width: 100%; text-align: right">
+                <span class="font-10" style="text-align: right">{{ Config::get('settings.company.name') }}</strong></span><br>
+                <span class="font-10" style="text-align: right">{{ Config::get('settings.company.email') }}</strong></span><br>
+                <span class="font-10" style="text-align: right">{{ Config::get('settings.company.mobile') }}</strong></span><br>
+                <span class="font-10" style="text-align: right">{{ Config::get('settings.company.city') }}</strong></span><br>
+                <span class="font-10" style="text-align: right">{{ Config::get('settings.company.address') }}</strong></span>
             </div>
         </div>
 
@@ -120,33 +143,12 @@
                 @endif
                 <thead class="invoice-desc-head clearfix">
                     <tr>
-                        <th class="amount-word">In Word:</th>
-                        <th colspan="2">{{ word_amount($payment->amount + $payment->adjust) }}</th>
+                        <td class="amount-word"><strong>In Word:</strong></td>
+                        <td colspan="2">{{ word_amount($payment->amount + $payment->adjust) }}</td>
                     </tr>
                 </thead>
             </table>
         </div>
-
-        @if ($payment->method == "Bank")
-            <div class="row">
-                <div class="col-md-12">
-                    <table class="invoice-desc-body" style="width: 100%">
-                        <tr>
-                            <td>Bank Name</td>
-                            <td>: {{ $payment->bank_details['name'] }}</td>
-                            <td>Check Date</td>
-                            <td>: {{ $payment->bank_details['check_date'] }}</td>
-                        </tr>
-                        <tr>
-                            <td>Check No</td>
-                            <td>: {{ $payment->bank_details['check_no'] }}</td>
-                            <td>Check Amount</td>
-                            <td>: {{ $payment->bank_details['check_amount'] }}</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        @endif
 
         <div class="row" style="display: flex">
             <div class="col-md-8" style="flex: 1">
@@ -158,14 +160,6 @@
                     <tr>
                         <td>Payment Method</td>
                         <td>: {{ $payment->method }}</td>
-                    </tr>
-                    <tr>
-                        <td>Created By</td>
-                        <td>: {{ $payment->created_by }}</td>
-                    </tr>
-                    <tr>
-                        <td>Received By</td>
-                        <td>: {{ $payment->received_by }}</td>
                     </tr>
                     <tr>
                         <td>Remarks</td>
@@ -191,9 +185,34 @@
                 </table>
             </div>
         </div>
+        @if ($payment->method == "Bank")
+            <div class="bank-details">
+                <table style="width: 100%">
+                    <tr>
+                        <td style="width: 50%"><strong>Bank Name: </strong>{{ $payment->bank_details['name'] }}</td>
+                        <td style="width: 50%"><strong>Check Date: </strong>{{ $payment->bank_details['check_date'] }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Check No: </strong>{{ $payment->bank_details['check_no'] }}</td>
+                        <td><strong>Check Amount: </strong>{{ $payment->bank_details['check_amount'] }}</td>
+                    </tr>
+                </table>
+            </div>
+        @endif
+        <table style="width: 100%">
+            <tr>
+                <td style="width: 50%"><strong>Created By: </strong> {{ $payment->created_by }}</td>
+                <td style="width: 50%"><strong>Received By: </strong> {{ $payment->received_by }}</td>
+            </tr>
+        </table>
         <div style="position: relative">
-            <p style="position: fixed; width:100%; text-align: center"> Powered By: AnalyticalJ (analyticalzahid@gmail.com)
-            </p>
+            <table style="position: fixed; width:100%;bottom: 0; text-align: center" class="table table-responsive">
+                <tr>
+                    <td><strong>Print Date & Time:</strong> {{ Carbon\Carbon::now()->toFormattedDateString() }}</td>
+                    <td><strong>Powered By: </strong> AnalyticalJ (analyticalzahid@gmail.com)</td>
+                    <td><strong>Page No: </strong>Page 1 of 1</td>
+                </tr>
+            </table>
         </div>
     </div>
 </body>

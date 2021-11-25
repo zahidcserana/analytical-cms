@@ -4,18 +4,18 @@
                 <div class="invoice-header">
                     <div class="row logo">
                         <img class="col-md-4" src="{{ asset('assets/vendors/images/dot1.jpg') }}" alt="Dot Design">
-                        <h4 class="col-md-8 text-right weight-600 pt-10">INVOICE</h4>
                     </div>
                 </div>
                 <div class="row pb-30">
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         <p class="font-14 mb-5">Invoice No: <strong class="weight-600 font-18">{{ $invoice->invoice_no }}</strong></p>
                         <p class="font-14 mb-5">Name: <strong class="weight-600">{{ $invoice->customer->name }}</strong></p>
                         <p class="font-14 mb-5">Mobile: <strong class="weight-600">{{ $invoice->customer->mobile }}</strong></p>
                         <p class="font-14 mb-5">Date: <strong class="weight-600">{{ \Carbon\Carbon::parse($invoice->created_at)->format('M j, Y')}}</strong></p>
                         <p class="font-14 mb-5">Status: <strong class="weight-600 font-18">{{ $invoice->status }}</strong></p>
                     </div>
-                    <div class="col-md-6">
+                    <h4 class="col-md-2 weight-600 pt-5">INVOICE</h4>
+                    <div class="col-md-5">
                         <div class="text-right">
                             <p class="font-14 mb-5">{{ Config::get('settings.company.name') }}</strong></p>
                             <p class="font-14 mb-5">{{ Config::get('settings.company.email') }}</strong></p>

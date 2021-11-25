@@ -29,7 +29,8 @@
     <style>
         body{
             font-family: Helvetica;
-            font-size: 12px;
+            font-size: 10px;
+            line-height: 1.7em;
         }
         .invoice-box {
             width: 100%;
@@ -37,9 +38,6 @@
         }
         .logo {
             flex: 1;
-        }
-        .amount-word {
-            padding: .75rem;
         }
         .invoice-desc-footer {
             display: flex;
@@ -50,9 +48,7 @@
             text-align: right !important;
         }
         .summary tr td {
-            padding: 2px 0px!important;
-            font-size: 12px;
-            line-height: 1.71em;
+            font-size: 10px;
         }
         .invoice-table {
             width: 100% !important;
@@ -64,41 +60,64 @@
             text-align: center !important;
         }
         .table thead th {
-            font-weight: 600;
+            font-weight: 500;
             font-size: 12px;
         }
         .table td {
-            font-size: 12px;
-            font-weight: 500;
+            font-size: 10px;
+            font-weight: 400;
+        }
+        .font-10 {
+            font-size: 10px;
+        }
+        .amount-word {
+            text-align: center;
         }
     </style>
 </head>
 <body onload="window.print()">
     <div class="invoice-box" id="invoice-box">
-        <div style="display: flex;width: 100%;margin-bottom: -1%">
+        <div style="display: flex;width: 100%">
             <div style="flex: 1; width: 100%;">
                 <img src="{{ asset('assets/vendors/images/dot1.jpg') }}" alt="Dot Design">
             </div>
-            <h4 style="float: right;" class="weight-600">INVOICE</h4>
         </div>
-        <div style="display: flex;width: 100%;">
+        <div style="display: flex;width: 100%;margin-bottom: 10px;">
             <div style="flex: 1; width: 100%">
-                <p class="font-12 mb-5">Invoice No: <strong class="weight-600 font-18">{{ $invoice->invoice_no }}</strong></p>
-                <p class="font-12 mb-5">Name: <strong class="weight-600">{{ $invoice->customer->name }}</strong></p>
-                <p class="font-12 mb-5">Mobile: <strong class="weight-600">{{ $invoice->customer->mobile }}</strong></p>
-                <p class="font-12 mb-5">Date: <strong class="weight-600">{{ \Carbon\Carbon::parse($invoice->created_at)->format('M j, Y')}}</strong></p>
-                <p class="font-12 mb-5">Status: <strong class="weight-600 font-18">{{ $invoice->status }}</strong></p>
+                <table class="invoice-desc-body" style="width: 60%">
+                    <tr>
+                        <td>Invoice No</td>
+                        <td>: <strong style="font-size: 11px">{{ $invoice->invoice_no }}</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>: <strong>{{ $invoice->customer->name }}</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Mobile</td>
+                        <td>: {{ $invoice->customer->mobile }}</td>
+                    </tr>
+                    <tr>
+                        <td>Date</td>
+                        <td>: {{ \Carbon\Carbon::parse($invoice->created_at)->format('M j, Y')}}</td>
+                    </tr>
+                    <tr>
+                        <td>Status</td>
+                        <td>: <strong style="text-transform:uppercase">{{ $invoice->status }}</strong></td>
+                    </tr>
+                </table>
             </div>
-            <div style="flex: 1; width: 100%">
-                <p class="font-12 mb-5" style="text-align: right">{{ Config::get('settings.company.name') }}</strong></p>
-                <p class="font-12 mb-5" style="text-align: right">{{ Config::get('settings.company.email') }}</strong></p>
-                <p class="font-12 mb-5" style="text-align: right">{{ Config::get('settings.company.mobile') }}</strong></p>
-                <p class="font-12 mb-5" style="text-align: right">{{ Config::get('settings.company.city') }}</strong></p>
-                <p class="font-12 mb-5" style="text-align: right">{{ Config::get('settings.company.address') }}</strong></p>
+            <h4 class="weight-600">INVOICE</h4>
+            <div style="flex: 1; width: 100%; text-align: right">
+                <span class="font-10" style="text-align: right">{{ Config::get('settings.company.name') }}</strong></span><br>
+                <span class="font-10" style="text-align: right">{{ Config::get('settings.company.email') }}</strong></span><br>
+                <span class="font-10" style="text-align: right">{{ Config::get('settings.company.mobile') }}</strong></span><br>
+                <span class="font-10" style="text-align: right">{{ Config::get('settings.company.city') }}</strong></span><br>
+                <span class="font-10" style="text-align: right">{{ Config::get('settings.company.address') }}</strong></span>
             </div>
         </div>
 
-        <div class="invoice-desc" style="padding-top: -12%!important;">
+        <div class="invoice-desc">
             <table class="table table-bordered invoice-table">
                 @if ($invoice->invoiceItems->count() > 0)
                     <thead>
@@ -130,8 +149,8 @@
                 @endif
                 <thead class="invoice-desc-head clearfix">
                     <tr>
-                        <th class="amount-word">In Word:</th>
-                        <th colspan="7"  style="text-align: left !important;">{{ $invoice->gross }}</th>
+                        <td class="amount-word"><strong>In Word:</strong></td>
+                        <td colspan="7"  style="text-align: left !important;">{{ $invoice->gross }}</td>
                     </tr>
                 </thead>
             </table>
@@ -158,7 +177,6 @@
                     </tr>
                 </table>
             </div>
-            <hr>
             <div class="col-md-4" style="flex: 1">
                 <table class="invoice-desc-body summary">
                     <tr>
