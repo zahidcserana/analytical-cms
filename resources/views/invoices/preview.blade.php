@@ -14,7 +14,7 @@
                         <p class="font-14 mb-5">Date: <strong class="weight-600">{{ \Carbon\Carbon::parse($invoice->created_at)->format('M j, Y')}}</strong></p>
                         <p class="font-14 mb-5">Status: <strong class="weight-600 font-18">{{ $invoice->status }}</strong></p>
                     </div>
-                    <h4 class="col-md-2 weight-600 pt-5">INVOICE</h4>
+                    <h4 class="col-md-2 weight-600 pt-5">INVOICE/BILL</h4>
                     <div class="col-md-5">
                         <div class="text-right">
                             <p class="font-14 mb-5">{{ Config::get('settings.company.name') }}</strong></p>
