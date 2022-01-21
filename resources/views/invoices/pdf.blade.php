@@ -89,7 +89,7 @@
             <div class="logo text-center">
                 <img src="{{ asset('assets/vendors/images/dot1.jpg') }}" alt="Dot Design">
             </div>
-        <h3 class="text-right mb-30 weight-600">INVOICE</h3>
+        <h3 class="text-right mb-30 weight-600">INVOICE/BILL</h3>
         </div>
         <div class="row address pb-30">
             <div class="customer col-md-6">

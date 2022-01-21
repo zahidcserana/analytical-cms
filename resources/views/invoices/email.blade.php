@@ -81,7 +81,7 @@
             <div style="flex: 1; width: 100%;">
                 <img src="{{ asset('assets/vendors/images/dot1.jpg') }}" alt="Dot Design">
             </div>
-            <h4 style="float: right;" class="weight-600">INVOICE</h4>
+            <h4 style="float: right;" class="weight-600">INVOICE/BILL</h4>
         </div>
         <div style="display: flex;width: 100%;margin-bottom: 60px;">
             <div style="flex: 1; width: 100%">

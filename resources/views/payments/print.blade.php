@@ -70,9 +70,6 @@
         .font-10 {
             font-size: 10px;
         }
-        .amount-word {
-            text-align: center;
-        }
         .bank-details {
             padding-top: 5px;
             padding-bottom: 5px;
@@ -122,7 +119,9 @@
         </div>
 
         <div class="invoice-desc" style="padding-top: -12%!important;">
-            <table class="table table-bordered invoice-table">
+            <p class="amount-word"><strong>In Word: &nbsp; {{ word_amount($payment->amount + $payment->adjust) }}</strong></p>
+
+            {{-- <table class="table table-bordered invoice-table">
                 @if (!empty($payment->log))
                 <thead>
                     <tr>
@@ -141,13 +140,12 @@
                     @endforeach
                 </tbody>
                 @endif
-                <thead class="invoice-desc-head clearfix">
+                <thead>
                     <tr>
-                        <td class="amount-word"><strong>In Word:</strong></td>
-                        <td colspan="2">{{ word_amount($payment->amount + $payment->adjust) }}</td>
+                        <td class="amount-word"><strong>In Word: &nbsp; {{ word_amount($payment->amount + $payment->adjust) }}</strong></td>
                     </tr>
                 </thead>
-            </table>
+            </table> --}}
         </div>
 
         <div class="row" style="display: flex">

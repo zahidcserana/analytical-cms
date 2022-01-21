@@ -28,7 +28,7 @@
 
         <div class="invoice-desc pb-10">
             <table class="table stripe hover nowrap">
-                @if (!empty($payment->log))
+                {{-- @if (!empty($payment->log))
                     <thead class="invoice-desc-head clearfix">
                         <tr>
                             <th>Invoice No</th>
@@ -45,7 +45,7 @@
                             </tr>
                         @endforeach
                     </tbody>
-                @endif
+                @endif --}}
                 <thead class="invoice-desc-head clearfix">
                     <tr>
                         <th>In Word:</th>

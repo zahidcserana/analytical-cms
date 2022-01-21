@@ -7,7 +7,7 @@
                         <img src="{{ asset('assets/vendors/images/analyticalj.png') }}" alt="">
                     </div>
                 </div>
-                <h4 class="text-center mb-30 weight-600">INVOICE</h4>
+                <h4 class="text-center mb-30 weight-600">INVOICE/BILL</h4>
                 <div class="row pb-30">
                     <div class="col-md-6">
                         <p class="font-14 mb-5">Invoice No: <strong class="weight-600">{{ $invoice->invoice_no }}</strong></p>
