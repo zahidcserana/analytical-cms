@@ -99,4 +99,9 @@
             @endif
         </div>
     </div>
+    @push('scripts')
+        <script>
+            new Payment();
+        </script>
+    @endpush
 </x-app-layout>

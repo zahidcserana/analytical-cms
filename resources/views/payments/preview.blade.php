@@ -3,18 +3,19 @@
         <div class="invoice-header">
             <div class="row logo">
                 <img class="col-md-4" src="{{ asset('assets/vendors/images/dot1.jpg') }}" alt="Dot Design">
-                <h4 class="col-md-8 text-right weight-600 pt-10">Money Receipt</h4>
             </div>
         </div>
-        <div class="row pb-30">
-            <div class="col-md-6">
+        <div class="row pb-10">
+            <div class="col-md-5">
                 <p class="font-14 mb-5">Receipt No: <strong class="weight-600 font-18">{{ $payment->receipt_no }}</strong></p>
                 <p class="font-14 mb-5">Name: <strong class="weight-600">{{ $payment->customer->name }}</strong></p>
                 <p class="font-14 mb-5">Mobile: <strong class="weight-600">{{ $payment->customer->mobile }}</strong></p>
                 <p class="font-14 mb-5">Date: <strong class="weight-600">{{ \Carbon\Carbon::parse($payment->created_at)->format('M j, Y')}}</strong></p>
                 <p class="font-14 mb-5">Status: <strong class="weight-600 font-18">{{ $payment->status }}</strong></p>
             </div>
-            <div class="col-md-6">
+            <p class="font-18 col-md-3 pt-5">Money Receipt</p>
+
+            <div class="col-md-4">
                 <div class="text-right">
                     <p class="font-14 mb-5">{{ Config::get('settings.company.name') }}</strong></p>
                     <p class="font-14 mb-5">{{ Config::get('settings.company.email') }}</strong></p>
@@ -25,7 +26,7 @@
             </div>
         </div>
 
-        <div class="invoice-desc pb-30">
+        <div class="invoice-desc pb-10">
             <table class="table stripe hover nowrap">
                 @if (!empty($payment->log))
                     <thead class="invoice-desc-head clearfix">
@@ -52,26 +53,6 @@
                     </tr>
                 </thead>
             </table>
-            @if ($payment->method == "Bank")
-                <div class="row invoice-desc-footer">
-                    <div class="col-12">
-                        <table class="invoice-desc-body" style="width: 100%;background: darkkhaki;">
-                            <tr>
-                                <td>Bank Name</td>
-                                <td>: {{ $payment->bank_details['name'] }}</td>
-                                <td>Check Date</td>
-                                <td>: {{ $payment->bank_details['check_date'] }}</td>
-                            </tr>
-                            <tr>
-                                <td>Check No</td>
-                                <td>: {{ $payment->bank_details['check_no'] }}</td>
-                                <td>Check Amount</td>
-                                <td>: {{ $payment->bank_details['check_amount'] }}</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            @endif
 
             <div class="row invoice-desc-footer">
                 <div class="col-8">
@@ -115,7 +96,28 @@
                     </table>
                 </div>
             </div>
-            <div class="text-center font-12">Powered By: AnalyticalJ (analyticalzahid@gmail.com)</div>
+
+            @if ($payment->method == "Bank")
+                <div class="row invoice-desc-footer pt-3">
+                    <div class="col-12">
+                        <table class="invoice-desc-body" style="width: 100%;">
+                            <tr>
+                                <td><strong>Bank Name</strong></td>
+                                <td>: {{ $payment->bank_details['name'] }}</td>
+                                <td><strong>Check Date</strong></td>
+                                <td>: {{ $payment->bank_details['check_date'] }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Check No</strong></td>
+                                <td>: {{ $payment->bank_details['check_no'] }}</td>
+                                <td><strong>Check Amount</strong></td>
+                                <td>: {{ $payment->bank_details['check_amount'] }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            @endif
+            <div class="text-center font-12 pt-5">Powered By: AnalyticalJ (analyticalzahid@gmail.com)</div>
         </div>
         <a href="{{ route('payments.print', ['payment' => $payment->id]) }}" target="_blank" class="btn" data-bgcolor="#3d464d" data-color="#ffffff" style="color: rgb(255, 255, 255); background-color: rgb(61, 70, 77);"><i class="fa fa-print"></i> {{ __('Print') }}</a>
     </div>
