@@ -4311,6 +4311,100 @@ window.Payment = function () {
 
 /***/ }),
 
+/***/ "./resources/js/purchase.js":
+/*!**********************************!*\
+  !*** ./resources/js/purchase.js ***!
+  \**********************************/
+/***/ (() => {
+
+window.Purchase = function () {
+  $(document).ready(function () {
+    datePicker();
+    var subtotal = $('#subtotal');
+    var itemId = [];
+    $(".calculation").on("keyup change", function (e) {
+      calculation();
+    });
+    $(".calculate").on("keyup change", function (e) {
+      calculate();
+    });
+    $(".delete-row").click(function () {
+      $('.delete-row').html('Deleting..');
+      var itemAmount = 0;
+      $("table tbody").find('input[name="record"]').each(function () {
+        if ($(this).is(":checked")) {
+          itemId.push(this.value);
+          itemAmount = itemAmount + parseFloat(this.value);
+          $(this).parents("tr").remove();
+        }
+      });
+      console.log('itemAmount: ' + itemAmount);
+      console.log('itemId');
+      console.log(itemId);
+      subtotal.val(subtotal.val() - itemAmount);
+      calculate();
+      $('.delete-row').html('Delete');
+    });
+    $("#item-add-btn").click(function (event) {
+      if ($("#quantity").val() > 0 && $("#price").val() > 0) {
+        $('#item-add-btn').html('Sending..');
+        var description = $("#description").val();
+        var size = $("#size").val();
+        var quantity = $("#quantity").val();
+        var price = $("#price").val();
+        var amount = $("#amount").val();
+        $("#subtotal").val(parseFloat(subtotal.val()) + parseFloat(amount));
+        var markup = "<tr>" + "<td><input type='checkbox' name='record' value='" + amount + "'></td>" + "<td><input name='item[description][]' value='" + description + "'></td>" + "<td><input name='item[size][]' value='" + size + "'></td>" + "<td><input name='item[quantity][]' value='" + quantity + "'></td>" + "<td><input name='item[price][]' value='" + price + "'></td>" + "<td><input name='item[amount][]' value='" + amount + "'></td> </tr>";
+        $("#purchase-item").append(markup);
+        calculate();
+        $('#item-add-btn').html('Add');
+        ajaxMessageBox('Data successfully saved.', true);
+        resetForm();
+      }
+    });
+
+    function resetForm() {
+      $("#description").val("");
+      $("#size").val("");
+      $("#quantity").val("");
+      $("#price").val("");
+      $("#amount").val("");
+    }
+
+    function calculation() {
+      var quantity = $("#quantity").val();
+      var price = $("#price").val();
+      $("#amount").val(setAmount(quantity * price));
+    }
+
+    function setAmount(amount) {
+      return amount < 0 ? 0 : amount;
+    }
+
+    function calculate() {
+      var discount = $("#discount").val();
+      var subtotalValue = subtotal.val();
+      discount = discount > subtotalValue ? subtotalValue : discount;
+      var total = subtotalValue - discount;
+      console.log('subtotal: ' + subtotalValue);
+      console.log('discount: ' + discount);
+      console.log('total: ' + total);
+      $("#total").val(total);
+      var paid = $("#paid").val(); // if (paid > total) {
+      //     paid = total;
+      //     // $("#paid").val(paid)
+      // }
+
+      var due = total - paid;
+      $("#due").text(due < 0 ? 0 : due.toFixed(2));
+      paid = paid > total ? total : paid;
+      $("#paid").val(paid);
+    }
+  });
+};
+
+/***/ }),
+
 /***/ "./node_modules/lodash/lodash.js":
 /*!***************************************!*\
   !*** ./node_modules/lodash/lodash.js ***!
@@ -21907,6 +22001,7 @@ module.exports = JSON.parse('{"_args":[["axios@0.21.4","/var/www/html/@analytica
 /******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/functions.js")))
 /******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/invoice.js")))
 /******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/payment.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/purchase.js")))
 /******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/css/app.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	

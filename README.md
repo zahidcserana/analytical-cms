@@ -1,12 +1,10 @@
 # Features have to do
 
+- Purchase, Purchase Item crud
 - Table: payments-receipt_no,dues,received_by,created_by
-- spaces must be reduced
 - Invoice edit amount 2 decimal
 - Email for due invoices of customer
 - logo must from gmail doc
-- logo space should be reduce
-- Invoice create 2 menu
 - dashboard
 - customer report - search by balance gt/0
 

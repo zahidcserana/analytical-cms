@@ -48,6 +48,30 @@
                     <div class="dropdown-divider"></div>
                 </li>
                 <li>
+                    <div class="sidebar-small-cap">Accounts</div>
+                </li>
+                <li class="dropdown {{ in_array($route, $suppliers) ? 'show' : ''}}">
+                    <a href="javascript:;" class="dropdown-toggle">
+                        <span class="micon dw dw-ship"></span><span class="mtext">Suppliers</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="{{ route('suppliers.index') }}" class="{{ $route == 'suppliers.index'? 'active' : ''}}">List</a></li>
+                        <li><a href="{{ route('suppliers.create') }}" class="{{ $route == 'suppliers.create'? 'active' : ''}}">New</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown {{ in_array($route, $purchases) ? 'show' : ''}}">
+                    <a href="javascript:;" class="dropdown-toggle">
+                        <span class="micon dw dw-delivery-truck-2"></span><span class="mtext">Purchase</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="{{ route('purchases.index') }}" class="{{ $route == 'purchases.index'? 'active' : ''}}">List</a></li>
+                        <li><a href="{{ route('purchases.create') }}" class="{{ $route == 'purchases.create'? 'active' : ''}}">New</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="dropdown-divider"></div>
+                </li>
+                <li>
                     <div class="sidebar-small-cap">Reports</div>
                 </li>
                 <li class="dropdown {{ $route == 'reports.customers'? 'show' : ''}}">
