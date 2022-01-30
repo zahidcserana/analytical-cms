@@ -73,6 +73,10 @@
         .amount-word {
             text-align: center;
         }
+        .table-bordered th,
+        .table-bordered td {
+            border: 1px solid black !important;
+        }
     </style>
 </head>
 <body onload="window.print()">
@@ -107,7 +111,7 @@
                     </tr>
                 </table>
             </div>
-            <h4 class="weight-600">INVOICE</h4>
+            <h4 class="weight-600">INVOICE/BILL</h4>
             <div style="flex: 1; width: 100%; text-align: right">
                 <span class="font-10" style="text-align: right">{{ Config::get('settings.company.name') }}</strong></span><br>
                 <span class="font-10" style="text-align: right">{{ Config::get('settings.company.email') }}</strong></span><br>
@@ -145,14 +149,12 @@
                                 <td>{{ $invoiceItem->amount }}</td>
                             </tr>
                         @endforeach
+                        <tr>
+                            <td class="amount-word"><strong>In Word:</strong></td>
+                            <td colspan="7"  style="text-align: left !important;">{{ $invoice->gross }}</td>
+                        </tr>
                     </tbody>
                 @endif
-                <thead class="invoice-desc-head clearfix">
-                    <tr>
-                        <td class="amount-word"><strong>In Word:</strong></td>
-                        <td colspan="7"  style="text-align: left !important;">{{ $invoice->gross }}</td>
-                    </tr>
-                </thead>
             </table>
         </div>
 
