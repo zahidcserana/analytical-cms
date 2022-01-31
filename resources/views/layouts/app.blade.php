@@ -2,6 +2,9 @@
 $route = \Request::route()->getName();
 $uri = Request::getRequestUri();
 $customers = ['customers.index', 'customers.create'];
+$suppliers = ['suppliers.index', 'suppliers.create'];
+$expenses = ['expenses.index', 'expenses.create'];
+$purchases = ['purchases.index', 'purchases.create'];
 $payments = ['payments.index', 'payments.create'];
 $invoices = ['invoices.index', 'invoices.create'];
 $reports = ['reports.invoices', 'reports.customers'];
