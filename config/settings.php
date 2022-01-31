@@ -26,6 +26,14 @@ return [
         'email' => 'dotdesign2007@gmail.com',
     ],
 
+    'expenseType' => [
+        'purchase' => 'Purchase',
+        'house_rent' => 'House Rent',
+        'office_salary' => 'Office Salary',
+        'office_expense' => 'Office Expense',
+        'others' => 'Others',
+    ],
+
     'invoice_size' => 6,
     'receipt_size' => 6,
 

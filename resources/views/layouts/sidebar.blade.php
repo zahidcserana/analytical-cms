@@ -68,6 +68,15 @@
                         <li><a href="{{ route('purchases.create') }}" class="{{ $route == 'purchases.create'? 'active' : ''}}">New</a></li>
                     </ul>
                 </li>
+                <li class="dropdown {{ in_array($route, $expenses) ? 'show' : ''}}">
+                    <a href="javascript:;" class="dropdown-toggle">
+                        <span class="micon dw dw-calculator"></span><span class="mtext">Expense</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="{{ route('expenses.index') }}" class="{{ $route == 'expenses.index'? 'active' : ''}}">List</a></li>
+                        <li><a href="{{ route('expenses.create') }}" class="{{ $route == 'expenses.create'? 'active' : ''}}">New</a></li>
+                    </ul>
+                </li>
                 <li>
                     <div class="dropdown-divider"></div>
                 </li>

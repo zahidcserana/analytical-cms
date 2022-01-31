@@ -4055,6 +4055,20 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/js/expense.js":
+/*!*********************************!*\
+  !*** ./resources/js/expense.js ***!
+  \*********************************/
+/***/ (() => {
+
+window.Expense = function () {
+  $(document).ready(function () {
+    datePicker();
+  });
+};
+
+/***/ }),
+
 /***/ "./resources/js/functions.js":
 /*!***********************************!*\
   !*** ./resources/js/functions.js ***!
@@ -4386,15 +4400,8 @@ window.Purchase = function () {
       var subtotalValue = subtotal.val();
       discount = discount > subtotalValue ? subtotalValue : discount;
       var total = subtotalValue - discount;
-      console.log('subtotal: ' + subtotalValue);
-      console.log('discount: ' + discount);
-      console.log('total: ' + total);
       $("#total").val(total);
-      var paid = $("#paid").val(); // if (paid > total) {
-      //     paid = total;
-      //     // $("#paid").val(paid)
-      // }
-
+      var paid = $("#paid").val();
       var due = total - paid;
       $("#due").text(due < 0 ? 0 : due.toFixed(2));
       paid = paid > total ? total : paid;
@@ -21998,6 +22005,7 @@ module.exports = JSON.parse('{"_args":[["axios@0.21.4","/var/www/html/@analytica
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
 /******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/app.js")))
 /******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/bootstrap.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/expense.js")))
 /******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/functions.js")))
 /******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/invoice.js")))
 /******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/payment.js")))

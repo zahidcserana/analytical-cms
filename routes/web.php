@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\PaymentController;
@@ -23,6 +24,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('suppliers', SupplierController::class);
 
     Route::resource('purchases', PurchaseController::class);
+    Route::resource('expenses', ExpenseController::class);
 
     Route::resource('customers', CustomerController::class);
     Route::get('customers/{customer}/invoices', [CustomerController::class, 'invoices'])->name('customers.invoices');
@@ -41,7 +43,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('payments/{payment}/adjust', [PaymentController::class, 'applied'])->name('payments.adjust');
     Route::get('payments/{payment}/preview', [PaymentController::class, 'preview'])->name('payments.preview');
     Route::get('payments/{payment}/print', [PaymentController::class, 'print'])->name('payments.print');
-    
+
     Route::get('reports/invoices', [ReportController::class, 'invoices'])->name('reports.invoices');
     Route::get('reports/customers', [ReportController::class, 'customers'])->name('reports.customers');
 });
