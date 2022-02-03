@@ -29,56 +29,58 @@
                     <button type="submit" class="btn mb-2 mr-sm-2" data-bgcolor="#c32361" data-color="#ffffff"><i class="fa fa-search"></i> {{ __('Search') }}</button>
                     <a href="{{ route('invoices.index') }}" class="btn mb-2" data-bgcolor="#f46f30" data-color="#ffffff"><i class="fa fa-refresh"></i> {{ __('Reset') }}</a>
                 </form>
-                <table class="table stripe hover nowrap">
-                    <thead>
-                        <tr>
-                            <th class="table-plus datatable-nosort">Invoice/Bill</th>
-                            <th>Date</th>
-                            <th>Customer</th>
-                            <th>Subtotal</th>
-                            <th>Discount</th>
-                            <th>Amount</th>
-                            <th>Paid</th>
-                            <th>Due</th>
-                            <th>Email</th>
-                            <th>Status</th>
-                            <th class="datatable-nosort">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($invoices as $row)
-                        <tr>
-                            <td class="table-plus">
-                                <a href="{{route('invoices.edit', ['invoice' => $row->id])}}">{{ $row->invoice_no }}</a>
-                            </td>
-                            <td> {{ Carbon\Carbon::parse($row->invoice_date)->format('d/m/Y') }} </td>
-                            <td>{{ $row->customer->name }}</td>
-                            <td>{{ $row->sub_total }}</td>
-                            <td>{{ $row->discount }}</td>
-                            <td>{{ $row->total }}</td>
-                            <td>{{ $row->paid }}</td>
-                            <td>{{ number_format(($row->total - $row->paid), 2, '.', ',') }}</td>
-                            <td><span class="badge {{ status_class($row->emailing) }}">{{ $row->emailing ? 'Yes' : 'No' }}</span></td>
-                            <td><span class="badge {{ status_class($row->status) }}">{{ $row->status }}</span></td>
-                            <td>
-                                <div class="dropdown">
-                                    <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                                        <i class="dw dw-more"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                        <a class="dropdown-item" href="javascript:void(0);" onclick="preview({{ $row->id }})"><i class="dw dw-eye"></i> Preview</a>
-                                        <a class="dropdown-item" href="{{route('invoices.pdf', ['invoice' => $row->id])}}"><i class="dw dw-download"></i> Download</a>
-                                        <a class="dropdown-item" href="{{route('invoices.print', ['invoice' => $row->id])}}" target="_blank"><i class="dw dw-print"></i> Print</a>
-                                        <a class="dropdown-item" href="{{route('invoices.emailing', ['invoice' => $row->id])}}"><i class="dw dw-email"></i> Email</a>
-                                        <a class="dropdown-item" href="{{route('invoices.edit', ['invoice' => $row->id])}}"><i class="dw dw-edit2"></i> Edit</a>
-                                        @include('layouts.utils.delete',array( 'url' => route('invoices.destroy', ['invoice' => $row->id]), 'class'=>'dropdown-item','text' => "<i class='dw dw-delete-3'></i>Delete"))
+                <div class="card">
+                    <table class="card-body table stripe hover nowrap">
+                        <thead>
+                            <tr>
+                                <th class="table-plus datatable-nosort">Invoice/Bill</th>
+                                <th>Date</th>
+                                <th>Customer</th>
+                                <th>Subtotal</th>
+                                <th>Discount</th>
+                                <th>Amount</th>
+                                <th>Paid</th>
+                                <th>Due</th>
+                                <th>Email</th>
+                                <th>Status</th>
+                                <th class="datatable-nosort">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($invoices as $row)
+                            <tr>
+                                <td class="table-plus">
+                                    <a href="{{route('invoices.edit', ['invoice' => $row->id])}}">{{ $row->invoice_no }}</a>
+                                </td>
+                                <td> {{ Carbon\Carbon::parse($row->invoice_date)->format('d/m/Y') }} </td>
+                                <td>{{ $row->customer->name }}</td>
+                                <td>{{ $row->sub_total }}</td>
+                                <td>{{ $row->discount }}</td>
+                                <td>{{ $row->total }}</td>
+                                <td>{{ $row->paid }}</td>
+                                <td>{{ number_format(($row->total - $row->paid), 2, '.', ',') }}</td>
+                                <td><span class="badge {{ status_class($row->emailing) }}">{{ $row->emailing ? 'Yes' : 'No' }}</span></td>
+                                <td><span class="badge {{ status_class($row->status) }}">{{ $row->status }}</span></td>
+                                <td>
+                                    <div class="dropdown">
+                                        <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                            <i class="dw dw-more"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                            <a class="dropdown-item" href="javascript:void(0);" onclick="preview({{ $row->id }})"><i class="dw dw-eye"></i> Preview</a>
+                                            <a class="dropdown-item" href="{{route('invoices.pdf', ['invoice' => $row->id])}}"><i class="dw dw-download"></i> Download</a>
+                                            <a class="dropdown-item" href="{{route('invoices.print', ['invoice' => $row->id])}}" target="_blank"><i class="dw dw-print"></i> Print</a>
+                                            <a class="dropdown-item" href="{{route('invoices.emailing', ['invoice' => $row->id])}}"><i class="dw dw-email"></i> Email</a>
+                                            <a class="dropdown-item" href="{{route('invoices.edit', ['invoice' => $row->id])}}"><i class="dw dw-edit2"></i> Edit</a>
+                                            @include('layouts.utils.delete',array( 'url' => route('invoices.destroy', ['invoice' => $row->id]), 'class'=>'dropdown-item','text' => "<i class='dw dw-delete-3'></i>Delete"))
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
                 <div class="my-pagination">
                     {!! $invoices->links() !!}
                 </div>
