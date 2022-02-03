@@ -11,7 +11,7 @@
                     <div class="form-group mb-2 mr-sm-2">
                         <input type="text" class="form-control" name="invoice_no" placeholder="Invoice No" value="{{ $query['invoice_no'] ?? '' }}">
                       </div>
-                    <select class="form-control mb-2 mr-sm-2" name="customer_id">
+                    <select class="custom-select mb-2 mr-sm-2" name="customer_id">
                         <option value="">-- Select Customer --</option>
                         @foreach ($customers as $customer)
                             <option {{ !empty($query['customer_id']) && $query['customer_id'] == $customer->id ? 'selected="selected"':'' }} value="{{ $customer->id }}">{{ $customer->name }}</option>

@@ -42,3 +42,10 @@ if (!function_exists('amount_with_symbol')) {
         return html_entity_decode('&#2547;') . ' ' . format_amount($amount);
     }
 }
+
+if (!function_exists('get_expense_type')) {
+    function get_expense_type($expense_type)
+    {
+        return Arr::get(config('settings.expenseType'), $expense_type);
+    }
+}
