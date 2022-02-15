@@ -10,17 +10,15 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [HomeController::class, 'welcome']);
 Route::get('/clear', [HomeController::class, 'clear']);
 Route::get('/heroku', [HomeController::class, 'heroku']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
 
 require __DIR__ . '/auth.php';
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::get('/', [HomeController::class, 'dashboard'])->name('dashboard');
+
     Route::resource('suppliers', SupplierController::class);
 
     Route::resource('purchases', PurchaseController::class);

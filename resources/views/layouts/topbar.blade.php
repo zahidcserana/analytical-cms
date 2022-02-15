@@ -4,7 +4,7 @@
 			<div class="menu-icon dw dw-menu"></div>
 			<div class="search-toggle-icon dw dw-search2" data-toggle="header_search"></div>
 			<div class="header-search" style="position: absolute;">
-				<p class="text-center text-info h4" style="font-size: 17px;color: darkgoldenrod !important">Account Management System    <i style="color: darkolivegreen"><small>Powered by</small> <i class="fa fa-copyright" aria-hidden="true"></i>AnalyticalJ</i></p>
+				<p class="text-center text-info h4" style="font-size: 17px;color: darkgoldenrod !important">{{ ENV('COMPANY_TITLE') }}    <i style="color: darkolivegreen"><small>Powered by</small> <i class="fa fa-copyright" aria-hidden="true"></i>{{ ENV('APP_NAME') }}</i></p>
 			</div>
 		</div>
 		<div class="header-right">
