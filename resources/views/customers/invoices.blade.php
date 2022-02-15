@@ -4,7 +4,7 @@
     <!-- Basic Page Info -->
     <meta charset="utf-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'AnalyticalJ - CMS') }}</title>
+    <title>{{ config('app.name', 'AnalyticalJ - AMS') }}</title>
 
     <!-- Site favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/vendors/images/apple-touch-icon.png') }}">

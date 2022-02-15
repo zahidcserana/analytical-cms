@@ -3,7 +3,7 @@
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<title>AnalyticalJ - CMS</title>
+	<title>{{ ENV('APP_NAME') }} - Account</title>
 
 	<!-- Site favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/vendors/images/apple-touch-icon.png') }}">
@@ -676,7 +676,7 @@
 				</table>
 			</div>
 			<div class="footer-wrap pd-20 mb-20 card-box">
-				CMS By <a href="https://github.com/dropways" target="_blank">AnalyticalJ</a>
+				AMS By <a href="https://github.com/dropways" target="_blank">{{ ENV('APP_NAME') }}</a>
 			</div>
 		</div>
 	</div>

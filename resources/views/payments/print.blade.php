@@ -5,7 +5,7 @@
     <!-- Basic Page Info -->
     <meta charset="utf-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'AnalyticalJ - CMS') }}</title>
+    <title>{{ config('app.name', 'AnalyticalJ - AMS') }}</title>
 
     <!-- Site favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/vendors/images/apple-touch-icon.png') }}">
@@ -117,8 +117,9 @@
                 <span class="font-10" style="text-align: right">{{ Config::get('settings.company.address') }}</strong></span>
             </div>
         </div>
+        <hr>
 
-        <div class="invoice-desc" style="padding-top: -12%!important;">
+        <div class="invoice-desc" style="padding-top: -12%!important;text-align: center">
             <p class="amount-word"><strong>In Word: &nbsp; {{ word_amount($payment->amount + $payment->adjust) }}</strong></p>
 
             {{-- <table class="table table-bordered invoice-table">
@@ -147,6 +148,7 @@
                 </thead>
             </table> --}}
         </div>
+        <hr>
 
         <div class="row" style="display: flex">
             <div class="col-md-8" style="flex: 1">
@@ -207,7 +209,7 @@
             <table style="position: fixed; width:100%;bottom: 0; text-align: center" class="table table-responsive">
                 <tr>
                     <td><strong>Print Date & Time:</strong> {{ Carbon\Carbon::now()->toFormattedDateString() }}</td>
-                    <td><strong>Powered By: </strong> AnalyticalJ (analyticalzahid@gmail.com)</td>
+                    <td><strong>Powered By: </strong> {{ ENV('APP_NAME') }} (analyticalzahid@gmail.com)</td>
                     <td><strong>Page No: </strong>Page 1 of 1</td>
                 </tr>
             </table>

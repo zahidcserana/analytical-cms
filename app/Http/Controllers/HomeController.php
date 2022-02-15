@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
+use App\Models\Invoice;
 use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -11,12 +13,25 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Collection;
 
 class HomeController extends Controller
 {
-    public function welcome()
+    public function dashboard()
     {
-        return redirect()->intended(RouteServiceProvider::HOME);
+        $customerCollection = Customer::where('status', Customer::STATUS_ACTIVE)->orderByDesc('balance')->get();
+        $invoiceCollection = Invoice::orderByDesc('total')->get();
+        $data = [
+            'topCustomers' => $customerCollection->take(5),
+            'topInvoices' => $invoiceCollection->take(5),
+            'dueInvoiceCount' => $invoiceCollection->whereIn('status', [Invoice::STATUS_DUE, Invoice::STATUS_PENDING])->count(),
+            'invoiceCount' => $invoiceCollection->count(),
+            'dueAmount' => $invoiceCollection->sum->dueTotal(),
+            'customerDue' => $customerCollection->sum('balance'),
+            'customerCount' => $customerCollection->count()
+        ];
+
+        return view('dashboard', $data);
     }
 
     public function clear(Request $request)

@@ -54,7 +54,7 @@
                         </tr>
                     </thead>
                 </table>
-    
+
                 <div class="card">
                     <div class="card-body row invoice-desc-footer">
                         <div class="col-8">
@@ -99,7 +99,7 @@
                         </div>
                     </div>
                 </div>
-    
+
                 @if ($payment->method == "Bank")
                     <div class="row invoice-desc-footer pt-3">
                         <div class="col-12">
@@ -120,7 +120,7 @@
                         </div>
                     </div>
                 @endif
-                <div class="text-center font-12 pt-5">Powered By: AnalyticalJ (analyticalzahid@gmail.com)</div>
+                <div class="text-center font-12 pt-5">Powered By: {{ ENV('APP_NAME') }} (analyticalzahid@gmail.com)</div>
             </div>
             <a href="{{ route('payments.print', ['payment' => $payment->id]) }}" target="_blank" class="btn" data-bgcolor="#3d464d" data-color="#ffffff" style="color: rgb(255, 255, 255); background-color: rgb(61, 70, 77);"><i class="fa fa-print"></i> {{ __('Print') }}</a>
         </div>

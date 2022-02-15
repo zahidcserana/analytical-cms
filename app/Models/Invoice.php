@@ -75,4 +75,9 @@ class Invoice extends Model
     {
         return $this->belongsTo(Customer::class);
     }
+
+    public function dueTotal()
+    {
+        return $this->total - $this->paid;
+    }
 }

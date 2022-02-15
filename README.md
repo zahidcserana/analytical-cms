@@ -1,11 +1,8 @@
 # Features have to do
 
-- Purchase, Purchase Item crud
-- Table: payments-receipt_no,dues,received_by,created_by
-- Invoice edit amount 2 decimal
-- Email for due invoices of customer
-- logo must from gmail doc
-- dashboard
+- Dashboard: table-1: customer-list for top-5-due, table-2: invoice-list for top-5-amount status-due/pending
+- Dashboard: Chart-purchase/sale: monthly/yearly
+- Need to test: amount 2 decimal
 - customer report - search by balance gt/0
 
 ## command
