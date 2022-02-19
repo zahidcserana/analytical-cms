@@ -5,8 +5,8 @@
                 <img src="assets/vendors/images/banner-img.png" alt="">
             </div>
             <div class="col-md-8">
-                <h4 class="font-20 weight-500 mb-10 text-capitalize">
-                    {{ ENV('COMPANY_MOTO') }}<div class="weight-600 font-30 text-blue">{{ ENV('APP_NAME') }}</div>
+                <h4 class="font-18 weight-500 mb-10 text-capitalize">{{ ENV('COMPANY_MOTO') }}
+                    <div class="weight-600 font-30 text-blue">{{ ENV('APP_NAME') }}</div>
                 </h4>
                 <p class="font-18 max-width-600">{{ ENV('COMPANY_TITLE') }}</p>
                 <p class="max-width-600"> <span><small>Dhaka, Bangladesh</small></span></p>
@@ -68,20 +68,14 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-xl-8 mb-30">
+        <div class="col-xl-12 mb-30">
             <div class="card-box height-100-p pd-20">
-                <h2 class="h4 mb-20">Activity</h2>
-                <div id="chart5"></div>
-            </div>
-        </div>
-        <div class="col-xl-4 mb-30">
-            <div class="card-box height-100-p pd-20">
-                <h2 class="h4 mb-20">Lead Target</h2>
-                <div id="chart6"></div>
+                <h2 class="h4 mb-20">Purchase Sale Chart</h2>
+                <div id="chart-report" data-chart="{{ $chartData }}"></div>
             </div>
         </div>
     </div>
-    
+
     <div class="row">
         <div class="col-xl-6">
             <div class="card-box mb-30">
@@ -147,4 +141,9 @@
             </div>
         </div>
     </div>
+    @push('scripts')
+        <script>
+            new Dashboard();
+        </script>
+    @endpush
 </x-app-layout>

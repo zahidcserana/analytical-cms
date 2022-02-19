@@ -29,7 +29,7 @@
     <style>
         body{
             font-family: Helvetica;
-            font-size: 10px;
+            font-size: 12px;
             line-height: 1.7em;
         }
         .invoice-box {
@@ -74,6 +74,18 @@
             padding-top: 5px;
             padding-bottom: 5px;
         }
+        .invoice-desc-body {
+            line-height: 20px;
+        }
+        .amount-word {
+            font-size: 18px;
+        }
+        .bank-info {
+            border: 1px solid black;
+            padding-left: 1%;
+            margin-left: 1px;
+            margin-right: 1px;
+        }
     </style>
 </head>
 <body onload="window.print()">
@@ -108,7 +120,7 @@
                     </tr>
                 </table>
             </div>
-            <h4 class="weight-600">Money Receipt</h4>
+            <h3><span class="weight-600" style="border: 1px solid black;padding: 6px;">Money Receipt</span></h3>
             <div style="flex: 1; width: 100%; text-align: right">
                 <span class="font-10" style="text-align: right">{{ Config::get('settings.company.name') }}</strong></span><br>
                 <span class="font-10" style="text-align: right">{{ Config::get('settings.company.email') }}</strong></span><br>
@@ -117,40 +129,12 @@
                 <span class="font-10" style="text-align: right">{{ Config::get('settings.company.address') }}</strong></span>
             </div>
         </div>
-        <hr>
 
         <div class="invoice-desc" style="padding-top: -12%!important;text-align: center">
-            <p class="amount-word"><strong>In Word: &nbsp; {{ word_amount($payment->amount + $payment->adjust) }}</strong></p>
-
-            {{-- <table class="table table-bordered invoice-table">
-                @if (!empty($payment->log))
-                <thead>
-                    <tr>
-                        <th>Invoice No</th>
-                        <th>Paid Amount</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody class="my-body">
-                    @foreach ($payment->log as $i=>$log)
-                        <tr>
-                            <td>{{ $log['invoiceNo'] }}</td>
-                            <td>{{ $log['paidAmount'] }}</td>
-                            <td>{{ $log['invoiceStatus'] }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-                @endif
-                <thead>
-                    <tr>
-                        <td class="amount-word"><strong>In Word: &nbsp; {{ word_amount($payment->amount + $payment->adjust) }}</strong></td>
-                    </tr>
-                </thead>
-            </table> --}}
+            <p class="amount-word"><u><strong>In Word: &nbsp; {{ word_amount($payment->amount + $payment->adjust) }}</strong></u></p>
         </div>
-        <hr>
 
-        <div class="row" style="display: flex">
+        <div class="row" style="display: flex; border: 1px solid black;margin-left:1px;margin-right:1px">
             <div class="col-md-8" style="flex: 1">
                 <table class="invoice-desc-body" style="width: 100%">
                     <tr>
@@ -185,30 +169,33 @@
                 </table>
             </div>
         </div>
-        @if ($payment->method == "Bank")
-            <div class="bank-details">
-                <table style="width: 100%">
-                    <tr>
-                        <td style="width: 50%"><strong>Bank Name: </strong>{{ $payment->bank_details['name'] }}</td>
-                        <td style="width: 50%"><strong>Check Date: </strong>{{ $payment->bank_details['check_date'] }}</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Check No: </strong>{{ $payment->bank_details['check_no'] }}</td>
-                        <td><strong>Check Amount: </strong>{{ $payment->bank_details['check_amount'] }}</td>
-                    </tr>
-                </table>
-            </div>
-        @endif
-        <table style="width: 100%">
-            <tr>
-                <td style="width: 50%">Created By: {{ $payment->created_by }}</td>
-                <td style="width: 50%">Received By: {{ $payment->received_by }}</td>
-            </tr>
-        </table>
-        <div style="position: relative">
-            <table style="position: fixed; width:100%;bottom: 0; text-align: center" class="table table-responsive">
+        <div class="bank-info">
+            @if ($payment->method == "Bank")
+                <div class="bank-details">
+                    <table style="width: 100%">
+                        <tr>
+                            <td style="width: 50%"><strong>Bank Name: </strong>{{ $payment->bank_details['name'] }}</td>
+                            <td style="width: 50%"><strong>Check Date: </strong>{{ $payment->bank_details['check_date'] }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Check No: </strong>{{ $payment->bank_details['check_no'] }}</td>
+                            <td><strong>Check Amount: </strong>{{ $payment->bank_details['check_amount'] }}</td>
+                        </tr>
+                    </table>
+                </div>
+            @endif
+            <table style="width: 100%">
                 <tr>
-                    <td><strong>Print Date & Time:</strong> {{ Carbon\Carbon::now()->toFormattedDateString() }}</td>
+                    <td style="width: 50%">Created By: {{ $payment->created_by }}</td>
+                    <td style="width: 50%">Received By: {{ $payment->received_by }}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div style="position: relative">
+            <table style="position: fixed; width:100%;bottom: 0;" class="table table-responsive">
+                <tr>
+                    <td><strong>Print Date & Time:</strong> {{ Carbon\Carbon::now()->toDayDateTimeString() }}</td>
                     <td><strong>Powered By: </strong> {{ ENV('APP_NAME') }} (analyticalzahid@gmail.com)</td>
                     <td><strong>Page No: </strong>Page 1 of 1</td>
                 </tr>

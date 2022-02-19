@@ -29,7 +29,7 @@
     <style>
         body{
             font-family: Helvetica;
-            font-size: 10px;
+            font-size: 12px;
             line-height: 1.7em;
         }
         .invoice-box {
@@ -111,7 +111,8 @@
                     </tr>
                 </table>
             </div>
-            <h4 class="weight-600">INVOICE/BILL</h4>
+            <h3><span class="weight-600" style="border: 1px solid black;padding: 6px;">INVOICE/BILL</span></h3>
+
             <div style="flex: 1; width: 100%; text-align: right">
                 <span class="font-10" style="text-align: right">{{ Config::get('settings.company.name') }}</strong></span><br>
                 <span class="font-10" style="text-align: right">{{ Config::get('settings.company.email') }}</strong></span><br>
@@ -205,8 +206,13 @@
             </div>
         </div>
         <div style="position: relative">
-            <p style="position: fixed; width:100%; text-align: center"> Powered By: AnalyticalJ (analyticalzahid@gmail.com)
-            </p>
+            <table style="position: fixed; width:100%;bottom: 0;" class="table table-responsive">
+                <tr>
+                    <td><strong>Print Date & Time:</strong> {{ Carbon\Carbon::now()->toDayDateTimeString() }}</td>
+                    <td><strong>Powered By: </strong> {{ ENV('APP_NAME') }} (analyticalzahid@gmail.com)</td>
+                    <td><strong>Page No: </strong>Page 1 of 1</td>
+                </tr>
+            </table>
         </div>
     </div>
 </body>
