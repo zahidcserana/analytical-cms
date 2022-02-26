@@ -56,7 +56,7 @@ $reports = ['reports.invoices', 'reports.customers'];
 <body>
     <div class="pre-loader">
         <div class="pre-loader-box">
-            <div class="loader-logo"><img src="{{ asset('assets/vendors/images/analyticalj.png') }}" alt=""></div>
+            <div class="loader-logo"><img src="{{ asset(Config::get('settings.logo.reload')) }}" alt=""></div>
             <div class='loader-progress' id="progress_div">
                 <div class='bar' id='bar1'></div>
             </div>

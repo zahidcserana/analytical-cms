@@ -37,7 +37,7 @@
 		<div class="container-fluid d-flex justify-content-between align-items-center">
 			<div class="brand-logo">
 				<a href="{{ route('dashboard') }}">
-					<img src="{{ asset('assets/vendors/images/analyticalj.png') }}" alt="">
+					<img src="{{ asset(Config::get('settings.logo.header')) }}" alt="">
 				</a>
 			</div>
 		</div>
