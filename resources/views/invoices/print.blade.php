@@ -29,7 +29,7 @@
     <style>
         body{
             font-family: Helvetica;
-            font-size: 12px;
+            font-size: 11px;
             line-height: 1.7em;
         }
         .invoice-box {
@@ -111,7 +111,7 @@
                     </tr>
                 </table>
             </div>
-            <h3><span class="weight-600" style="border: 1px solid black;padding: 6px;">INVOICE/BILL</span></h3>
+            <h4><span class="weight-600"><u>INVOICE/BILL</u></span></h4>
 
             <div style="flex: 1; width: 100%; text-align: right">
                 <span class="font-10" style="text-align: right">{{ Config::get('settings.company.name') }}</strong></span><br>

@@ -36,5 +36,12 @@ return [
 
     'invoice_size' => 6,
     'receipt_size' => 6,
+    'logo' => [
+        'reload' => 'assets/vendors/images/aj/reload.png',
+        'top' => 'assets/vendors/images/analytical-logo.png',
+        'profile' => 'assets/vendors/images/aj/profile.png',
+        'sidebar' => 'assets/vendors/images/aj/sidebar.png',
+        'header' => 'assets/vendors/images/aj/header.png',
+    ],
 
 ];
