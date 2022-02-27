@@ -29,7 +29,7 @@
     <style>
         body{
             font-family: Helvetica;
-            font-size: 12px;
+            font-size: 11px;
             line-height: 1.7em;
         }
         .invoice-box {
@@ -78,7 +78,7 @@
             line-height: 20px;
         }
         .amount-word {
-            font-size: 18px;
+            font-size: 14px;
         }
         .bank-info {
             border: 1px solid black;
@@ -120,7 +120,7 @@
                     </tr>
                 </table>
             </div>
-            <h3><span class="weight-600" style="border: 1px solid black;padding: 6px;">Money Receipt</span></h3>
+            <h4><span class="weight-600"><u>Money Receipt</u></span></h4>
             <div style="flex: 1; width: 100%; text-align: right">
                 <span class="font-10" style="text-align: right">{{ Config::get('settings.company.name') }}</strong></span><br>
                 <span class="font-10" style="text-align: right">{{ Config::get('settings.company.email') }}</strong></span><br>
@@ -134,7 +134,7 @@
             <p class="amount-word"><u><strong>In Word: &nbsp; {{ word_amount($payment->amount + $payment->adjust) }}</strong></u></p>
         </div>
 
-        <div class="row" style="display: flex; border: 1px solid black;margin-left:1px;margin-right:1px">
+        <div class="row mb-20" style="display: flex; border: 1px solid black;margin-left:1px;margin-right:1px">
             <div class="col-md-8" style="flex: 1">
                 <table class="invoice-desc-body" style="width: 100%">
                     <tr>
