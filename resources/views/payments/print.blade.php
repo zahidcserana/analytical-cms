@@ -88,8 +88,7 @@
         }
     </style>
 </head>
-<body>
-    {{-- <body onload="window.print()"> --}}
+<body onload="window.print()">
     <div class="invoice-box" id="invoice-box">
         <div style="display: flex;width: 100%">
             <div style="flex: 1; width: 100%;">
