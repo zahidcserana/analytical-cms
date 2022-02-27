@@ -111,7 +111,7 @@
                     </tr>
                 </table>
             </div>
-            <h4><span class="weight-600"><u>INVOICE/BILL</u></span></h4>
+            <span class="weight-600 font-20"><u>INVOICE/BILL</u></span>
 
             <div style="flex: 1; width: 100%; text-align: right">
                 <span class="font-10" style="text-align: right">{{ Config::get('settings.company.name') }}</strong></span><br>
