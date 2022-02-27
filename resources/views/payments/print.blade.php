@@ -120,7 +120,7 @@
                     </tr>
                 </table>
             </div>
-            <span class="weight-600 font-20"><u>Money Receipt</u></span>
+            <span class="weight-600 font-20" style="padding-top: 30px"><u>MONEY RECEIPT</u></span>
             <div style="flex: 1; width: 100%; text-align: right">
                 <span class="font-10" style="text-align: right">{{ Config::get('settings.company.name') }}</strong></span><br>
                 <span class="font-10" style="text-align: right">{{ Config::get('settings.company.email') }}</strong></span><br>
