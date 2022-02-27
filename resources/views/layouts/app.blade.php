@@ -175,7 +175,7 @@ $reports = ['reports.invoices', 'reports.customers'];
                 {{ $slot }}
             </main>
             <div class="footer-wrap pd-20 mb-20 card-box">
-                Software Solution Company <a href="http://analyticalj.com" target="_blank"><i class="fa fa-copyright" aria-hidden="true" style="color:  rgb(244, 111, 48)">AnalyticalJ</i></a>
+                {{ ENV('FOOTER_TITLE') }} <a href="http://analyticalj.com" target="_blank"><i class="fa fa-copyright" aria-hidden="true" style="color:  rgb(244, 111, 48)">{{ ENV('APP_NAME') }}</i></a>
             </div>
         </div>
     </div>
@@ -192,7 +192,7 @@ $reports = ['reports.invoices', 'reports.customers'];
     <script src="{{ asset('assets/src/plugins/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/src/plugins/datatables/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('assets/src/plugins/datatables/js/responsive.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('assets/vendors/scripts/dashboard.js') }}"></script>
+    {{-- <script src="{{ asset('assets/vendors/scripts/dashboard.js') }}"></script> --}}
 
     <!-- buttons for Export datatable -->
     <script src="{{ asset('assets/src/plugins/datatables/js/dataTables.buttons.min.js') }}"></script>
@@ -202,8 +202,6 @@ $reports = ['reports.invoices', 'reports.customers'];
     <script src="{{ asset('assets/src/plugins/datatables/js/buttons.flash.min.js') }}"></script>
     <script src="{{ asset('assets/src/plugins/datatables/js/pdfmake.min.js') }}"></script>
     <script src="{{ asset('assets/src/plugins/datatables/js/vfs_fonts.js') }}"></script>
-    <!-- Datatable Setting js -->
-    <script src="{{ asset('assets/vendors/scripts/datatable-setting.js') }}"></script>
 
     <script src="{{ mix('/js/app.js') }}"></script>
 

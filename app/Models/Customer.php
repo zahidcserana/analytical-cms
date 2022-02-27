@@ -11,6 +11,8 @@ class Customer extends Model
     use HasFactory;
     use SoftDeletes;
 
+    const STATUS_ACTIVE = 'active';
+
     protected $guarded = [];
 
     public function invoices()

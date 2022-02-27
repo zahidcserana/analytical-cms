@@ -7,7 +7,7 @@
 			<div class="col-md-6 col-lg-5">
 				<div class="login-box bg-white box-shadow border-radius-10">
 					<div class="login-title">
-						<h2 class="text-center text-primary">Login To AnalyticalJ CMS</h2>
+						<h2 class="text-center text-primary">Login To {{ ENV('APP_NAME') }} AMS</h2>
 					</div>
 
 					<!-- Session Status -->
@@ -23,8 +23,8 @@
 								<label class="btn active">
 									<input type="radio" name="options" id="admin">
 									<div class="icon"><img src="assets/vendors/images/briefcase.svg" class="svg" alt=""></div>
-									<span>AnalyticalJ</span>
-									CMS
+									<span>{{ ENV('APP_NAME') }}</span>
+									AMS
 								</label>
 								<label class="btn">
 									<input type="radio" name="options" id="user">

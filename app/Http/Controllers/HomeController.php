@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
+use App\Models\Invoice;
+use App\Models\Purchase;
 use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -11,12 +14,78 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Collection;
 
 class HomeController extends Controller
 {
-    public function welcome()
+    public function dashboard()
     {
-        return redirect()->intended(RouteServiceProvider::HOME);
+        $period = now()->subMonths(12)->monthsUntil(now());
+        $title = [];
+        foreach ($period as $date) {
+            $title[] = $date->shortMonthName . '-' . $date->year;
+        }
+
+        $dataSale = $this->getSaleData();
+        $dataPurchase = $this->getPurchaseData();
+        $sales = [];
+        $purchases = [];
+        foreach ($title as $aTitle) {
+            $sales[] = $dataSale[$aTitle] ?? 0;
+            $purchases[] = $dataPurchase[$aTitle] ?? 0;
+        }
+
+        $customerCollection = Customer::where('status', Customer::STATUS_ACTIVE)->orderByDesc('balance')->get();
+        $invoiceCollection = Invoice::orderByDesc('total')->get();
+
+        $data = [
+            'topCustomers' => $customerCollection->take(5),
+            'topInvoices' => $invoiceCollection->take(5),
+            'dueInvoiceCount' => $invoiceCollection->whereIn('status', [Invoice::STATUS_DUE, Invoice::STATUS_PENDING])->count(),
+            'invoiceCount' => $invoiceCollection->count(),
+            'dueAmount' => $invoiceCollection->sum->dueTotal(),
+            'customerDue' => $customerCollection->sum('balance'),
+            'customerCount' => $customerCollection->count(),
+            'chartData' => json_encode([
+                'month' => $title,
+                'sale' => $sales,
+                'purchase' => $purchases
+            ])
+        ];
+
+        return view('dashboard', $data);
+    }
+
+    public function getPurchaseData()
+    {
+        $purchaseData = Purchase::whereDate('created_at', '>', now()->subYear())->select(DB::raw('sum(total) as total'), DB::raw('YEAR(created_at) year'), DB::raw('MONTH(created_at) month'))
+            ->groupBy(DB::raw('YEAR(created_at)'), DB::raw('MONTH(created_at)'))
+            ->limit(5)->get();
+
+        $dataPurchase = [];
+        foreach ($purchaseData as $row) {
+            $row->total = $row->total == null ? 0 : (int) $row->total;
+            $row->title = $this->monthName[$row->month] . '-' . $row->year;
+            $dataPurchase[$row->title] = $row->total;
+        }
+
+        return $dataPurchase;
+    }
+
+    public function getSaleData()
+    {
+        $saleData = Invoice::whereDate('created_at', '>', now()->subYear())->select(DB::raw('sum(total) as total'), DB::raw('YEAR(created_at) year'), DB::raw('MONTH(created_at) month'))
+            ->groupBy(DB::raw('YEAR(created_at)'), DB::raw('MONTH(created_at)'))
+            ->limit(5)->get();
+
+        $dataSale = [];
+        foreach ($saleData as $row) {
+            $row->total = $row->total == null ? 0 : (int) $row->total;
+            $row->title = $this->monthName[$row->month] . '-' . $row->year;
+            $dataSale[$row->title] = $row->total;
+        }
+
+        return $dataSale;
     }
 
     public function clear(Request $request)

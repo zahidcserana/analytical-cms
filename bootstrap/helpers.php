@@ -36,6 +36,14 @@ if (!function_exists('format_amount')) {
     }
 }
 
+if (!function_exists('format_amount_bn')) {
+    function format_amount_bn($amount)
+    {
+        $digit = new NumberFormatter("en", NumberFormatter::DEFAULT_STYLE);
+        return $digit->format((int)$amount);
+    }
+}
+
 if (!function_exists('amount_with_symbol')) {
     function amount_with_symbol($amount)
     {
