@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Arr;
+
 
 if (!function_exists('status_class')) {
     function status_class($status)
@@ -47,7 +49,8 @@ if (!function_exists('format_amount_bn')) {
 if (!function_exists('amount_with_symbol')) {
     function amount_with_symbol($amount)
     {
-        return html_entity_decode('&#2547;') . ' ' . format_amount($amount);
+        return 'Tk. ' . format_amount($amount);
+        // return html_entity_decode('&#2547;') . ' ' . format_amount($amount);
     }
 }
 
