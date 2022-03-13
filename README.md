@@ -1,7 +1,6 @@
 # Features have to do
 
-- Dashboard: table-1: customer-list for top-5-due, table-2: invoice-list for top-5-amount status-due/pending
-- Dashboard: Chart-purchase/sale: monthly/yearly
+- Reports: payment
 - Need to test: amount 2 decimal
 - customer report - search by balance gt/0
 
