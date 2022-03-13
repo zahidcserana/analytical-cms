@@ -46,8 +46,6 @@
             width: 50%;
             float: right;
             text-align: right !important;
-        }
-        .summary tr td {
             font-size: 10px;
         }
         .invoice-table {
@@ -85,6 +83,12 @@
             padding-left: 1%;
             margin-left: 1px;
             margin-right: 1px;
+        }
+        .page-footer>table>tbody>tr>td {
+            padding: 8px;
+            line-height: 1.42857143;
+            vertical-align: top;
+            border-top: 1px solid #000;
         }
     </style>
 </head>
@@ -152,7 +156,7 @@
                 </table>
             </div>
             <hr>
-            <div class="col-md-4" style="flex: 1">
+            <div class="col-md-4" style="flex: 1;border-left: 1px solid black;">
                 <table class="invoice-desc-body summary">
                     <tr>
                         <td>Total Dues:</td>
@@ -192,8 +196,8 @@
             </table>
         </div>
 
-        <div style="position: relative">
-            <table style="position: fixed; width:100%;bottom: 0;" class="table table-responsive">
+        <div style="position: relative" class="pt-30 page-footer">
+            <table style="position: fixed; width:95%;" class="table table-responsive">
                 <tr>
                     <td><strong>Print Date & Time:</strong> {{ Carbon\Carbon::now()->toDayDateTimeString() }}</td>
                     <td><strong>Powered By: </strong> {{ ENV('APP_NAME') }} (analyticalzahid@gmail.com)</td>
