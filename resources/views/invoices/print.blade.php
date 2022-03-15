@@ -76,6 +76,9 @@
         .table-bordered td {
             border: 1px solid black !important;
         }
+        .page-footer {
+            padding-top: 5%;
+        }
         .page-footer>table>tbody>tr>td {
             padding: 8px;
             line-height: 1.42857143;
@@ -210,7 +213,7 @@
                 </table>
             </div>
         </div>
-        <div style="position: relative" class="pt-30 page-footer">
+        <div style="position: relative" class="page-footer">
             <table style="position: fixed; width:95%;" class="table table-responsive">
                 <tr>
                     <td><strong>Print Date & Time:</strong> {{ Carbon\Carbon::now()->toDayDateTimeString() }}</td>
