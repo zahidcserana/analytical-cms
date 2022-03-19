@@ -28,8 +28,7 @@ class Invoice extends Model
 
     public function getGrossAttribute()
     {
-        $digit = new NumberFormatter("en", NumberFormatter::SPELLOUT);
-        return $digit->format((int)$this->total);
+        return word_amount((int)$this->total);
     }
 
     public function getDueAttribute()
