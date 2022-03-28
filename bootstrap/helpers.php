@@ -21,12 +21,21 @@ if (!function_exists('status_class')) {
     }
 }
 
+if (!function_exists('status')) {
+    function status($status)
+    {
+        return ucfirst($status);
+    }
+}
+
 
 if (!function_exists('word_amount')) {
     function word_amount($amount)
     {
         $digit = new NumberFormatter("en", NumberFormatter::SPELLOUT);
-        return $digit->format((int)$amount);
+        $spellout = str_replace('-', ' ', $digit->format((int)$amount));
+
+        return ucwords($spellout);
     }
 }
 
