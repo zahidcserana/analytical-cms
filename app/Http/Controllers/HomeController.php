@@ -60,7 +60,7 @@ class HomeController extends Controller
     {
         $purchaseData = Purchase::whereDate('created_at', '>', now()->subYear())->select(DB::raw('sum(total) as total'), DB::raw('YEAR(created_at) year'), DB::raw('MONTH(created_at) month'))
             ->groupBy(DB::raw('YEAR(created_at)'), DB::raw('MONTH(created_at)'))
-            ->limit(5)->get();
+            ->get();
 
         $dataPurchase = [];
         foreach ($purchaseData as $row) {
@@ -76,7 +76,7 @@ class HomeController extends Controller
     {
         $saleData = Invoice::whereDate('created_at', '>', now()->subYear())->select(DB::raw('sum(total) as total'), DB::raw('YEAR(created_at) year'), DB::raw('MONTH(created_at) month'))
             ->groupBy(DB::raw('YEAR(created_at)'), DB::raw('MONTH(created_at)'))
-            ->limit(5)->get();
+            ->get();
 
         $dataSale = [];
         foreach ($saleData as $row) {
