@@ -57,7 +57,7 @@
                                 <td>{{ $row->amount + $row->adjust }}</td>
                                 <td>{{ (int)$row->adjust }}</td>
                                 <td>{{ (int)$row->amount }}</td>
-                                <td><span class="badge {{ status_class($row->status) }}">{{ $row->status }}</span></td>
+                                <td><span class="badge {{ status_class($row->status) }}">{{ status($row->status) }}</span></td>
                                 <td>
                                     <div class="dropdown">
                                         <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">

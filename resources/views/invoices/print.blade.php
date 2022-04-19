@@ -46,8 +46,6 @@
             width: 50%;
             float: right;
             text-align: right !important;
-        }
-        .summary tr td {
             font-size: 10px;
         }
         .invoice-table {
@@ -72,10 +70,17 @@
         }
         .amount-word {
             text-align: center;
+            font-size: 11px !important;
         }
         .table-bordered th,
         .table-bordered td {
             border: 1px solid black !important;
+        }
+        .page-footer>table>tbody>tr>td {
+            padding: 8px;
+            line-height: 1.42857143;
+            vertical-align: top;
+            border-top: 1px solid #000;
         }
     </style>
 </head>
@@ -152,7 +157,7 @@
                         @endforeach
                         <tr>
                             <td class="amount-word"><strong>In Word:</strong></td>
-                            <td colspan="7"  style="text-align: left !important;">{{ $invoice->gross }}</td>
+                            <td colspan="7"  style="text-align: left !important;font-size: 11px">{{ $invoice->gross }}</td>
                         </tr>
                     </tbody>
                 @endif
@@ -205,8 +210,8 @@
                 </table>
             </div>
         </div>
-        <div style="position: relative">
-            <table style="position: fixed; width:100%;bottom: 0;" class="table table-responsive">
+        <div class="page-footer">
+            <table style="position: fixed; width:95%; bottom:0" class="table table-responsive">
                 <tr>
                     <td><strong>Print Date & Time:</strong> {{ Carbon\Carbon::now()->toDayDateTimeString() }}</td>
                     <td><strong>Powered By: </strong> {{ ENV('APP_NAME') }} (analyticalzahid@gmail.com)</td>

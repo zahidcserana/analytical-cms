@@ -60,7 +60,7 @@
                                 <td>{{ $row->paid }}</td>
                                 <td>{{ number_format(($row->total - $row->paid), 2, '.', ',') }}</td>
                                 <td><span class="badge {{ status_class($row->emailing) }}">{{ $row->emailing ? 'Yes' : 'No' }}</span></td>
-                                <td><span class="badge {{ status_class($row->status) }}">{{ $row->status }}</span></td>
+                                <td><span class="badge {{ status_class($row->status) }}">{{ status($row->status) }}</span></td>
                                 <td>
                                     <div class="dropdown">
                                         <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
