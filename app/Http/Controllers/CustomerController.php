@@ -101,7 +101,7 @@ class CustomerController extends Controller
                 ->get();
         } else {
             $data = Customer::select("id", "name")
-                ->limit(10)
+                ->limit(20)
                 ->get();
         }
         return response()->json($data);
