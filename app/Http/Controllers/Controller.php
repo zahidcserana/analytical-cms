@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use App\Models\Customer;
 use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Controller extends BaseController
 {
@@ -25,4 +26,16 @@ class Controller extends BaseController
         11 => 'Nov',
         12 => 'Dec'
     ];
+
+    public function getCustPlaceholder($customerId)
+    {
+        $custPlaceholder = 'Select customer';
+
+        if ($customerId) {
+            $customer = Customer::find($customerId);
+            $custPlaceholder = $customer->name ?? 'Invalid customer';
+        }
+
+        return $custPlaceholder;
+    }
 }

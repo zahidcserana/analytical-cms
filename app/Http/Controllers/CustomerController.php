@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\Customer\StoreRequest;
 use App\Http\Requests\Customer\UpdateRequest;
+use App\Http\Resources\CustomerResource;
 use App\Mail\InvoiceDue;
 
 class CustomerController extends Controller
@@ -81,5 +82,28 @@ class CustomerController extends Controller
         $customer->delete();
 
         return back()->with('success', 'Customer successfully deleted.');
+    }
+
+    public function customerSearchById(Customer $customer)
+    {
+        return response()->json(new CustomerResource($customer));
+    }
+
+    public function customerSearch(Request $request)
+    {
+        $data = [];
+        if ($request->has('q')) {
+            $search = $request->q;
+            $data = Customer::select("id", "name")
+                ->where('name', 'LIKE', "%$search%")
+                ->orWhere('mobile', 'LIKE', "%$search%")
+                ->orWhere('email', 'LIKE', "%$search%")
+                ->get();
+        } else {
+            $data = Customer::select("id", "name")
+                ->limit(10)
+                ->get();
+        }
+        return response()->json($data);
     }
 }

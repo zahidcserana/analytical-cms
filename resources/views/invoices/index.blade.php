@@ -10,14 +10,9 @@
                 <form class="form-inline" method="GET" action="{{ route('invoices.index') }}">
                     <div class="form-group mb-2 mr-sm-2">
                         <input type="text" class="form-control" name="invoice_no" placeholder="Invoice No" value="{{ $query['invoice_no'] ?? '' }}">
-                      </div>
-                    <select class="custom-select mb-2 mr-sm-2" name="customer_id">
-                        <option value="">-- Select Customer --</option>
-                        @foreach ($customers as $customer)
-                            <option {{ !empty($query['customer_id']) && $query['customer_id'] == $customer->id ? 'selected="selected"':'' }} value="{{ $customer->id }}">{{ $customer->name }}</option>
-                        @endforeach
-                    </select>
-                    <select class="custom-select mb-2 mr-sm-2" name="status">
+                    </div>
+                    <select class="livesearch custom-select mb-2 mr-sm-2" name="customer_id" id="cust-placeholder" data-placeholder="{{ $query['cust_placeholder'] }}"></select>
+                    <select class="custom-select mb-2 mr-sm-2" name="status" style="margin-left: 7px;">
                         <option value="">-- Select Status --</option>
                         <option {{ (!empty($query['status']) && ($query['status'] == 'pending')) ? "selected='selected'" : '' }} value="pending">Pending</option>
                         <option {{ (!empty($query['status']) && ($query['status'] == 'paid')) ? "selected='selected'" : '' }} value="paid">Paid</option>

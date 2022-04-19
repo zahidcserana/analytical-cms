@@ -40,10 +40,10 @@ class InvoiceController extends Controller
         }
 
         $invoices = $collection->latest('id')->paginate(20);
+        $query['cust_placeholder'] = $this->getCustPlaceholder($request->customer_id);
 
         $data['invoices'] = $invoices;
         $data['query'] = $query;
-        $data['customers'] = Customer::select('id', 'name')->get();
 
         return view('invoices.index', $data);
     }
