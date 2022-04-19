@@ -24,9 +24,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('purchases', PurchaseController::class);
     Route::resource('expenses', ExpenseController::class);
 
+    Route::get('customers/ajax-search', [CustomerController::class, 'customerSearch']);
     Route::resource('customers', CustomerController::class);
     Route::get('customers/{customer}/invoices', [CustomerController::class, 'invoices'])->name('customers.invoices');
     Route::get('customers/{customer}/details', [CustomerController::class, 'details'])->name('customers.details');
+    Route::get('customers/ajax-search-by-id/{customer}', [CustomerController::class, 'customerSearchById']);
 
     Route::resource('invoices', InvoiceController::class);
     Route::post('invoice-item/{invoice}', [InvoiceController::class, 'addItem']);

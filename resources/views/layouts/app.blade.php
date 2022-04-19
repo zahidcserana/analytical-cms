@@ -38,6 +38,7 @@ $reports = ['reports.invoices', 'reports.customers'];
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/src/plugins/datatables/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/src/plugins/datatables/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/styles/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/styles/select2.min.css') }}">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
@@ -51,6 +52,16 @@ $reports = ['reports.invoices', 'reports.customers'];
 
         gtag('config', 'UA-119386393-1');
     </script>
+    <style>
+        .select2-container {
+            box-sizing: border-box;
+            display: inline-block;
+            margin: 0;
+            position: relative;
+            vertical-align: middle;
+            width: 15% !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -185,6 +196,7 @@ $reports = ['reports.invoices', 'reports.customers'];
     <script src="{{ asset('assets/src/scripts/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/scripts/core.js') }}"></script>
     <script src="{{ asset('assets/vendors/scripts/script.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/scripts/select2.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/scripts/process.js') }}"></script>
     <script src="{{ asset('assets/vendors/scripts/layout-settings.js') }}"></script>
     <script src="{{ asset('assets/src/plugins/apexcharts/apexcharts.min.js') }}"></script>
@@ -206,6 +218,29 @@ $reports = ['reports.invoices', 'reports.customers'];
     <script src="{{ mix('/js/app.js') }}"></script>
 
     @stack('scripts')
+
+    <script type="text/javascript">
+        let myPlaceholder = $("#cust-placeholder").attr("data-placeholder");
+        $('.livesearch').select2({
+            placeholder: myPlaceholder,
+            ajax: {
+                url: '/customers/ajax-search',
+                dataType: 'json',
+                delay: 250,
+                processResults: function (data) {
+                    return {
+                        results: $.map(data, function (item) {
+                            return {
+                                text: item.name,
+                                id: item.id
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
+    </script>
 </body>
 
 </html>
