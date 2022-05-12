@@ -26,16 +26,4 @@ class Controller extends BaseController
         11 => 'Nov',
         12 => 'Dec'
     ];
-
-    public function getCustPlaceholder($customerId)
-    {
-        $custPlaceholder = 'Select customer';
-
-        if ($customerId) {
-            $customer = Customer::find($customerId);
-            $custPlaceholder = $customer->name ?? 'Invalid customer';
-        }
-
-        return $custPlaceholder;
-    }
 }

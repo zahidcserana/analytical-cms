@@ -35,7 +35,6 @@ class PaymentController extends Controller
         }
 
         $payments = $collection->latest('id')->paginate(20);
-        $query['cust_placeholder'] = $this->getCustPlaceholder($request->customer_id);
 
         $data['payments'] = $payments;
         $data['customers'] = Customer::select('id', 'name')->get();
