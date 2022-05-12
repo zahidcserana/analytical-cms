@@ -8,7 +8,7 @@
             </div>
             <div class="pb-20 search-table">
                 <form class="form-inline" method="GET" action="{{ route('payments.index') }}">
-                    <select class="livesearch custom-select mb-2 mr-sm-2" name="customer_id" id="cust-placeholder" data-placeholder="{{ $query['cust_placeholder'] }}"></select>
+                    <select class="customer-select2 custom-select mb-2 mr-sm-2" name="customer_id" data-customer-id="{{ $_GET['customer_id'] ?? '' }}"></select>
                     <select class="custom-select mb-2 mr-sm-2" name="method" style="margin-left: 7px;">
                         <option value="">-Select Method-</option>
                         @foreach (Config::get('settings.paymentMethod') as $key => $value)

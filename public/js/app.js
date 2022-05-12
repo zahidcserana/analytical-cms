@@ -4528,6 +4528,34 @@ $(document).ready(function () {
       }, time);
     }
   };
+
+  window.customerSelect2 = function () {
+    $('.customer-select2').select2({
+      theme: "classic",
+      placeholder: 'Select Customer',
+      ajax: {
+        url: '/customers/ajax-search',
+        dataType: 'json',
+        delay: 250,
+        cache: true
+      }
+    });
+    var customerId = $(".customer-select2").attr("data-customer-id"); // let customerId = <?php echo json_decode($_GET['customer_id'] ?? 0, true)?>;
+
+    if (customerId != null && customerId != '') {
+      // var data = JSON.parse(customer);
+      $.ajax({
+        url: '/customers/ajax-search-by-id/' + customerId,
+        type: "GET",
+        dataType: "json",
+        success: function success(data) {
+          console.log(data);
+          var newOption = new Option(data.name, data.id, false, false);
+          $('.customer-select2').append(newOption).trigger('change');
+        }
+      });
+    }
+  };
 });
 
 /***/ }),
@@ -4540,6 +4568,7 @@ $(document).ready(function () {
 
 window.Invoice = function () {
   $(document).ready(function () {
+    customerSelect2();
     datePicker();
     var subtotal = $("#subtotal").val();
     var total = $("#total").val();
@@ -4706,6 +4735,7 @@ window.Invoice = function () {
 
 window.Payment = function () {
   $(document).ready(function () {
+    customerSelect2();
     datePicker();
     $('.payment-method').on('change', function () {
       console.log(this.value);

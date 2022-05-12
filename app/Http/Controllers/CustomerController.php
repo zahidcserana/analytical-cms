@@ -94,16 +94,16 @@ class CustomerController extends Controller
         $data = [];
         if ($request->has('q')) {
             $search = $request->q;
-            $data = Customer::select("id", "name")
+            $data = Customer::select("id", "name as text")
                 ->where('name', 'LIKE', "%$search%")
                 ->orWhere('mobile', 'LIKE', "%$search%")
                 ->orWhere('email', 'LIKE', "%$search%")
                 ->get();
         } else {
-            $data = Customer::select("id", "name")
+            $data = Customer::select("id", "name as text")
                 ->limit(20)
                 ->get();
         }
-        return response()->json($data);
+        return response()->json(['results' => $data]);
     }
 }

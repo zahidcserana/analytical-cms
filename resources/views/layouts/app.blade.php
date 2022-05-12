@@ -196,7 +196,9 @@ $reports = ['reports.invoices', 'reports.customers'];
     <script src="{{ asset('assets/src/scripts/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/scripts/core.js') }}"></script>
     <script src="{{ asset('assets/vendors/scripts/script.min.js') }}"></script>
-    <script src="{{ asset('assets/vendors/scripts/select2.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    {{-- <script src="{{ asset('assets/vendors/scripts/select2.min.js') }}"></script> --}}
     <script src="{{ asset('assets/vendors/scripts/process.js') }}"></script>
     <script src="{{ asset('assets/vendors/scripts/layout-settings.js') }}"></script>
     <script src="{{ asset('assets/src/plugins/apexcharts/apexcharts.min.js') }}"></script>
@@ -220,26 +222,7 @@ $reports = ['reports.invoices', 'reports.customers'];
     @stack('scripts')
 
     <script type="text/javascript">
-        let myPlaceholder = $("#cust-placeholder").attr("data-placeholder");
-        $('.livesearch').select2({
-            placeholder: myPlaceholder,
-            ajax: {
-                url: '/customers/ajax-search',
-                dataType: 'json',
-                delay: 250,
-                processResults: function (data) {
-                    return {
-                        results: $.map(data, function (item) {
-                            return {
-                                text: item.name,
-                                id: item.id
-                            }
-                        })
-                    };
-                },
-                cache: true
-            }
-        });
+
     </script>
 </body>
 

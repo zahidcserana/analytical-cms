@@ -11,7 +11,7 @@
                     <div class="form-group mb-2 mr-sm-2">
                         <input type="text" class="form-control" name="invoice_no" placeholder="Invoice No" value="{{ $query['invoice_no'] ?? '' }}">
                     </div>
-                    <select class="livesearch custom-select mb-2 mr-sm-2" name="customer_id" id="cust-placeholder" data-placeholder="{{ $query['cust_placeholder'] }}"></select>
+                    <select class="customer-select2 custom-select mb-2 mr-sm-2" name="customer_id" data-customer-id="{{ $_GET['customer_id'] ?? '' }}"></select>
                     <select class="custom-select mb-2 mr-sm-2" name="status" style="margin-left: 7px;">
                         <option value="">-- Select Status --</option>
                         <option {{ (!empty($query['status']) && ($query['status'] == 'pending')) ? "selected='selected'" : '' }} value="pending">Pending</option>
@@ -91,6 +91,8 @@
     </div>
     @push('scripts')
        <script>
+            new Invoice();
+
             function preview(invoiceId) {
                 $.ajax({
                     url: '/invoices/' + invoiceId + '/preview',
