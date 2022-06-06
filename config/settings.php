@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'website' => 'https://analyticalj.herokuapp.com',
     'paymentMethod' => [
         'Cash' => 'Cash',
         'Mobile' => [

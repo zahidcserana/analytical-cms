@@ -1,4 +1,5 @@
-<?php return array (
+<?php return function ($fontDir, $rootDir) {
+return array (
   'sans-serif' => array(
     'normal' => $rootDir . '/lib/fonts/Helvetica',
     'bold' => $rootDir . '/lib/fonts/Helvetica-Bold',
@@ -81,12 +82,12 @@
     'normal' => $fontDir . '/fontawesome_normal_c815e803d273560df3d4ad0269dcbaf8',
   ),
   'inter' => array(
-    '300' => $fontDir . '/inter_300_913c48c3f936e5f8d0c1ce587e1d622f',
-    'normal' => $fontDir . '/inter_normal_257606853d48d71366a3ba9abc6feee0',
-    '500' => $fontDir . '/inter_500_c3b3147ec232f890bab4518b4fc7777a',
-    '600' => $fontDir . '/inter_600_4f0c7b53ff66517797d46ba3605c46e1',
-    'bold' => $fontDir . '/inter_bold_7fa84dd6d18d3d99127d0039e4eb61bf',
-    '800' => $fontDir . '/inter_800_82ece01d100c811c66f1b6401a346fd2',
+    '300' => $fontDir . '/inter_300_489ce7276b6eabdfe0a64d01039da6e5',
+    'normal' => $fontDir . '/inter_normal_939b58724766a274c4992e346b2b8d50',
+    '500' => $fontDir . '/inter_500_69735e9d8b66356789f87e9769098c13',
+    '600' => $fontDir . '/inter_600_0a3c5c3d9b80b10bc0155e9e2c225d14',
+    'bold' => $fontDir . '/inter_bold_147acf14ddf62bab838b19e0cbccf47c',
+    '800' => $fontDir . '/inter_800_93845c0ff3417fe8281e547a07012738',
   ),
   'dropways' => array(
     'normal' => $fontDir . '/dropways_normal_17bca8b8c08e29a5967a1956c804da50',
@@ -103,4 +104,5 @@
   'glyphicons halflings' => array(
     'normal' => $fontDir . '/glyphicons_halflings_normal_8e86a4237ba60c1dffdf8238865a2d17',
   ),
-) ?>
+);
+}; ?>

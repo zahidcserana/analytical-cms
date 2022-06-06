@@ -10,16 +10,19 @@
                     <div class="col-md-7">
                         <form class="form-inline" method="GET" action="{{ route('reports.invoices') }}">
                             <input type="hidden" name="status" value="{{ $query['status'] ?? '' }}">
-                            <select class="custom-select mb-2 mr-sm-2" name="customer_id">
+                            <div class="input-group mb-2 mr-sm-2">
+                                <input value="{{ $query['daterange'] ?? '' }}" class="form-control datetimepicker-range" name="daterange" placeholder="Select Month" type="text" autocomplete="off">
+                            </div>
+                            <select class="customer-select2 custom-select mb-2 mr-sm-2" name="customer_id" data-customer-id="{{ $_GET['customer_id'] ?? '' }}"></select>
+
+                            {{-- <select class="custom-select mb-2 mr-sm-2" name="customer_id">
                                 <option value="">-- Select Customer --</option>
                                 @foreach ($customers as $customer)
                                     <option {{ !empty($query['customer_id']) && $query['customer_id'] == $customer->id ? 'selected="selected"':'' }} value="{{ $customer->id }}">{{ $customer->name }}</option>
                                 @endforeach
-                            </select>
-                            <div class="input-group mb-2 mr-sm-2">
-                                <input value="{{ $query['daterange'] ?? '' }}" class="form-control datetimepicker-range" name="daterange" placeholder="Select Month" type="text" autocomplete="off">
-                            </div>
-                            <button type="submit" class="btn mb-2 mr-sm-2" data-bgcolor="#c32361" data-color="#ffffff"><i class="fa fa-search"></i> {{ __('Search') }}</button>
+                            </select> --}}
+
+                            <button style="margin-left: 7px;" type="submit" class="btn mb-2 mr-sm-2" data-bgcolor="#c32361" data-color="#ffffff"><i class="fa fa-search"></i> {{ __('Search') }}</button>
                             <a href="{{ route('reports.invoices', ['status' => $query['status'] ?? '']) }}" class="btn mb-2" data-bgcolor="#f46f30" data-color="#ffffff"><i class="fa fa-refresh"></i> {{ __('Reset') }}</a>
                         </form>
                     </div>
@@ -56,6 +59,7 @@
                     <thead class="my-table-header">
                         <tr>
                             <th>Invoice No</th>
+                            <th>Date</th>
                             <th>Customer</th>
                             <th>Subtotal</th>
                             <th>Discount</th>
@@ -69,6 +73,7 @@
                         @foreach ($invoices as $row)
                         <tr>
                             <td>{{ $row->invoice_no }}</td>
+                            <td> {{ Carbon\Carbon::parse($row->invoice_date)->format('d/m/Y') }} </td>
                             <td>{{ $row->customer->name }}</td>
                             <td>{{ $row->sub_total }}</td>
                             <td>{{ $row->discount }}</td>
@@ -87,14 +92,15 @@
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="myLargeModalLabel">Due Invoices</h4>
+                    <h4 class="modal-title" id="myLargeModalLabel">Due Invoice</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
                 <div class="modal-body">
                     <table class="table stripe hover nowrap">
                         <thead class="report-table-header">
                             <tr>
-                                <th>Invoice No</th>
+                                <th># No</th>
+                                <th>Date</th>
                                 <th>Customer</th>
                                 <th>Subtotal</th>
                                 <th>Discount</th>
@@ -107,6 +113,7 @@
                             @foreach ($invoices as $row)
                             <tr>
                                 <td>{{ $row->invoice_no }}</td>
+                                <td> {{ Carbon\Carbon::parse($row->invoice_date)->format('d/m/Y') }} </td>
                                 <td>{{ $row->customer->name }}</td>
                                 <td>{{ $row->sub_total }}</td>
                                 <td>{{ $row->discount }}</td>
@@ -127,11 +134,25 @@
     </div>
 
     @push('scripts')
+        <script>
+            new Invoice();
+        </script>
         <style>
         .table td {
             font-size: 14px;
             font-weight: 500;
             padding: .5rem 1rem!important;
+        }
+        .modal-lg, .modal-xl {
+            max-width: 845px;
+        }
+        .select2-container {
+            box-sizing: border-box;
+            display: inline-block;
+            margin: 0;
+            position: relative;
+            vertical-align: middle;
+            width: 25% !important;
         }
         </style>
     @endpush
