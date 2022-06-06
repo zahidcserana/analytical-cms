@@ -31,10 +31,12 @@
             font-family: Helvetica;
             font-size: 10px;
             line-height: 1.7em;
+            padding: 0%!important;
         }
         .invoice-box {
-            width: 100%;
+            width: 80%;
             padding-bottom: 0%!important;
+            padding-right: 5% !important;
         }
         .logo {
             flex: 1;
@@ -83,7 +85,7 @@
             </div>
             <h4 style="float: right;" class="weight-600">INVOICE/BILL</h4>
         </div>
-        <div style="display: flex;width: 100%;margin-bottom: 60px;">
+        <div style="display: flex;width: 100%;margin-bottom: 10px;">
             <div style="flex: 1; width: 100%">
                 <table class="invoice-desc-body" style="width: 60%">
                     <tr>
@@ -116,7 +118,7 @@
                 <span class="font-10" style="text-align: right">{{ Config::get('settings.company.address') }}</strong></span>
             </div>
         </div>
-        <div class="invoice-desc" style="padding-top: -12%!important;">
+        <div class="invoice-desc">
             <table class="table table-bordered invoice-table">
                 @if ($invoice->invoiceItems->count() > 0)
                     <thead>
@@ -146,7 +148,7 @@
                         @endforeach
                     </tbody>
                 @endif
-                <thead class="invoice-desc-head clearfix">
+                <thead class="invoice-desc-head">
                     <tr>
                         <td class="amount-word"><strong>In Word:</strong></td>
                         <td colspan="7"  style="text-align: left !important;">{{ $invoice->gross }}</td>

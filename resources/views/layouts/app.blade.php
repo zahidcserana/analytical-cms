@@ -186,7 +186,7 @@ $reports = ['reports.invoices', 'reports.customers'];
                 {{ $slot }}
             </main>
             <div class="footer-wrap pd-20 mb-20 card-box">
-                {{ ENV('FOOTER_TITLE') }} <a href="http://analyticalj.com" target="_blank"><i class="fa fa-copyright" aria-hidden="true" style="color:  rgb(244, 111, 48)">{{ ENV('APP_NAME') }}</i></a>
+                {{ ENV('FOOTER_TITLE') }} <a href="{{ Config::get('settings.website') }}" target="_blank"><i class="fa fa-copyright" aria-hidden="true" style="color:  rgb(244, 111, 48)">{{ ENV('APP_NAME') }}</i></a>
             </div>
         </div>
     </div>
