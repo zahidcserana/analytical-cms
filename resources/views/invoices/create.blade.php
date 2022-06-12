@@ -6,23 +6,23 @@
                 <a href="{{ route('invoices.index') }}" class="btn btn-info pull-right"><i class="fa fa-angle-double-left"></i> Back </a>
             </div>
             <div class="pd-20">
-                <form method="POST" action="{{ route('invoices.store') }}">
+                <form class="form-inline" method="POST" action="{{ route('invoices.store') }}">
                     @csrf
                     <input value="{{ date('Y-m-d') }}" name="invoice_date" type="hidden">
                     <input type="hidden" name="type" value="1">
-                    <input value="{{ $invoiceNo }}" name="invoice_no" type="hidden">
-                    <div class="form-group row">
-                        <div class="col-sm-12 col-md-2">&nbsp;</div>
-                        <div class="col-sm-12 col-md-2">
-                            <label for="customer_id">Select Customer</label>
-                        </div>
-                        <div class="col-sm-12 col-md-3">
-                            <select class="customer-select2 customer-select" name="customer_id" data-customer-id="{{ old('customer_id') ?? '' }}"></select>
-                        </div>
-                        <div class="col-sm-12 col-md-1">
-							<button type="submit" class="btn" data-bgcolor="#00b489" data-color="#ffffff"><i class="fa fa-random"></i> {{ __('Next') }}</button>
-                        </div>
+                    <div class="form-group mb-2">
+                        <label for="invoice_no">Invoice No</label>
                     </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <input value="{{ $invoiceNo }}" class="form-control" name="invoice_no" id="invoice_no" placeholder="Invoice No" type="text" autocomplete="off">
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="customer_id">Customer</label>
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2" style="width: 20%;">
+                        <select class="customer-select2 customer-select" name="customer_id" id="customer_id" data-customer-id="{{ old('customer_id') ?? '' }}"></select>
+                    </div>
+                    <button type="submit" class="btn mb-2" data-bgcolor="#00b489" data-color="#ffffff"><i class="fa fa-random"></i> {{ __('Next') }}</button>
                 </form>
             </div>
         </div>

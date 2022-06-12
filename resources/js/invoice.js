@@ -55,88 +55,86 @@ window.Invoice = function () {
             });
         });
 
-        $( "#post-form" ).submit(function( event ) {
-            $("#post-form").validate({
-                rules: {
-                    width: {
-                        required: true,
-                        number: true
-                    },
-                    length: {
-                        required: true,
-                        number: true
-                    },
-                    quantity: {
-                        required: true,
-                        digits: true
-                    },
-                    price: {
-                        required: true,
-                        number: true
-                    }
+        $("#post-form").validate({
+            rules: {
+                width: {
+                    required: true,
+                    number: true
                 },
-                messages: {
-                    width: {
-                        required: "*",
-                        number: "*"
-                    },
-                    length: {
-                        required: "*",
-                        number: "*"
-                    },
-                    quantity: {
-                        required: "*",
-                        digits: "*"
-                    },
-                    price: {
-                        required: "*",
-                        number: "*"
-                    }
+                length: {
+                    required: true,
+                    number: true
                 },
-                submitHandler: function(form) {
-                    $.ajaxSetup({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        }
-                    });
-                    $('#send_form').html('Sending..');
-                    $.ajax({
-                        url: '/invoice-item/' + invoiceId,
-                        type: "POST",
-                        data: $('#post-form').serialize(),
-                        success: function(response) {
-                            $('#send_form').html('Add');
-
-                            ajaxMessageBox('Data successfully saved.', true);
-
-                            document.getElementById("post-form").reset();
-
-                            if (response.status) {
-                                data = response.data;
-                                invoice = response.invoice;
-                                total = invoice.total;
-                                subtotal = invoice.sub_total;
-
-                                var markup = "<tr>" +
-                                    "<td><input type='checkbox' name='record' value='" +
-                                    data.id + "'></td>" +
-                                    "<td>" + data.buyer + "</td>" +
-                                    "<td>" + data.style + "</td>" +
-                                    "<td>" + data.color + "</td>" +
-                                    "<td class='text-center'>" + data.width + "&times;"+ data.length + "</td>" +
-                                    "<td class='text-center'>" + data.area + "</td>" +
-                                    "<td class='text-center'>" + data.quantity + "</td>" +
-                                    "<td class='text-right'>" + data.price + "</td>" +
-                                    "<td class='text-right'>" + data.amount + "</td> </tr>";
-
-                                $("#invoice-item").append(markup);
-                                calculate();
-                                $("#subtotal").val(subtotal);
-                            }
-                        }
-                    });
+                quantity: {
+                    required: true,
+                    digits: true
+                },
+                price: {
+                    required: true,
+                    number: true
                 }
-            })
+            },
+            messages: {
+                width: {
+                    required: "*",
+                    number: "*"
+                },
+                length: {
+                    required: "*",
+                    number: "*"
+                },
+                quantity: {
+                    required: "*",
+                    digits: "*"
+                },
+                price: {
+                    required: "*",
+                    number: "*"
+                }
+            },
+            submitHandler: function(form) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $('#send_form').html('Sending..');
+                $.ajax({
+                    url: '/invoice-item/' + invoiceId,
+                    type: "POST",
+                    data: $('#post-form').serialize(),
+                    success: function(response) {
+                        $('#send_form').html('Add');
+
+                        ajaxMessageBox('Data successfully saved.', true);
+
+                        document.getElementById("post-form").reset();
+
+                        if (response.status) {
+                            data = response.data;
+                            invoice = response.invoice;
+                            total = invoice.total;
+                            subtotal = invoice.sub_total;
+
+                            var markup = "<tr>" +
+                                "<td><input type='checkbox' name='record' value='" +
+                                data.id + "'></td>" +
+                                "<td>" + data.buyer + "</td>" +
+                                "<td>" + data.style + "</td>" +
+                                "<td>" + data.color + "</td>" +
+                                "<td class='text-center'>" + data.width + "&times;"+ data.length + "</td>" +
+                                "<td class='text-center'>" + data.area + "</td>" +
+                                "<td class='text-center'>" + data.quantity + "</td>" +
+                                "<td class='text-right'>" + data.price + "</td>" +
+                                "<td class='text-right'>" + data.amount + "</td> </tr>";
+
+                            $("#invoice-item").append(markup);
+                            calculate();
+                            $("#subtotal").val(subtotal);
+                        }
+                    }
+                });
+            }
         });
 
         function calculation() {

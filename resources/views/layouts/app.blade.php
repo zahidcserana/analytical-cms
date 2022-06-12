@@ -217,13 +217,12 @@ $reports = ['reports.invoices', 'reports.customers'];
     <script src="{{ asset('assets/src/plugins/datatables/js/pdfmake.min.js') }}"></script>
     <script src="{{ asset('assets/src/plugins/datatables/js/vfs_fonts.js') }}"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/additional-methods.min.js"></script>
+
     <script src="{{ mix('/js/app.js') }}"></script>
 
     @stack('scripts')
-
-    <script type="text/javascript">
-
-    </script>
 </body>
 
 </html>
