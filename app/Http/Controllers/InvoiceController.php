@@ -43,7 +43,6 @@ class InvoiceController extends Controller
 
         $data['invoices'] = $invoices;
         $data['query'] = $query;
-        $data['customers'] = Customer::select('id', 'name')->get();
 
         return view('invoices.index', $data);
     }

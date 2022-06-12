@@ -8,13 +8,8 @@
             </div>
             <div class="pb-20 search-table">
                 <form class="form-inline" method="GET" action="{{ route('payments.index') }}">
-                    <select class="custom-select mb-2 mr-sm-2" name="customer_id">
-                        <option value="">-- Select Customer --</option>
-                        @foreach ($customers as $customer)
-                            <option {{ !empty($query['customer_id']) && $query['customer_id'] == $customer->id ? 'selected="selected"':'' }} value="{{ $customer->id }}">{{ $customer->name }}</option>
-                        @endforeach
-                    </select>
-                    <select class="custom-select mb-2 mr-sm-2" name="method">
+                    <select class="customer-select2 custom-select mb-2 mr-sm-2" name="customer_id" data-customer-id="{{ $_GET['customer_id'] ?? '' }}"></select>
+                    <select class="custom-select mb-2 mr-sm-2" name="method" style="margin-left: 7px;">
                         <option value="">-Select Method-</option>
                         @foreach (Config::get('settings.paymentMethod') as $key => $value)
                             <option {{ (!empty($query['method']) && ($query['method'] == $key)) ? "selected='selected'" : '' }} value="{{ $key }}">{{ $key }}</option>

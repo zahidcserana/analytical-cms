@@ -33,5 +33,36 @@ $(document).ready(function() {
             }, time)
         }
     }
+
+    window.customerSelect2 = function () {
+        $('.customer-select2').select2({
+            theme: "classic",
+            placeholder: 'Select Customer',
+            ajax: {
+                url: '/customers/ajax-search',
+                dataType: 'json',
+                delay: 250,
+                cache: true
+            }
+        });
+
+        let customerId = $(".customer-select2").attr("data-customer-id");
+        // let customerId = <?php echo json_decode($_GET['customer_id'] ?? 0, true)?>;
+
+        if (customerId != null && customerId != '') {
+            // var data = JSON.parse(customer);
+            $.ajax({
+                url: '/customers/ajax-search-by-id/' + customerId,
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    var newOption = new Option(data.name, data.id, false, false);
+                    $('.customer-select2').append(newOption).trigger('change');
+                }
+            });
+
+        }
+    };
 });
 

@@ -17,12 +17,7 @@
                             <label for="customer_id">Select Customer</label>
                         </div>
                         <div class="col-sm-12 col-md-3">
-                            <select class="custom-select col-12" name="customer_id">
-                                <option value="">-- Select One --</option>
-                                @foreach ($customers as $customer)
-                                    <option value="{{ $customer->id }}">{{ $customer->name }}</option>
-                                @endforeach
-                            </select>
+                            <select class="customer-select2 customer-select" name="customer_id" data-customer-id="{{ old('customer_id') ?? '' }}"></select>
                         </div>
                         <div class="col-sm-12 col-md-1">
 							<button type="submit" class="btn" data-bgcolor="#00b489" data-color="#ffffff"><i class="fa fa-random"></i> {{ __('Next') }}</button>
@@ -36,5 +31,15 @@
         <script>
             new Invoice();
         </script>
+        <style>
+            .select2-container {
+                box-sizing: border-box;
+                display: inline-block;
+                margin: 0;
+                position: relative;
+                vertical-align: middle;
+                width: 100% !important;
+            }
+        </style>
     @endpush
 </x-app-layout>

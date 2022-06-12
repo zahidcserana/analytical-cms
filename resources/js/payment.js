@@ -1,5 +1,6 @@
 window.Payment = function () {
     $(document).ready(function () {
+        customerSelect2();
         datePicker();
 
         $('.payment-method').on('change', function() {
