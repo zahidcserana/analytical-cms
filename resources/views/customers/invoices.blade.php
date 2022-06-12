@@ -29,25 +29,13 @@
         body{
             font-family: Myriad Pro;
             font-size: 13pt;
-        }
-        .invoice-box {
-            width: 100%;
-            padding-bottom: 0%!important;
-        }
-        .logo {
-            flex: 1;
+            padding: 0%!important;
         }
         .amount-word {
             padding: .75rem;
         }
-        .invoice-desc-footer {
-            display: flex;
-        }
         .summary td {
             font-weight: bold !important;
-        }
-        .amount-div {
-            text-align: right;
         }
         .invoice-table {
             width: 100% !important;
@@ -58,24 +46,27 @@
         .invoice-table th {
             text-align: center !important;
         }
+        .top-div:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
     </style>
 </head>
 <body>
     <div class="invoice-box" id="invoice-box">
-        <div style="display: flex;width: 100%;padding-bottom: -5%!important;">
-            <div style="flex: 1; width: 100%;padding-top: 2%">
-                <img src="https://scontent.fdac17-1.fna.fbcdn.net/v/t1.15752-9/243529074_385207316681142_5232001197312670516_n.jpg?_nc_cat=100&ccb=1-5&_nc_sid=ae9488&_nc_ohc=Yn0Wd5WgKjIAX_cFOpN&_nc_ht=scontent.fdac17-1.fna&oh=35e3bce0376bc1e637e3dcfe9a30f6ce&oe=619692DD" alt="Dot Design">
+        <div class="top-div" style="margin-bottom: 2px;">
+            <div style="float: left; width: 50%;">
+                <img src="{{ Config::get('settings.company.logo') }}" alt="Dot Design" />
             </div>
-            <div class="text-right" style="flex: 1; width: 100%">
-                <h3 style="text-align: right;" class="weight-600">DUE INVOICES</h3>
-            </div>
+            <h4 style="text-align: right;" class="weight-600">DUE INVOICE</h4>
         </div>
-        <div style="display: flex;width: 100%;">
-            <div style="flex: 1; width: 100%">
+        <div class="top-div" style="margin-bottom: 10px;">
+            <div style="float: left; width: 50%;">
                 <p class="font-14 mb-5">Name: <strong class="weight-600">{{ $customer->name }}</strong></p>
                 <p class="font-14 mb-5">Mobile: <strong class="weight-600">{{ $customer->mobile }}</strong></p>
             </div>
-            <div style="flex: 1; width: 100%">
+            <div style="float: right; width: 50%;text-align: right;">
                 <p class="font-14 mb-5" style="text-align: right">{{ Config::get('settings.company.name') }}</strong></p>
                 <p class="font-14 mb-5" style="text-align: right">{{ Config::get('settings.company.email') }}</strong></p>
                 <p class="font-14 mb-5" style="text-align: right">{{ Config::get('settings.company.mobile') }}</strong></p>
@@ -84,12 +75,12 @@
             </div>
         </div>
 
-        <div class="invoice-desc" style="padding-top: -5%!important;">
+        <div class="invoice-desc">
             @if ($invoices->count() > 0)
                 <table class="table table-bordered invoice-table">
                     <thead>
                         <tr>
-                            <th>Invoice</th>
+                            <th># No</th>
                             <th>Date</th>
                             <th>Subtotal</th>
                             <th>Discount</th>
@@ -119,17 +110,17 @@
                             <td>{{ $summary['total'] - $summary['paid'] }}</td>
                         </tr>
                     </tbody>
-                    <thead class="invoice-desc-head clearfix">
+                    <thead class="invoice-desc-head">
                         <tr>
-                            <th class="amount-word">Total Due:</th>
-                            <th colspan="7"  style="text-align: left !important;">{{ word_amount($summary['total'] - $summary['paid']) }}</th>
+                            <th>Total Due:</th>
+                            <th colspan="6"  style="text-align: left !important;">{{ word_amount($summary['total'] - $summary['paid']) }}</th>
                         </tr>
                     </thead>
                 </table>
             @endif
         </div>
-        <div>
-            <p style="text-align: center;font-size: 12px;">Powered by <a href="https://analyticalj.com">AnalyticalJ (analyticalzahid@gmail.com)</a></p>
+        <div style="position: relative">
+            <p style="text-align: center;font-size: 12px;">Powered by <a href="{{ Config::get('settings.website') }}">AnalyticalJ (analyticalzahid@gmail.com)</a></p>
         </div>
     </div>
 </body>

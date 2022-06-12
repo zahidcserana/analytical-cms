@@ -31,16 +31,7 @@
             font-family: Helvetica;
             font-size: 10px;
             line-height: 1.7em;
-        }
-        .invoice-box {
-            width: 100%;
-            padding-bottom: 0%!important;
-        }
-        .logo {
-            flex: 1;
-        }
-        .invoice-desc-footer {
-            display: flex;
+            padding: 0%!important;
         }
         .summary {
             width: 50%;
@@ -73,18 +64,23 @@
         .amount-word {
             text-align: center;
         }
+        .top-div:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
     </style>
 </head>
 <body>
     <div class="invoice-box" id="invoice-box">
-        <div style="display: flex;width: 100%;margin-bottom: -1%">
-            <div style="flex: 1; width: 100%;">
-                <img src="{{ asset('assets/vendors/images/dot1.jpg') }}" alt="Dot Design">
+        <div class="top-div" style="margin-bottom: 2px;">
+            <div style="float: left; width: 50%;">
+                <img src="{{ Config::get('settings.company.logo1') }}" alt="Dot Design" />
             </div>
-            <h4 style="float: right;" class="weight-600">INVOICE/BILL</h4>
+            <h4 style="text-align: right;" class="weight-600">INVOICE/BILL</h4>
         </div>
-        <div style="display: flex;width: 100%;margin-bottom: 60px;">
-            <div style="flex: 1; width: 100%">
+        <div class="top-div" style="margin-bottom: 10px;">
+            <div style="float: left; width: 50%;">
                 <table class="invoice-desc-body" style="width: 60%">
                     <tr>
                         <td>Invoice No</td>
@@ -108,7 +104,7 @@
                     </tr>
                 </table>
             </div>
-            <div style="flex: 1; width: 100%; text-align: right">
+            <div style="float: right; width: 50%;text-align: right;">
                 <span class="font-10" style="text-align: right">{{ Config::get('settings.company.name') }}</strong></span><br>
                 <span class="font-10" style="text-align: right">{{ Config::get('settings.company.email') }}</strong></span><br>
                 <span class="font-10" style="text-align: right">{{ Config::get('settings.company.mobile') }}</strong></span><br>
@@ -116,7 +112,7 @@
                 <span class="font-10" style="text-align: right">{{ Config::get('settings.company.address') }}</strong></span>
             </div>
         </div>
-        <div class="invoice-desc" style="padding-top: -12%!important;">
+        <div class="invoice-desc">
             <table class="table table-bordered invoice-table">
                 @if ($invoice->invoiceItems->count() > 0)
                     <thead>
@@ -146,7 +142,7 @@
                         @endforeach
                     </tbody>
                 @endif
-                <thead class="invoice-desc-head clearfix">
+                <thead class="invoice-desc-head">
                     <tr>
                         <td class="amount-word"><strong>In Word:</strong></td>
                         <td colspan="7"  style="text-align: left !important;">{{ $invoice->gross }}</td>
@@ -155,8 +151,8 @@
             </table>
         </div>
 
-        <div class="row" style="display: flex">
-            <div class="col-md-8" style="flex: 1">
+        <div class="top-div">
+            <div style="float: left; width: 50%;">
                 <table class="invoice-desc-body" style="width: 60%">
                     <tr>
                         <td>Delivery Date</td>
@@ -176,7 +172,7 @@
                     </tr>
                 </table>
             </div>
-            <div class="col-md-4" style="flex: 1">
+            <div style="float: right; width: 50%;text-align: right;">
                 <table class="invoice-desc-body summary">
                     <tr>
                         <td>Sub Total:</td>
@@ -202,8 +198,7 @@
             </div>
         </div>
         <div style="position: relative">
-            <p style="position: fixed; width:100%;bottom: 0; text-align: center"> Powered By: AnalyticalJ (analyticalzahid@gmail.com)
-            </p>
+            <p style="position: fixed; width:100%;bottom: 0; text-align: center">Powered by <a href="{{ Config::get('settings.website') }}">AnalyticalJ (analyticalzahid@gmail.com)</a></p>
         </div>
     </div>
 </body>
