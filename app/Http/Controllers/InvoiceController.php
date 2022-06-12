@@ -142,8 +142,6 @@ class InvoiceController extends Controller
 
     public function pdf(Invoice $invoice)
     {
-        // return view('invoices.email', ['invoice' => $invoice]);
-
         $pdf = PDF::loadView('invoices.email', compact('invoice'));
 
         return $pdf->download('invoice-' . $invoice->invoice_no . '.pdf');
