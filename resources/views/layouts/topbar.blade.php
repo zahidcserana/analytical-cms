@@ -4,7 +4,7 @@
 			<div class="menu-icon dw dw-menu"></div>
 			<div class="search-toggle-icon dw dw-search2" data-toggle="header_search"></div>
 			<div class="header-search" style="position: absolute;">
-                <p class="text-center text-info h4" style="font-size: 17px;color: darkgoldenrod !important">{{ ENV('COMPANY_TITLE') }}    <i style="color: darkolivegreen"><small>Powered by</small>&nbsp;</i><a href="{{ Config::get('settings.website') }}" target="_blank"><i class="fa fa-copyright" aria-hidden="true">{{ ENV('APP_NAME') }}</i></a></p>
+                <p class="text-center text-info h4" style="font-size: 17px;color: darkgoldenrod !important">{{ ENV('COMPANY_TITLE') }}    <i style="color: darkolivegreen"><small>Powered by</small>&nbsp;</i><a class="link-a" href="{{ Config::get('settings.website') }}" target="_blank"><i class="fa fa-copyright" aria-hidden="true">{{ ENV('APP_NAME') }}</i></a></p>
 			</div>
 		</div>
 		<div class="header-right">

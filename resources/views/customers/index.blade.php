@@ -23,10 +23,10 @@
                 <table class="table stripe hover nowrap">
                     <thead>
                         <tr>
-                            <th class="table-plus datatable-nosort">Name</th>
+                            <th style="width: 20%">Name</th>
                             <th>Mobile</th>
                             <th>Phone</th>
-                            <th>Email</th>
+                            <th style="width: 15%">Email</th>
                             <th>Balance</th>
                             <th>Status</th>
                             <th>Address</th>
@@ -36,7 +36,9 @@
                     <tbody>
                         @foreach ($customers as $row)
                         <tr>
-                            <td class="table-plus">{{ $row->name }}</td>
+                            <td>
+                                <a class="link-a" href="{{route('customers.edit', ['customer' => $row->id])}}"><i class="fa fa-edit"></i> {{ $row->name }}</a>
+                            </td>
                             <td>{{ $row->mobile }}</td>
                             <td>{{ $row->phone }}</td>
                             <td>{{ $row->email }}</td>

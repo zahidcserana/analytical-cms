@@ -45,7 +45,7 @@
                             @foreach ($invoices as $row)
                             <tr>
                                 <td class="table-plus">
-                                    <a href="{{route('invoices.edit', ['invoice' => $row->id])}}">{{ $row->invoice_no }}</a>
+                                    <a class="link-a" href="{{route('invoices.edit', ['invoice' => $row->id])}}"><i class="fa fa-edit"></i> {{ $row->invoice_no }}</a>
                                 </td>
                                 <td> {{ Carbon\Carbon::parse($row->invoice_date)->format('d/m/Y') }} </td>
                                 <td>{{ $row->customer->name }}</td>
