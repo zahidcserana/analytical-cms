@@ -17,11 +17,11 @@
                     <h4 class="col-md-2 weight-600 pt-5">INVOICE/BILL</h4>
                     <div class="col-md-5">
                         <div class="text-right">
-                            <p class="font-14 mb-5">{{ Config::get('settings.company.name') }}</strong></p>
-                            <p class="font-14 mb-5">{{ Config::get('settings.company.email') }}</strong></p>
-                            <p class="font-14 mb-5">{{ Config::get('settings.company.mobile') }}</strong></p>
-                            <p class="font-14 mb-5">{{ Config::get('settings.company.city') }}</strong></p>
-                            <p class="font-14 mb-5">{{ Config::get('settings.company.address') }}</strong></p>
+                            <p class="font-14 mb-5">{{ Config::get('settings.client.name') }}</strong></p>
+                            <p class="font-14 mb-5">{{ Config::get('settings.client.email') }}</strong></p>
+                            <p class="font-14 mb-5">{{ Config::get('settings.client.mobile') }}</strong></p>
+                            <p class="font-14 mb-5">{{ Config::get('settings.client.city') }}</strong></p>
+                            <p class="font-14 mb-5">{{ Config::get('settings.client.address') }}</strong></p>
                         </div>
                     </div>
                 </div>
@@ -109,7 +109,7 @@
                             </table>
                         </div>
                     </div>
-                    <div class="text-center font-12">Powered By: AnalyticalJ (analyticalzahid@gmail.com)</div>
+                    <div class="text-center font-12">Powered By: AnalyticalJ ({{ Config::get('settings.company.email') }})</div>
                 </div>
                 <a href="{{ route('invoices.print', ['invoice' => $invoice->id]) }}" target="_blank" class="btn" data-bgcolor="#3d464d" data-color="#ffffff" style="color: rgb(255, 255, 255); background-color: rgb(61, 70, 77);"><i class="fa fa-print"></i> {{ __('Print') }}</a>
                 <a href="{{ route('invoices.pdf', ['invoice' => $invoice->id]) }}" class="btn" data-bgcolor="#f46f30" data-color="#ffffff" style="color: rgb(255, 255, 255); background-color: rgb(244, 111, 48);"><i class="fa fa-download"></i> {{ __('Download') }}</a>

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
-use App\Models\Invoice;
 use App\Models\Customer;
+use App\Models\Invoice;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ReportController extends Controller
@@ -62,7 +62,7 @@ class ReportController extends Controller
         return view('reports.invoices.index', $data);
     }
 
-    public function customers()
+    public function customers($print = false)
     {
         $customers = Customer::get();
         $summary['balance'] = 0;
@@ -74,6 +74,9 @@ class ReportController extends Controller
         $data['customers'] = $customers;
         $data['summary'] = $summary;
 
+        if ($print) {
+            return view('reports.customers.print', $data);
+        }
 
         return view('reports.customers.index', $data);
     }

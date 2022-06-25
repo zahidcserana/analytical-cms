@@ -15,18 +15,18 @@
                     <p class="font-14 mb-5">Status: <strong class="weight-600 font-18">{{ $payment->status }}</strong></p>
                 </div>
                 <p class="font-18 col-md-3 pt-5">Money Receipt</p>
-    
+
                 <div class="col-md-4">
                     <div class="text-right">
-                        <p class="font-14 mb-5">{{ Config::get('settings.company.name') }}</strong></p>
-                        <p class="font-14 mb-5">{{ Config::get('settings.company.email') }}</strong></p>
-                        <p class="font-14 mb-5">{{ Config::get('settings.company.mobile') }}</strong></p>
-                        <p class="font-14 mb-5">{{ Config::get('settings.company.city') }}</strong></p>
-                        <p class="font-14 mb-5">{{ Config::get('settings.company.address') }}</strong></p>
+                        <p class="font-14 mb-5">{{ Config::get('settings.client.name') }}</strong></p>
+                        <p class="font-14 mb-5">{{ Config::get('settings.client.email') }}</strong></p>
+                        <p class="font-14 mb-5">{{ Config::get('settings.client.mobile') }}</strong></p>
+                        <p class="font-14 mb-5">{{ Config::get('settings.client.city') }}</strong></p>
+                        <p class="font-14 mb-5">{{ Config::get('settings.client.address') }}</strong></p>
                     </div>
                 </div>
             </div>
-    
+
             <div class="invoice-desc pb-10">
                 <table class="table stripe hover nowrap">
                     {{-- @if (!empty($payment->log))
@@ -120,7 +120,7 @@
                         </div>
                     </div>
                 @endif
-                <div class="text-center font-12 pt-5">Powered By: {{ ENV('APP_NAME') }} (analyticalzahid@gmail.com)</div>
+                <div class="text-center font-12 pt-5">Powered By: {{ ENV('APP_NAME') }} ({{ Config::get('settings.company.email') }})</div>
             </div>
             <a href="{{ route('payments.print', ['payment' => $payment->id]) }}" target="_blank" class="btn" data-bgcolor="#3d464d" data-color="#ffffff" style="color: rgb(255, 255, 255); background-color: rgb(61, 70, 77);"><i class="fa fa-print"></i> {{ __('Print') }}</a>
         </div>

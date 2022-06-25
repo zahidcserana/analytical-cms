@@ -18,11 +18,11 @@
                     </div>
                     <div class="col-md-6">
                         <div class="text-right">
-                            <p class="font-14 mb-5">{{ Config::get('settings.company.name') }}</strong></p>
-                            <p class="font-14 mb-5">{{ Config::get('settings.company.email') }}</strong></p>
-                            <p class="font-14 mb-5">{{ Config::get('settings.company.mobile') }}</strong></p>
-                            <p class="font-14 mb-5">{{ Config::get('settings.company.city') }}</strong></p>
-                            <p class="font-14 mb-5">{{ Config::get('settings.company.address') }}</strong></p>
+                            <p class="font-14 mb-5">{{ Config::get('settings.client.name') }}</strong></p>
+                            <p class="font-14 mb-5">{{ Config::get('settings.client.email') }}</strong></p>
+                            <p class="font-14 mb-5">{{ Config::get('settings.client.mobile') }}</strong></p>
+                            <p class="font-14 mb-5">{{ Config::get('settings.client.city') }}</strong></p>
+                            <p class="font-14 mb-5">{{ Config::get('settings.client.address') }}</strong></p>
                         </div>
                     </div>
                 </div>

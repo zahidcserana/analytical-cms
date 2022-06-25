@@ -126,11 +126,11 @@
             </div>
             <span class="weight-600 font-20" style="padding-top: 30px"><u>MONEY RECEIPT</u></span>
             <div style="flex: 1; width: 100%; text-align: right">
-                <span class="font-10" style="text-align: right">{{ Config::get('settings.company.name') }}</strong></span><br>
-                <span class="font-10" style="text-align: right">{{ Config::get('settings.company.email') }}</strong></span><br>
-                <span class="font-10" style="text-align: right">{{ Config::get('settings.company.mobile') }}</strong></span><br>
-                <span class="font-10" style="text-align: right">{{ Config::get('settings.company.city') }}</strong></span><br>
-                <span class="font-10" style="text-align: right">{{ Config::get('settings.company.address') }}</strong></span>
+                <span class="font-10" style="text-align: right">{{ Config::get('settings.client.name') }}</strong></span><br>
+                <span class="font-10" style="text-align: right">{{ Config::get('settings.client.email') }}</strong></span><br>
+                <span class="font-10" style="text-align: right">{{ Config::get('settings.client.mobile') }}</strong></span><br>
+                <span class="font-10" style="text-align: right">{{ Config::get('settings.client.city') }}</strong></span><br>
+                <span class="font-10" style="text-align: right">{{ Config::get('settings.client.address') }}</strong></span>
             </div>
         </div>
 
@@ -200,7 +200,7 @@
             <table style="position: fixed; width:95%;bottom: 0;" class="table table-responsive">
                 <tr>
                     <td><strong>Print Date & Time:</strong> {{ Carbon\Carbon::now()->toDayDateTimeString() }}</td>
-                    <td><strong>Powered By: </strong> {{ ENV('APP_NAME') }} (analyticalzahid@gmail.com)</td>
+                    <td><strong>Powered By: </strong> {{ ENV('APP_NAME') }} ({{ Config::get('settings.company.email') }})</td>
                     <td><strong>Page No: </strong>Page 1 of 1</td>
                 </tr>
             </table>

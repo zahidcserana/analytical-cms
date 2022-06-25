@@ -39,9 +39,9 @@
                         @foreach ($expenses as $row)
                         <tr>
                             <td class="table-plus">
-                                <a href="{{route('expenses.edit', ['expense' => $row->id])}}"><i class="dw dw-pencil"></i> {{ get_expense_type($row->expense_type) }}</a>
+                                <a class="link-a" href="{{route('expenses.edit', ['expense' => $row->id])}}"><i class="fa fa-edit"></i> {{ $row->bill_no }}</a>
                             </td>
-                            <td>{{ $row->bill_no }}</td>
+                            <td>{{ get_expense_type($row->expense_type) }}</td>
                             <td>{{ $row->amount }}</td>
                             <td> {{ Carbon\Carbon::parse($row->expense_date)->format('d/m/Y') }} </td>
                             <td>

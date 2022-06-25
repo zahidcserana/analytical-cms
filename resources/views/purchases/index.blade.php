@@ -75,7 +75,7 @@
                             @foreach ($purchases as $row)
                             <tr>
                                 <td class="table-plus">
-                                    <a href="{{route('purchases.edit', ['purchase' => $row->id])}}"><i class="dw dw-pencil"></i> {{ $row->purchase_no }}</a>
+                                    <a class="link-a" href="{{route('purchases.edit', ['purchase' => $row->id])}}"><i class="fa fa-edit"></i> {{ $row->purchase_no }}</a>
                                 </td>
                                 <td> {{ Carbon\Carbon::parse($row->purchase_date)->format('d/m/Y') }} </td>
                                 <td>{{ $row->supplier->name }}</td>
@@ -84,7 +84,7 @@
                                 <td>{{ $row->total }}</td>
                                 <td>{{ $row->paid }}</td>
                                 <td>{{ number_format(($row->total - $row->paid), 2, '.', ',') }}</td>
-                                <td><span class="badge {{ status_class($row->status) }}">{{ $row->status }}</span></td>
+                                <td><span class="badge {{ status_class($row->status) }}">{{ status($row->status) }}</span></td>
                                 <td>
                                     <div class="dropdown">
                                         <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">

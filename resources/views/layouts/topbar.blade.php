@@ -4,7 +4,7 @@
 			<div class="menu-icon dw dw-menu"></div>
 			<div class="search-toggle-icon dw dw-search2" data-toggle="header_search"></div>
 			<div class="header-search" style="position: absolute;">
-                <p class="text-center text-info h4" style="font-size: 17px;color: darkgoldenrod !important">{{ ENV('COMPANY_TITLE') }}    <i style="color: darkolivegreen"><small>Powered by</small>&nbsp;</i><a class="link-a" href="{{ Config::get('settings.website') }}" target="_blank"><i class="fa fa-copyright" aria-hidden="true">{{ ENV('APP_NAME') }}</i></a></p>
+                <p class="text-center text-info h4" style="font-size: 17px;color: darkgoldenrod !important">{{ Config::get('settings.title') }}    <i style="color: darkolivegreen"><small>Powered by</small>&nbsp;</i><a class="link-a" href="{{ Config::get('settings.company.website') }}" target="_blank"><i class="fa fa-copyright" aria-hidden="true">{{ ENV('APP_NAME') }}</i></a></p>
 			</div>
 		</div>
 		<div class="header-right">
@@ -73,9 +73,9 @@
 			</div> --}}
 			<div class="user-info-dropdown">
 				<div class="dropdown">
-					<a class="dropdown-toggle" href="{{ Config::get('settings.website') }}" role="button" data-toggle="dropdown">
+					<a class="dropdown-toggle" href="{{ Config::get('settings.company.website') }}" role="button" data-toggle="dropdown">
 						<span class="user-icon">
-							<img src="{{ asset(Config::get('settings.logo.profile')) }}" alt="">
+							<img src="{{ asset(Config::get('settings.company.images.profile')) }}" alt="">
 						</span>
 						<span class="user-name">{{ Auth::user()->name }}</span>
 					</a>
@@ -88,8 +88,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="github-link">
-				<a href="https://github.com/dropways/deskapp" target="_blank"><img src="{{ asset('assets/vendors/images/github.svg') }}" alt=""></a>
-			</div>
+{{--			<div class="github-link">--}}
+{{--				<a href="{{ Config::get('settings.company.website') }}" target="_blank"><img src="{{ asset('assets/vendors/images/aj/sidelogo.svg') }}" alt=""></a>--}}
+{{--			</div>--}}
 		</div>
 	</div>

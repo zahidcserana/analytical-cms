@@ -43,7 +43,7 @@
                             <td>{{ $row->phone }}</td>
                             <td>{{ $row->email }}</td>
                             <td>{{ $row->balance }}</td>
-                            <td>{{ $row->status }}</td>
+                            <td><span class="badge {{ status_class($row->status) }}">{{ status($row->status) }}</span></td>
                             <td>{{ $row->address }}</td>
                             <td>
                                 <div class="dropdown">
