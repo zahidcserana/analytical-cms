@@ -1,7 +1,7 @@
 # Features have to do
 
 - Reports: payment
-- Add edit link in all list
+- Print page invoice-report
 - Need to test: amount 2 decimal
 - customer report - search by balance gt/0
 

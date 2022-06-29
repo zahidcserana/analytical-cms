@@ -4,7 +4,6 @@
             <div class="pd-20 clearfix">
                 <h4 class="text-title h4 pull-left">Customer List</h4>
                 <a href="{{ route('customers.create') }}" class="btn btn-info pull-right"><i class="fa fa-plus-circle"></i> New </a>
-
             </div>
             <div class="pb-20 search-table">
                 <form class="form-inline" method="GET" action="{{ route('customers.index') }}">
