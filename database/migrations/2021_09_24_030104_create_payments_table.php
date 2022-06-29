@@ -20,6 +20,7 @@ class CreatePaymentsTable extends Migration
             $table->string('payload')->nullable();
             $table->string('receipt_no')->nullable();
             $table->json('log')->nullable();
+            $table->json('bank_details')->nullable();
             $table->decimal('amount', 15, 2);
             $table->decimal('adjust', 15, 2)->nullable();
             $table->decimal('dues', 15, 2)->nullable();

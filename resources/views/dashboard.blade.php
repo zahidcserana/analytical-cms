@@ -1,15 +1,24 @@
 <x-app-layout>
     <div class="card-box pd-20 height-100-p mb-30">
         <div class="row align-items-center">
-            <div class="col-md-4">
-                <img src="assets/vendors/images/banner-img.png" alt="">
+            <div class="col-md-3">
+                <img src="{{ Config::get('settings.company.images.logo')  }}" alt="">
             </div>
-            <div class="col-md-8">
-                <h4 class="font-18 weight-500 mb-10 text-capitalize">{{ ENV('COMPANY_MOTO') }}
+            <div class="col-md-5 text-center">
+                <h4 class="font-18 weight-500 mb-10 text-capitalize">{{ Config::get('settings.company.caption') }}
                     <div class="weight-600 font-30 text-blue">{{ ENV('APP_NAME') }}</div>
                 </h4>
-                <p class="font-18 max-width-600">{{ ENV('COMPANY_TITLE') }}</p>
-                <p class="max-width-600"> <span><small>Dhaka, Bangladesh</small></span></p>
+                <p class="font-18 max-width-600">
+                    {{ Config::get('settings.company.moto')  }} <br>
+                    <span class="max-width-600">
+                        <small>{{ Config::get('settings.company.address') }}</small><br>
+                        <small>{{ Config::get('settings.company.email') }}</small><br>
+                        <small>{{ Config::get('settings.company.mobile') }}</small><br>
+                    </span>
+                </p>
+            </div>
+            <div class="col-md-4">
+                <img src="assets/vendors/images/banner-img.png" alt="">
             </div>
         </div>
     </div>

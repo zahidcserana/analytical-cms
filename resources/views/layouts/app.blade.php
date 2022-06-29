@@ -67,7 +67,7 @@ $reports = ['reports.invoices', 'reports.customers'];
 <body>
     <div class="pre-loader">
         <div class="pre-loader-box">
-            <div class="loader-logo"><img src="{{ asset(Config::get('settings.logo.reload')) }}" alt=""></div>
+            <div class="loader-logo"><img src="{{ asset(Config::get('settings.company.images.reload')) }}" alt=""></div>
             <div class='loader-progress' id="progress_div">
                 <div class='bar' id='bar1'></div>
             </div>
@@ -186,7 +186,7 @@ $reports = ['reports.invoices', 'reports.customers'];
                 {{ $slot }}
             </main>
             <div class="footer-wrap pd-20 mb-20 card-box">
-                {{ ENV('FOOTER_TITLE') }} <a href="{{ Config::get('settings.website') }}" target="_blank"><i class="fa fa-copyright" aria-hidden="true" style="color:  rgb(244, 111, 48)">{{ ENV('APP_NAME') }}</i></a>
+                {{ Config::get('settings.company.caption') }} <a href="{{ Config::get('settings.company.website') }}" target="_blank"><i class="fa fa-copyright" aria-hidden="true" style="color:  rgb(244, 111, 48)">{{ Config::get('settings.company.title') }}</i></a>
             </div>
         </div>
     </div>

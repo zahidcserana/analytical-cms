@@ -11,6 +11,8 @@ if (!function_exists('status_class')) {
             'pending' => 'badge-secondary',
             'due' => 'badge-info',
             'adjusted' => 'badge-info',
+            'active' => 'badge-info',
+            'inactive' => 'badge-warning',
             'advanced' => 'badge-success',
             '0' => 'badge-secondary',
             '1' => 'badge-success',

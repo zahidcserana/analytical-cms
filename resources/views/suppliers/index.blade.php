@@ -35,11 +35,13 @@
                     <tbody>
                         @foreach ($suppliers as $row)
                         <tr>
-                            <td class="table-plus">{{ $row->name }}</td>
+                            <td>
+                                <a class="link-a" href="{{route('suppliers.edit', ['supplier' => $row->id])}}"><i class="fa fa-edit"></i> {{ $row->name }}</a>
+                            </td>
                             <td>{{ $row->mobile }}</td>
                             <td>{{ $row->phone }}</td>
                             <td>{{ $row->email }}</td>
-                            <td>{{ $row->status }}</td>
+                            <td><span class="badge {{ status_class($row->status) }}">{{ status($row->status) }}</span></td>
                             <td>{{ $row->address }}</td>
                             <td>
                                 <div class="dropdown">

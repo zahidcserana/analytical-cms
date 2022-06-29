@@ -75,7 +75,7 @@
     <div class="invoice-box" id="invoice-box">
         <div class="top-div" style="margin-bottom: 2px;">
             <div style="float: left; width: 50%;">
-                <img src="{{ Config::get('settings.company.logo1') }}" alt="Dot Design" />
+                <img src="{{ Config::get('settings.client.logo1') }}" alt="Dot Design" />
             </div>
             <h4 style="text-align: right;" class="weight-600">INVOICE/BILL</h4>
         </div>
@@ -105,11 +105,11 @@
                 </table>
             </div>
             <div style="float: right; width: 50%;text-align: right;">
-                <span class="font-10" style="text-align: right">{{ Config::get('settings.company.name') }}</strong></span><br>
-                <span class="font-10" style="text-align: right">{{ Config::get('settings.company.email') }}</strong></span><br>
-                <span class="font-10" style="text-align: right">{{ Config::get('settings.company.mobile') }}</strong></span><br>
-                <span class="font-10" style="text-align: right">{{ Config::get('settings.company.city') }}</strong></span><br>
-                <span class="font-10" style="text-align: right">{{ Config::get('settings.company.address') }}</strong></span>
+                <span class="font-10" style="text-align: right">{{ Config::get('settings.client.name') }}</strong></span><br>
+                <span class="font-10" style="text-align: right">{{ Config::get('settings.client.email') }}</strong></span><br>
+                <span class="font-10" style="text-align: right">{{ Config::get('settings.client.mobile') }}</strong></span><br>
+                <span class="font-10" style="text-align: right">{{ Config::get('settings.client.city') }}</strong></span><br>
+                <span class="font-10" style="text-align: right">{{ Config::get('settings.client.address') }}</strong></span>
             </div>
         </div>
         <div class="invoice-desc">
@@ -198,7 +198,7 @@
             </div>
         </div>
         <div style="position: relative">
-            <p style="position: fixed; width:100%;bottom: 0; text-align: center">Powered by <a href="{{ Config::get('settings.website') }}">AnalyticalJ (analyticalzahid@gmail.com)</a></p>
+            <p style="position: fixed; width:100%;bottom: 0; text-align: center">Powered by <a href="{{ Config::get('settings.company.website') }}">AnalyticalJ ({{ Config::get('settings.company.email') }})</a></p>
         </div>
     </div>
 </body>

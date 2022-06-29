@@ -45,7 +45,7 @@
                             @foreach ($payments as $i=>$row)
                             <tr>
                                 <td>
-                                    <a href="{{route('payments.edit', ['payment' => $row->id])}}">{{ $row->receipt_no }}</a>
+                                    <a class="link-a" href="{{route('payments.edit', ['payment' => $row->id])}}"><i class="fa fa-edit"></i> {{ $row->receipt_no }}</a>
                                 </td>
                                 <td>{{ $row->customer->name }}</td>
                                 <td>{{ $row->method }}</td>

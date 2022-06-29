@@ -1,8 +1,8 @@
 <div class="left-side-bar">
     <div class="brand-logo">
         <a href="{{ route('dashboard') }}">
-            <img src="{{ asset(Config::get('settings.logo.sidebar')) }}" alt="" class="dark-logo">
-            <img src="{{ asset(Config::get('settings.logo.sidebar')) }}" alt="" class="light-logo">
+            <img src="{{ asset(Config::get('settings.company.images.sidebar')) }}" alt="" class="dark-logo">
+            <img src="{{ asset(Config::get('settings.company.images.sidebar')) }}" alt="" class="light-logo">
         </a>
         <div class="close-sidebar" data-toggle="left-sidebar-close">
             <i class="ion-close-round"></i>

@@ -4,7 +4,6 @@
             <div class="pd-20 clearfix">
                 <h4 class="text-title h4 pull-left">Customer List</h4>
                 <a href="{{ route('customers.create') }}" class="btn btn-info pull-right"><i class="fa fa-plus-circle"></i> New </a>
-
             </div>
             <div class="pb-20 search-table">
                 <form class="form-inline" method="GET" action="{{ route('customers.index') }}">
@@ -23,10 +22,10 @@
                 <table class="table stripe hover nowrap">
                     <thead>
                         <tr>
-                            <th class="table-plus datatable-nosort">Name</th>
+                            <th style="width: 20%">Name</th>
                             <th>Mobile</th>
                             <th>Phone</th>
-                            <th>Email</th>
+                            <th style="width: 15%">Email</th>
                             <th>Balance</th>
                             <th>Status</th>
                             <th>Address</th>
@@ -36,12 +35,14 @@
                     <tbody>
                         @foreach ($customers as $row)
                         <tr>
-                            <td class="table-plus">{{ $row->name }}</td>
+                            <td>
+                                <a class="link-a" href="{{route('customers.edit', ['customer' => $row->id])}}"><i class="fa fa-edit"></i> {{ $row->name }}</a>
+                            </td>
                             <td>{{ $row->mobile }}</td>
                             <td>{{ $row->phone }}</td>
                             <td>{{ $row->email }}</td>
                             <td>{{ $row->balance }}</td>
-                            <td>{{ $row->status }}</td>
+                            <td><span class="badge {{ status_class($row->status) }}">{{ status($row->status) }}</span></td>
                             <td>{{ $row->address }}</td>
                             <td>
                                 <div class="dropdown">

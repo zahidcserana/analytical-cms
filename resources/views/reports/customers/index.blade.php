@@ -4,18 +4,18 @@
             <div class="pd-20 clearfix">
                 <h4 class="text-title h4 pull-left">Customer List</h4>
                 <a href="{{ route('customers.create') }}" class="btn btn-info pull-right"><i class="fa fa-plus-circle"></i> New </a>
-
             </div>
             <div class="pb-20" style="padding: 0% 1%;">
                 <div class="row">
                     <div class="col-7">
+                        <a target="_blank" href="{{ route('reports.customers', ['print' => 'print']) }}" class="btn btn-success pull-right"><i class="fa fa-file-pdf-o"></i> Print </a>
                     </div>
                     <div class="col-5">
                         <table class="table table-striped table-info">
                             <thead>
                                 <tr>
-                                    <th>Customer</th>
-                                    <th>Due</th>
+                                    <th>Total Customer</th>
+                                    <th>Total Due</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -27,7 +27,7 @@
                         </table>
                     </div>
                 </div>
-                <table class="table stripe hover nowrap">
+                <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th class="table-plus datatable-nosort">Name</th>
