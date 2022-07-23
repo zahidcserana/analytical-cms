@@ -4,6 +4,7 @@
 - Print page invoice-report
 - Need to test: amount 2 decimal
 - customer report - search by balance gt/0
+- Fahad: Email issue
 
 ## command
 
