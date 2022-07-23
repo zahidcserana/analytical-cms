@@ -48,7 +48,9 @@
                                     <a class="link-a" href="{{route('invoices.edit', ['invoice' => $row->id])}}"><i class="fa fa-edit"></i> {{ $row->invoice_no }}</a>
                                 </td>
                                 <td> {{ Carbon\Carbon::parse($row->invoice_date)->format('d/m/Y') }} </td>
-                                <td>{{ $row->customer->name }}</td>
+                                <td>
+                                    <a class="link-a" href="{{route('customers.edit', ['customer' => $row->customer->id])}}"> {{ $row->customer->name }}</a>
+                                </td>
                                 <td>{{ $row->sub_total }}</td>
                                 <td>{{ $row->discount }}</td>
                                 <td>{{ $row->total }}</td>
