@@ -42,10 +42,10 @@ return [
         'logo1' => 'https://scontent.xx.fbcdn.net/v/t1.15752-9/280433905_358896566166733_1854823892942898025_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=aee45a&_nc_ohc=U5Btqpn-SogAX8Se9lQ&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AVKP4vWMmNJePv3x9Q3dZroaRqsuTX5RqpzjTvobdk7Fqw&oe=62CB7E03',
         'name' => 'DOT DESIGN',
         'city' => 'Dhaka',
-        'address' => 'Akhanda Tower, Mirpur-10',
+        'address' => 'Mir Plaza, Baipail, Ashuliya, Savar',
         'phone' => '',
-        'mobile' => '01715 199064',
-        'email' => 'dotdesign2007@gmail.com',
+        'mobile' => '01772 285237',
+        'email' => 'dotdesignbp2007@gmail.com',
         'logo' => 'assets/vendors/images/dot_design.jpg',
     ],
 
