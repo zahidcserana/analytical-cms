@@ -82,12 +82,12 @@ return array (
     'normal' => $fontDir . '/fontawesome_normal_c815e803d273560df3d4ad0269dcbaf8',
   ),
   'inter' => array(
-    '300' => $fontDir . '/inter_300_489ce7276b6eabdfe0a64d01039da6e5',
-    'normal' => $fontDir . '/inter_normal_939b58724766a274c4992e346b2b8d50',
-    '500' => $fontDir . '/inter_500_69735e9d8b66356789f87e9769098c13',
-    '600' => $fontDir . '/inter_600_0a3c5c3d9b80b10bc0155e9e2c225d14',
-    'bold' => $fontDir . '/inter_bold_147acf14ddf62bab838b19e0cbccf47c',
-    '800' => $fontDir . '/inter_800_93845c0ff3417fe8281e547a07012738',
+    '300' => $fontDir . '/inter_300_6f003d6153bb6629d9efcdc027439d83',
+    'normal' => $fontDir . '/inter_normal_4c1c39b2d60dc6de8a3bc272ce3fe7dc',
+    '500' => $fontDir . '/inter_500_73384d6e47fd66bbc719b75497af932b',
+    '600' => $fontDir . '/inter_600_5fa3cee4db6b0338a4ce38a93c93ddd3',
+    'bold' => $fontDir . '/inter_bold_c57a050bb9f74fe1522e9f687ba11188',
+    '800' => $fontDir . '/inter_800_d0a767ffeda1c5c5782aa5e0f854b616',
   ),
   'dropways' => array(
     'normal' => $fontDir . '/dropways_normal_17bca8b8c08e29a5967a1956c804da50',

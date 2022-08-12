@@ -46,4 +46,5 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('reports/invoices', [ReportController::class, 'invoices'])->name('reports.invoices');
     Route::get('reports/customers/{print?}', [ReportController::class, 'customers'])->name('reports.customers');
+    Route::get('reports/payments/{print?}', [ReportController::class, 'payments'])->name('reports.payments');
 });

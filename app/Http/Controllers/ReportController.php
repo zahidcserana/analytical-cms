@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use App\Models\Invoice;
+use App\Models\Payment;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -79,5 +80,61 @@ class ReportController extends Controller
         }
 
         return view('reports.customers.index', $data);
+    }
+
+    public function payments(Request $request, $print = false)
+    {
+        $query = $request->query();
+        $collection = Payment::query();
+
+        $collection->when($request->status, function ($q) use ($request) {
+            return $q->where('status', $request['status']);
+        });
+        $collection->when($request->customer_id, function ($q) use ($request) {
+            return $q->where('customer_id', $request['customer_id']);
+        });
+        $collection->when($request->method, function ($q) use ($request) {
+            return $q->where('method', $request['method']);
+        });
+
+        if (!empty($request->daterange)) {
+            $daterange = explode(' - ', $request->daterange);
+            $dateS = date('Y-m-d', strtotime($daterange[0]));
+            $dateE = !empty($daterange[1]) ? date('Y-m-d', strtotime($daterange[1])) : $dateS;
+
+            $collection = $collection->whereDate('created_at', '>=', $dateS)->whereDate('created_at', '<=', $dateE);
+        } else {
+            $dateS = Carbon::now()->subDays(30);
+            $dateE = Carbon::now();
+
+            $collection = $collection->whereDate('created_at', '>=', $dateS)->whereDate('created_at', '<=', $dateE);
+
+            $dateS = date('m/d/Y', strtotime($dateS));
+            $dateE = date('m/d/Y', strtotime($dateE));
+            $query['daterange'] = $dateS . ' - ' . $dateE;
+        }
+
+        $payments = $collection->latest('id')->get();
+
+        $summary['amount'] = 0;
+        $summary['adjust'] = 0;
+        $summary['dues'] = 0;
+
+        foreach ($payments as $payment) {
+            $summary['amount'] += $payment->amount;
+            $summary['adjust'] += $payment->adjust;
+            $summary['dues'] += $payment->dues;
+        }
+
+        $data['summary'] = $summary;
+        $data['payments'] = $payments;
+        $data['customers'] = Customer::select('id', 'name')->get();
+        $data['query'] = $query;
+
+        if ($print) {
+            return view('reports.payments.print', $data);
+        }
+
+        return view('reports.payments.index', $data);
     }
 }
