@@ -85,7 +85,7 @@
                 </li>
                 <li class="dropdown {{ $route == 'reports.customers'? 'show' : ''}}">
                     <a href="javascript:;" class="dropdown-toggle">
-                        <span class="micon dw dw-calculator"></span><span class="mtext">Customers</span>
+                        <span class="micon dw dw-cloud"></span><span class="mtext">Customers</span>
                     </a>
                     <ul class="submenu child">
                         <li><a href="{{ route('reports.customers') }}" class="{{ $route == 'reports.customers'? 'active' : ''}}">Customers</a></li>
@@ -100,6 +100,17 @@
                         <li><a href="{{ route('reports.invoices',['status' => 'due']) }}" class="{{ $uri == '/reports/invoices?status=due'? 'active' : ''}}"> Due</a></li>
                         <li><a href="{{ route('reports.invoices',['status' => 'paid']) }}" class="{{ $uri == '/reports/invoices?status=paid'? 'active' : ''}}"> Paid</a></li>
                         <li><a href="{{ route('reports.invoices',['status' => 'pending']) }}" class="{{ $uri == '/reports/invoices?status=pending'? 'active' : ''}}"> Pending</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown {{ $route == 'reports.payments'? 'show' : ''}}">
+                    <a href="javascript:;" class="dropdown-toggle">
+                        <span class="micon dw dw-money"></span><span class="mtext">Payments</span>
+                    </a>
+                    <ul class="submenu child">
+                        <li><a href="{{ route('reports.payments') }}" class="{{ $uri == '/reports/payments'? 'active' : ''}}">All</a></li>
+                        <li><a href="{{ route('reports.payments',['status' => 'pending']) }}" class="{{ $uri == '/reports/payments?status=pending'? 'active' : ''}}"> Pending</a></li>
+                        <li><a href="{{ route('reports.payments',['status' => 'adjusted']) }}" class="{{ $uri == '/reports/payments?status=adjusted'? 'active' : ''}}"> Adjusted</a></li>
+                        <li><a href="{{ route('reports.payments',['status' => 'advanced']) }}" class="{{ $uri == '/reports/payments?status=advanced'? 'active' : ''}}"> Advanced</a></li>
                     </ul>
                 </li>
                 <li>
