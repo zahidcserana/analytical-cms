@@ -113,7 +113,7 @@ class PaymentController extends Controller
             $paidAmount = 0;
             $dueAmount = $invoice->total - $invoice->paid;
 
-            if ($amount > $dueAmount) {
+            if ($amount >= $dueAmount) {
                 $paidAmount = $dueAmount;
                 $status = Invoice::STATUS_PAID;
             } else {

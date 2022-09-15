@@ -26,9 +26,9 @@
                             <th>Mobile</th>
                             <th>Phone</th>
                             <th style="width: 15%">Email</th>
-                            <th>Balance</th>
+                            <th>Due</th>
+                            <th style="width: 15%">Address</th>
                             <th>Status</th>
-                            <th>Address</th>
                             <th class="datatable-nosort">Action</th>
                         </tr>
                     </thead>
@@ -41,9 +41,11 @@
                             <td>{{ $row->mobile }}</td>
                             <td>{{ $row->phone }}</td>
                             <td>{{ $row->email }}</td>
-                            <td>{{ $row->balance }}</td>
-                            <td><span class="badge {{ status_class($row->status) }}">{{ status($row->status) }}</span></td>
+                            <td>
+                                <a class="link-a" href="{{route('invoices.index', ['status' => 'unpaid', 'customer_id' => $row->id])}}">{{ $row->balance }}</a>
+                            </td>
                             <td>{{ $row->address }}</td>
+                            <td><span class="badge {{ status_class($row->status) }}">{{ status($row->status) }}</span></td>
                             <td>
                                 <div class="dropdown">
                                     <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">

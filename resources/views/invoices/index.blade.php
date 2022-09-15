@@ -17,6 +17,7 @@
                         <option {{ (!empty($query['status']) && ($query['status'] == 'pending')) ? "selected='selected'" : '' }} value="pending">Pending</option>
                         <option {{ (!empty($query['status']) && ($query['status'] == 'paid')) ? "selected='selected'" : '' }} value="paid">Paid</option>
                         <option {{ (!empty($query['status']) && ($query['status'] == 'due')) ? "selected='selected'" : '' }} value="due">Due</option>
+                        <option {{ (!empty($query['status']) && ($query['status'] == 'unpaid')) ? "selected='selected'" : '' }} value="unpaid">Pending/Due</option>
                     </select>
                     <div class="input-group mb-2 mr-sm-2">
                         <input value="{{ $query['daterange'] ?? '' }}" class="form-control datetimepicker-range" name="daterange" placeholder="Select Month" type="text" autocomplete="off">

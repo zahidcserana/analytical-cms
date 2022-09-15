@@ -1,5 +1,6 @@
 # Features have to do
 
+- Reports Preview: invoices: Column add in preview, summary in bottom
 - Reports Print: invoices
 - Print page invoice-report
 - Need to test: amount 2 decimal

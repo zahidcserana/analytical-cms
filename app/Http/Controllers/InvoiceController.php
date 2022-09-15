@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\Invoice\StoreRequest;
 use App\Http\Requests\Invoice\UpdateRequest;
 use App\Http\Requests\InvoiceItem\ItemStoreRequest;
+use Illuminate\Support\Arr;
 
 class InvoiceController extends Controller
 {
@@ -22,6 +23,10 @@ class InvoiceController extends Controller
         $collection = Invoice::query();
 
         $collection->when($request->status, function ($q) use ($request) {
+            if ($request->status == 'unpaid') {
+                return $q->where('status', '<>', 'paid');
+            }
+
             return $q->where('status', $request['status']);
         });
         $collection->when($request->customer_id, function ($q) use ($request) {
@@ -71,6 +76,18 @@ class InvoiceController extends Controller
     public function store(StoreRequest $request)
     {
         $input = $request->validated();
+
+        if (isset($input['register']) && $input['register'] == "on" && !empty($input['name']) && !empty($input['mobile'])) {
+            $customer = Customer::create(['name' => $input['name'], 'mobile' => $input['mobile']]);
+            $input['customer_id'] = $customer->id;
+            Arr::forget($input, 'register');
+            Arr::forget($input, 'name');
+            Arr::forget($input, 'mobile');
+        }
+
+        if (empty($input['customer_id'])) {
+            return Redirect::back()->withErrors(['msg' => 'Please select a customer.']);
+        }
 
         if ($input['type'] == 2 && empty($input['total'])) {
             return Redirect::back()->withErrors(['msg' => 'Please enter total amount.']);
