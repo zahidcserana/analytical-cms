@@ -4696,7 +4696,7 @@ window.Invoice = function () {
       var price = $("#price").val();
       $("#area").val(length * width * quantity);
       var area = $("#area").val();
-      $("#amount").val(setAmount(area * price));
+      $("#amount").val(setAmount(area * price).toFixed(2));
     }
 
     function setAmount($amount) {

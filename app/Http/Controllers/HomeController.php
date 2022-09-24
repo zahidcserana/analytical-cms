@@ -97,6 +97,9 @@ class HomeController extends Controller
         DB::table('invoices')->truncate();
         DB::table('users')->truncate();
         DB::table('payments')->truncate();
+        DB::table('expenses')->truncate();
+        DB::table('purchase_items')->truncate();
+        DB::table('purchases')->truncate();
 
         $seeder = new UserSeeder();
 

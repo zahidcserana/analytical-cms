@@ -6,6 +6,7 @@ use App\Models\Invoice;
 use App\Models\Payment;
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use App\Events\InvoiceIssued;
 use App\Http\Requests\Payment\StoreRequest;
 use App\Http\Requests\Payment\UpdateRequest;
 
@@ -101,6 +102,8 @@ class PaymentController extends Controller
         $invoices = $payment->customer->dueInvoices;
         if ($payment->amount > 0) {
             $this->distributePayment($payment, $invoices);
+
+            InvoiceIssued::dispatch($payment->customer);
         }
 
         return back()->with('success', 'Payment successfully adjusted.');

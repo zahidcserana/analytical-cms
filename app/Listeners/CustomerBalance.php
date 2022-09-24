@@ -29,11 +29,11 @@ class CustomerBalance
     {
         $due = 0;
 
-        foreach ($event->invoice->customer->dueInvoices as $invoice) {
+        foreach ($event->customer->dueInvoices as $invoice) {
             $due += $invoice->total - $invoice->paid;
         }
 
-        $event->invoice->customer->balance = $due;
-        $event->invoice->customer->update();
+        $event->customer->balance = $due;
+        $event->customer->update();
     }
 }

@@ -46,6 +46,12 @@
         .invoice-table th {
             text-align: center !important;
         }
+        .top-div {
+            padding-right: 5% !important;
+        }
+        .invoice-desc {
+            padding-right: 5% !important;
+        }
         .top-div:after {
             content: "";
             display: table;

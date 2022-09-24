@@ -22,9 +22,9 @@ class Invoice extends Model
 
     protected $guarded = [];
 
-    protected $dispatchesEvents = [
-        'saved' => InvoiceIssued::class,
-    ];
+    // protected $dispatchesEvents = [
+    //     'saved' => InvoiceIssued::class,
+    // ];
 
     public function getGrossAttribute()
     {
@@ -51,13 +51,16 @@ class Invoice extends Model
             $this->sub_total = $subTotal;
         }
 
-        if ((int)$this->total <= (int)$this->paid) {
-            $this->status = 'paid';
+        if ((int)$this->paid == 0) {
+            $this->status = self::STATUS_PENDING;
+        } else if ((int)$this->total <= (int)$this->paid) {
+            $this->status = self::STATUS_PAID;
         } else if ((int)$this->total > (int)$this->paid) {
-            $this->status = 'due';
+            $this->status = self::STATUS_DUE;
         }
 
         $this->update();
+        InvoiceIssued::dispatch($this->customer);
     }
 
     public function getAmount($amount)

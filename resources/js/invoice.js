@@ -141,16 +141,18 @@ window.Invoice = function () {
             let length = $("#length").val();
             let width = $("#width").val();
             let color = $("#color").val();
+
             if(intRegex.test(color)) {
-                let quantity = $("#quantity").val(color);
+                $("#quantity").val(color);
             }
+
             let quantity = $("#quantity").val();
             let price = $("#price").val();
 
             $("#area").val(length * width * quantity);
             let area = $("#area").val();
 
-            $("#amount").val(setAmount(area * price));
+            $("#amount").val(setAmount(area * price).toFixed(2));
         }
 
         function setAmount($amount)

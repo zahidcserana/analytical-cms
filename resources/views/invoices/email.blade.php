@@ -64,6 +64,12 @@
         .amount-word {
             text-align: center;
         }
+        .top-div {
+            padding-right: 5% !important;
+        }
+        .invoice-desc {
+            padding-right: 5% !important;
+        }
         .top-div:after {
             content: "";
             display: table;

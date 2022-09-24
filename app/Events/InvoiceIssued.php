@@ -2,7 +2,7 @@
 
 namespace App\Events;
 
-use App\Models\Invoice;
+use App\Models\Customer;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -14,16 +14,16 @@ use Illuminate\Queue\SerializesModels;
 class InvoiceIssued
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-    public $invoice;
+    public $customer;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Invoice $invoice)
+    public function __construct(Customer $customer)
     {
-        $this->invoice = $invoice;
+        $this->customer = $customer;
     }
 
     /**
