@@ -23,10 +23,6 @@ class InvoiceController extends Controller
         $collection = Invoice::query();
 
         $collection->when($request->status, function ($q) use ($request) {
-            if ($request->status == 'unpaid') {
-                return $q->where('status', '<>', 'paid');
-            }
-
             return $q->where('status', $request['status']);
         });
         $collection->when($request->customer_id, function ($q) use ($request) {

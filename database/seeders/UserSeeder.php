@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
         $admin =  User::factory()->create([
             'id' => 2,
             'name' => 'Analytical Journey',
-            'email' => 'cms@analytical.com',
+            'email' => 'admin@admin.com',
             'observe' => Carbon::now()->addMonths(1),
             'type' => User::ROLE_ADMINISTRATOR,
         ]);

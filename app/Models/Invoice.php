@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use NumberFormatter;
 use App\Events\InvoiceIssued;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use NumberFormatter;
 
 class Invoice extends Model
 {
@@ -28,17 +28,18 @@ class Invoice extends Model
 
     public function getGrossAttribute()
     {
-        return word_amount((int)$this->total);
+        return word_amount((int) $this->total);
     }
 
     public function getDueAttribute()
     {
         $digit = new NumberFormatter("en", NumberFormatter::DEFAULT_STYLE);
-        return $digit->format((int)($this->total - $this->paid));
+        return $digit->format((int) ($this->total - $this->paid));
     }
 
     public function calculate()
     {
+        $this->status = self::STATUS_DUE;
 
         if ($this->type == 1) {
             $subTotal = 0;
@@ -51,11 +52,11 @@ class Invoice extends Model
             $this->sub_total = $subTotal;
         }
 
-        if ((int)$this->paid == 0) {
+        if ((int) $this->total == 0) {
             $this->status = self::STATUS_PENDING;
-        } else if ((int)$this->total <= (int)$this->paid) {
+        } else if ((int) $this->total <= (int) $this->paid) {
             $this->status = self::STATUS_PAID;
-        } else if ((int)$this->total > (int)$this->paid) {
+        } else {
             $this->status = self::STATUS_DUE;
         }
 

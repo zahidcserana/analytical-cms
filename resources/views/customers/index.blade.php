@@ -42,7 +42,7 @@
                             <td>{{ $row->phone }}</td>
                             <td>{{ $row->email }}</td>
                             <td>
-                                <a class="link-a" href="{{route('invoices.index', ['status' => 'unpaid', 'customer_id' => $row->id])}}">{{ $row->balance }}</a>
+                                <a class="link-a" href="{{route('invoices.index', ['status' => 'due', 'customer_id' => $row->id])}}">{{ $row->balance }}</a>
                             </td>
                             <td>{{ $row->address }}</td>
                             <td><span class="badge {{ status_class($row->status) }}">{{ status($row->status) }}</span></td>

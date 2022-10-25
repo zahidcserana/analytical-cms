@@ -122,6 +122,14 @@
                                 <td>{{ number_format(($row->total - $row->paid), 2, '.', ',') }}</td>
                             </tr>
                             @endforeach
+                            <tr class="summary">
+                                <td colspan="3">Totol</td>
+                                <td>{{ $summary['sub_total'] }}</td>
+                                <td>{{ $summary['discount'] }}</td>
+                                <td>{{ $summary['total'] }}</td>
+                                <td>{{ $summary['paid'] }}</td>
+                                <td>{{ $summary['total'] - $summary['paid'] }}</td>
+                            </tr>
                         </tbody>
                     </table>
                     <a href="{{ route('customers.invoices', ['customer' => ($query['customer_id'] ?? 1)]) }}" class="btn" data-bgcolor="#db4437" data-color="#ffffff" style="color: rgb(255, 255, 255); background-color: rgb(219, 68, 55);float: right;"><i class="fa fa-plane"></i> {{ __('Email') }}</a>
@@ -153,6 +161,9 @@
             position: relative;
             vertical-align: middle;
             width: 25% !important;
+        }
+        .summary td {
+            font-weight: bold;
         }
         </style>
     @endpush

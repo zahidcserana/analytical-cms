@@ -4689,7 +4689,7 @@ window.Invoice = function () {
       var color = $("#color").val();
 
       if (intRegex.test(color)) {
-        var _quantity = $("#quantity").val(color);
+        $("#quantity").val(color);
       }
 
       var quantity = $("#quantity").val();

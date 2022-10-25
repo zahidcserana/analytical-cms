@@ -41,7 +41,7 @@ class HomeController extends Controller
         $data = [
             'topCustomers' => $customerCollection->take(5),
             'topInvoices' => $invoiceCollection->take(5),
-            'dueInvoiceCount' => $invoiceCollection->whereIn('status', [Invoice::STATUS_DUE, Invoice::STATUS_PENDING])->count(),
+            'dueInvoiceCount' => $invoiceCollection->where('status', Invoice::STATUS_DUE)->count(),
             'invoiceCount' => $invoiceCollection->count(),
             'dueAmount' => $invoiceCollection->sum->dueTotal(),
             'customerDue' => $customerCollection->sum('balance'),

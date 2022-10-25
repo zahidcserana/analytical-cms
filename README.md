@@ -1,10 +1,11 @@
 # Features have to do
 
-- Reports Preview: invoices: Column add in preview, summary in bottom
+- Module: add column on users table: logo, address: Settings to add these
 - Reports Print: invoices
 - Print page invoice-report
 - Need to test: amount 2 decimal
 - customer report - search by balance gt/0
+
 
 ## command
 
