@@ -3,6 +3,7 @@
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DataController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PurchaseController;
@@ -18,6 +19,12 @@ require __DIR__ . '/auth.php';
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [HomeController::class, 'dashboard'])->name('dashboard');
+
+    Route::prefix('data')->name('data.')->group(function () {
+        Route::get('download', [DataController::class, 'download'])->name('download');
+        Route::get('email', [DataController::class, 'email'])->name('email');
+        Route::get('backup', [DataController::class, 'backup'])->name('backup');
+    });
 
     Route::resource('suppliers', SupplierController::class);
 

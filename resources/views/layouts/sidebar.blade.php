@@ -114,6 +114,23 @@
                     </ul>
                 </li>
                 <li>
+                    <div class="dropdown-divider"></div>
+                </li>
+                <li>
+                    <div class="sidebar-small-cap">Backup</div>
+                </li>
+                <li class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle">
+                        <span class="micon dw dw-download"></span><span class="mtext">Data</span>
+                    </a>
+                    <ul class="submenu child">
+                        <li><a href="{{ route('data.backup') }}">Backup</a></li>
+                        <li><a href="{{ route('data.download') }}">Download</a></li>
+                        <li><a href="{{ route('data.email') }}">Email</a></li>
+                    </ul>
+                </li>
+
+                <li>
                     <a class="dropdown-toggle no-arrow" href="{{ route('logout') }}" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
                         <i class="micon dw dw-logout"></i>

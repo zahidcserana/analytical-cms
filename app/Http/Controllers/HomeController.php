@@ -64,7 +64,7 @@ class HomeController extends Controller
 
         $dataPurchase = [];
         foreach ($purchaseData as $row) {
-            $row->total = $row->total == null ? 0 : (int) $row->total;
+            $row->total = $row->total == null ? 0 : (int)$row->total;
             $row->title = $this->monthName[$row->month] . '-' . $row->year;
             $dataPurchase[$row->title] = $row->total;
         }
@@ -80,7 +80,7 @@ class HomeController extends Controller
 
         $dataSale = [];
         foreach ($saleData as $row) {
-            $row->total = $row->total == null ? 0 : (int) $row->total;
+            $row->total = $row->total == null ? 0 : (int)$row->total;
             $row->title = $this->monthName[$row->month] . '-' . $row->year;
             $dataSale[$row->title] = $row->total;
         }

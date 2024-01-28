@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Str;
+
 // $DATABASE_URL=parse_url('postgres://beossllmynagpt:76ae0f7d27be7852a78e8102a6b21c78fdb29195ec3c92a5971c8183533a66d6@ec2-54-209-187-69.compute-1.amazonaws.com:5432/dasfq44dia14b8');
 
 return [
@@ -62,6 +63,13 @@ return [
             'options' => extension_loaded('pdo_mysql') ? array_filter([
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
+            'dump' => [
+                'dump_binary_path' => 'C:\xampp\mysql\bin', // only the path, so without `mysqldump` or `pg_dump`
+                'use_single_transaction',
+                'timeout' => 60 * 5, // 5 minute timeout
+                'exclude_tables' => ['table1', 'table2'],
+                // 'add_extra_option' => '--optionname=optionvalue',
+            ]
         ],
 
         'pgsql' => [
@@ -124,7 +132,7 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_') . '_database_'),
         ],
 
         'default' => [
