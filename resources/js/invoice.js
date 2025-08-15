@@ -25,9 +25,6 @@ window.Invoice = function () {
                 }
             });
 
-            console.log('itemId')
-            console.log(itemId)
-
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -35,7 +32,7 @@ window.Invoice = function () {
             });
             $('.delete-row').html('Deleting..');
             $.ajax({
-                url: '/invoice-item-delete/' + invoiceId,
+                url: `${BASE_URL}/invoice-item-delete/${invoiceId}`,
                 type: "POST",
                 data: {
                     invoiceId: invoiceId,
@@ -100,7 +97,7 @@ window.Invoice = function () {
                 });
                 $('#send_form').html('Sending..');
                 $.ajax({
-                    url: '/invoice-item/' + invoiceId,
+                    url: `${BASE_URL}/invoice-item/${invoiceId}`,
                     type: "POST",
                     data: $('#post-form').serialize(),
                     success: function(response) {

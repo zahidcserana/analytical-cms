@@ -220,7 +220,10 @@ $reports = ['reports.invoices', 'reports.customers'];
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/additional-methods.min.js"></script>
 
-    <script src="{{ mix('/js/app.js') }}"></script>
+    <script>
+        const BASE_URL = "{{ url(config('app.url')) }}";
+    </script>
+    <script src="{{ asset('js/app.js') }}"></script>
 
     @stack('scripts')
 </body>
