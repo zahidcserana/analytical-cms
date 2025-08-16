@@ -39,7 +39,7 @@ $(document).ready(function() {
             theme: "classic",
             placeholder: 'Select Customer',
             ajax: {
-                url: '/customers/ajax-search',
+                url: `${BASE_URL}/customers/ajax-search`,
                 dataType: 'json',
                 delay: 250,
                 cache: true
@@ -52,7 +52,7 @@ $(document).ready(function() {
         if (customerId != null && customerId != '') {
             // var data = JSON.parse(customer);
             $.ajax({
-                url: '/customers/ajax-search-by-id/' + customerId,
+                url: `${BASE_URL}/customers/ajax-search-by-id/${customerId}`,
                 type: "GET",
                 dataType: "json",
                 success: function (data) {

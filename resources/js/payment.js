@@ -15,7 +15,7 @@ window.Payment = function () {
         $('.customer-select').on('change', function() {
             console.log( this.value );
             $.ajax({
-                url: "/customers/" + this.value + "/details",
+                url: `${BASE_URL}/customers/${this.value}/details`,
                 type: "GET",
                 success: function (response) {
                     if (response.balance) {
@@ -27,7 +27,7 @@ window.Payment = function () {
 
         $('.payment-preview').on('click', function() {
             $.ajax({
-                url: '/payments/' + $(this).attr('data-id') + '/preview',
+                url: `${BASE_URL}/payments/${$(this).attr('data-id')}/preview`,
                 type: "GET",
                 success: function(response) {
                     $(".modal-body").html(response);

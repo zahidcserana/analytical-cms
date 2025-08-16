@@ -23,3 +23,5 @@ heroku config
 $DATABASE_URL=parse_url('Your database URL');
 
 heroku run php artisan migrate
+
+export NODE_OPTIONS=--openssl-legacy-provider

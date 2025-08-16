@@ -2954,7 +2954,7 @@ module.exports = function transformData(data, headers, fns) {
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
-/* provided dependency */ var process = __webpack_require__(/*! process/browser.js */ "./node_modules/process/browser.js");
+/* provided dependency */ var process = __webpack_require__(/*! process/browser */ "./node_modules/process/browser.js");
 
 
 var utils = __webpack_require__(/*! ./utils */ "./node_modules/axios/lib/utils.js");
@@ -4019,6 +4019,7 @@ module.exports = {
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
 __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
 
 /***/ }),
@@ -4030,7 +4031,6 @@ __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
@@ -4039,17 +4039,13 @@ window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
  * allows your team to easily build robust real-time web applications.
  */
-
 // import Echo from 'laravel-echo';
-
 // window.Pusher = require('pusher-js');
-
 // window.Echo = new Echo({
 //     broadcaster: 'pusher',
 //     key: process.env.MIX_PUSHER_APP_KEY,
@@ -4508,6 +4504,7 @@ $(document).ready(function () {
       }
     });
   };
+
   window.datePicker = function () {
     $('.my-date-picker').datepicker({
       language: 'en',
@@ -4515,8 +4512,10 @@ $(document).ready(function () {
       dateFormat: 'yyyy-mm-dd'
     });
   };
+
   window.ajaxMessageBox = function (message, success) {
     var time = 2000;
+
     if (success) {
       $('.ajax-success').html(message).show();
       setTimeout(function () {
@@ -4529,24 +4528,24 @@ $(document).ready(function () {
       }, time);
     }
   };
+
   window.customerSelect2 = function () {
     $('.customer-select2').select2({
       theme: "classic",
       placeholder: 'Select Customer',
       ajax: {
-        url: '/customers/ajax-search',
+        url: "".concat(BASE_URL, "/customers/ajax-search"),
         dataType: 'json',
         delay: 250,
         cache: true
       }
     });
-    var customerId = $(".customer-select2").attr("data-customer-id");
-    // let customerId = <?php echo json_decode($_GET['customer_id'] ?? 0, true)?>;
+    var customerId = $(".customer-select2").attr("data-customer-id"); // let customerId = <?php echo json_decode($_GET['customer_id'] ?? 0, true)?>;
 
     if (customerId != null && customerId != '') {
       // var data = JSON.parse(customer);
       $.ajax({
-        url: '/customers/ajax-search-by-id/' + customerId,
+        url: "".concat(BASE_URL, "/customers/ajax-search-by-id/").concat(customerId),
         type: "GET",
         dataType: "json",
         success: function success(data) {
@@ -4589,8 +4588,6 @@ window.Invoice = function () {
           $(this).parents("tr").remove();
         }
       });
-      console.log('itemId');
-      console.log(itemId);
       $.ajaxSetup({
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -4598,7 +4595,7 @@ window.Invoice = function () {
       });
       $('.delete-row').html('Deleting..');
       $.ajax({
-        url: '/invoice-item-delete/' + invoiceId,
+        url: "".concat(BASE_URL, "/invoice-item-delete/").concat(invoiceId),
         type: "POST",
         data: {
           invoiceId: invoiceId,
@@ -4661,13 +4658,14 @@ window.Invoice = function () {
         });
         $('#send_form').html('Sending..');
         $.ajax({
-          url: '/invoice-item/' + invoiceId,
+          url: "".concat(BASE_URL, "/invoice-item/").concat(invoiceId),
           type: "POST",
           data: $('#post-form').serialize(),
           success: function success(response) {
             $('#send_form').html('Add');
             ajaxMessageBox('Data successfully saved.', true);
             document.getElementById("post-form").reset();
+
             if (response.status) {
               data = response.data;
               invoice = response.invoice;
@@ -4682,22 +4680,27 @@ window.Invoice = function () {
         });
       }
     });
+
     function calculation() {
       var length = $("#length").val();
       var width = $("#width").val();
       var color = $("#color").val();
+
       if (intRegex.test(color)) {
         $("#quantity").val(color);
       }
+
       var quantity = $("#quantity").val();
       var price = $("#price").val();
       $("#area").val(length * width * quantity);
       var area = $("#area").val();
       $("#amount").val(setAmount(area * price).toFixed(2));
     }
+
     function setAmount($amount) {
       return $amount < 150 ? 150 : $amount;
     }
+
     function calculate() {
       var discount = $("#discount").val();
       var total = subtotal - discount;
@@ -4706,10 +4709,12 @@ window.Invoice = function () {
       console.log('total: ' + total);
       $("#total").val(total.toFixed(2));
       var paid = $("#paid").val();
+
       if (paid > total) {
         paid = total;
         $("#paid").val(paid);
       }
+
       var due = total - paid;
       $("#due").text(due.toFixed(2));
     }
@@ -4730,6 +4735,7 @@ window.Payment = function () {
     datePicker();
     $('.payment-method').on('change', function () {
       console.log(this.value);
+
       if (this.value == 'Bank') {
         $(".bank-details").show();
       } else {
@@ -4739,7 +4745,7 @@ window.Payment = function () {
     $('.customer-select').on('change', function () {
       console.log(this.value);
       $.ajax({
-        url: "/customers/" + this.value + "/details",
+        url: "".concat(BASE_URL, "/customers/").concat(this.value, "/details"),
         type: "GET",
         success: function success(response) {
           if (response.balance) {
@@ -4750,7 +4756,7 @@ window.Payment = function () {
     });
     $('.payment-preview').on('click', function () {
       $.ajax({
-        url: '/payments/' + $(this).attr('data-id') + '/preview',
+        url: "".concat(BASE_URL, "/payments/").concat($(this).attr('data-id'), "/preview"),
         type: "GET",
         success: function success(response) {
           $(".modal-body").html(response);
@@ -4814,6 +4820,7 @@ window.Purchase = function () {
         resetForm();
       }
     });
+
     function resetForm() {
       $("#description").val("");
       $("#size").val("");
@@ -4821,14 +4828,17 @@ window.Purchase = function () {
       $("#price").val("");
       $("#amount").val("");
     }
+
     function calculation() {
       var quantity = $("#quantity").val();
       var price = $("#price").val();
       $("#amount").val(setAmount(quantity * price));
     }
+
     function setAmount(amount) {
       return amount < 0 ? 0 : amount;
     }
+
     function calculate() {
       var discount = $("#discount").val();
       var subtotalValue = subtotal.val();
@@ -22422,7 +22432,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
 /******/ 					installedChunks[chunkId][0]();
 /******/ 				}
-/******/ 				installedChunks[chunkId] = 0;
+/******/ 				installedChunks[chunkIds[i]] = 0;
 /******/ 			}
 /******/ 			return __webpack_require__.O(result);
 /******/ 		}

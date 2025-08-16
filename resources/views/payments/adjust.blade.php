@@ -59,7 +59,7 @@
        <script>
             function preview(invoiceId) {
                 $.ajax({
-                    url: '/invoices/' + invoiceId + '/preview',
+                    url: `${BASE_URL}/invoices/${invoiceId}/preview`,
                     type: "GET",
                     success: function(response) {
                         $(".modal-body").html(response);
