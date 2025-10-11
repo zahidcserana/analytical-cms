@@ -1,13 +1,13 @@
 <?php
 
 return [
-    'website' => 'https://analyticalj.herokuapp.com',
+    'website' => 'https://analyticalj.com',
     'title' => 'Account Management System',
     'company' => [
         'title' => 'AnalyticalJ',
         'name' => 'Analytical Journey',
         'email' => 'analyticalzahid@gmail.com',
-        'website' => 'https://analyticalj.herokuapp.com',
+        'website' => 'https://analyticalj.com/',
         'mobile' => '01970887754',
         'moto' => 'Business Solution Software',
         'caption' => 'Software Solution Company',
